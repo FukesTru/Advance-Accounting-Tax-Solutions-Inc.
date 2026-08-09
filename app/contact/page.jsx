@@ -74,6 +74,7 @@ export default function ContactPage() {
                     >
                       {site.phone}
                     </a>
+                    <span className="mt-1 block text-sm text-slate-body">Fax: {site.fax}</span>
                   </span>
                 </li>
                 <li className="flex items-start gap-3">

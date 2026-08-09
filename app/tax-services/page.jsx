@@ -68,11 +68,15 @@ export default function TaxServicesPage() {
           text: 'Nexus review and coordinated filings when income, property, or operations cross state lines.',
         },
         {
-          title: 'IRS correspondence support',
-          text: 'We read the notice, tell you what it actually means, and respond on your behalf.',
+          title: 'IRS audit representation',
+          text: 'We deal with the examiner directly, so you are not the one answering questions under pressure.',
         },
         {
-          title: 'Prior-year catch-up filings',
+          title: 'Tax resolution & back taxes owed',
+          text: 'Payment arrangements, penalty abatement, and payroll tax problems worked through to a resolution.',
+        },
+        {
+          title: 'Prior-year and non-filed returns',
           text: 'Unfiled or amended returns reconstructed and brought current, penalties addressed where possible.',
         },
       ]}

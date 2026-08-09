@@ -88,6 +88,10 @@ export default function FractionalCfoPage() {
           text: 'Financial packages in the format lenders, investors, and buyers expect to receive.',
         },
         {
+          title: 'Internal controls review',
+          text: 'Segregation of duties, approval thresholds, and cash handling — the safeguards that prevent losses nobody notices.',
+        },
+        {
           title: 'Strategic planning sessions',
           text: 'Working meetings on hiring, capacity, expansion, and capital structure with the numbers in front of you.',
         },

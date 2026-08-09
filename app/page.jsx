@@ -21,7 +21,7 @@ import {
 import { images } from '@/lib/images';
 import { accountingServiceSchema, faqSchema } from '@/lib/schema';
 import { buildMetadata } from '@/lib/seo';
-import { serviceAreas, serviceCategories, site, trustBadges } from '@/lib/site';
+import { firmFacts, serviceAreas, serviceCategories, site, stats, trustBadges } from '@/lib/site';
 import { testimonials } from '@/lib/testimonials';
 
 export const metadata = buildMetadata({
@@ -67,13 +67,6 @@ const process = [
     title: 'Ongoing Support & Filing',
     text: 'Year-round check-ins, proactive adjustments, and filings handled on time — not a once-a-year scramble.',
   },
-];
-
-const stats = [
-  // TODO(client): confirm real figures with Joseph and replace the placeholders.
-  { label: 'Years in practice', value: 'X+' },
-  { label: 'Clients served', value: 'X+' },
-  { label: 'Industries supported', value: 'X+' },
 ];
 
 export default function HomePage() {
@@ -190,27 +183,28 @@ export default function HomePage() {
           <FadeIn delay={120}>
             <SectionHeading
               eyebrow="Our Story"
-              title="A firm built for the other eleven months of the year"
+              title="Forty years of doing this, built for the other eleven months"
             />
             <div className="mt-6 space-y-4 leading-relaxed text-slate-body">
               <p>
-                Advance Accounting &amp; Tax Solutions was founded by {site.owner} on a simple
-                observation: most people only hear from their accountant when a deadline is close.
-                By then the decisions that mattered — how the business was structured, how owners
-                paid themselves, when equipment was bought — had already been made without any tax
-                input at all.
+                Advance Accounting &amp; Tax Solutions is led by Joseph F. Fragnoli, CPA, a
+                Florida-licensed CPA with more than forty years in public accounting and the last
+                ten in independent practice. The firm was built around a simple observation: most
+                people only hear from their accountant when a deadline is close. By then the
+                decisions that mattered — how the business was structured, how owners paid
+                themselves, when equipment was bought — had already been made without any tax input
+                at all.
               </p>
               <p>
                 We work the other way around. Clients get a relationship, not a transaction:
                 planning conversations before the year ends, clean books they can actually read, and
-                an advisor who picks up the phone. Individuals, small business owners, and companies
-                that need CFO-level guidance all get the same direct access to the person doing the
-                work.
+                an advisor who picks up the phone. We work with {firmFacts.clientTypes} — businesses
+                generally between {firmFacts.clientRevenueLong} in revenue — and every one of them
+                gets direct access to the person doing the work.
               </p>
             </div>
 
             <div className="mt-9">
-              {/* TODO(client): confirm real numbers before launch. */}
               <dl className="grid gap-4 sm:grid-cols-3">
                 {stats.map((stat) => (
                   <div key={stat.label} className="rounded-xl border border-navy/10 bg-shell p-5">

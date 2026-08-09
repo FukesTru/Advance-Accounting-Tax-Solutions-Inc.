@@ -15,7 +15,7 @@ const breadcrumb = [{ name: 'Accounting & CFO Services', href: '/accounting-cfo-
 const faqs = [
   {
     q: 'What size business do you work with?',
-    a: 'Most of our accounting clients run between roughly $250K and $10M in annual revenue — solo operators with real complexity at the low end, and companies with a small internal finance team at the high end. What matters more than revenue is whether the numbers are currently being used to make decisions or just to file a return.',
+    a: 'Our clients generally run between $200,000 and $20,000,000 in annual revenue — solo operators with real complexity at the low end, and companies with a small internal finance team at the high end. They are mostly closely held corporations, partnerships, and LLCs. What matters more than revenue is whether the numbers are currently being used to make decisions or just to file a return.',
   },
   {
     q: 'Do I need a full-time CFO or would fractional work better for me?',

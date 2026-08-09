@@ -91,8 +91,12 @@ export default function TaxCompliancePage() {
           text: 'Missing years reconstructed and filed, with abatement or payment arrangements pursued as appropriate.',
         },
         {
-          title: 'IRS notice response support',
-          text: 'We interpret the notice, respond on your behalf, and follow it through to resolution.',
+          title: 'IRS notice response & audit representation',
+          text: 'We interpret the notice, respond on your behalf, and represent you through an examination if it goes that far.',
+        },
+        {
+          title: 'Tax resolution for back taxes owed',
+          text: 'Balances due, payroll tax problems, and penalty abatement worked through to an arrangement you can live with.',
         },
       ]}
       process={[
