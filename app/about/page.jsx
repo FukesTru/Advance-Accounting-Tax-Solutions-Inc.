@@ -65,7 +65,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About the firm"
         title="Meet Joseph F. Fragnoli, CPA — President & CEO"
-        subtitle="Forty-two years in public accounting, the last ten in independent practice. Straight answers and real planning — not just a once-a-year filing service."
+        subtitle="Forty-two years in public accounting, the last thirteen in independent practice. Straight answers and real planning — not just a once-a-year filing service."
       >
         <Button href="/contact" variant="gold">
           Schedule a Free Consultation
@@ -92,7 +92,7 @@ export default function AboutPage() {
               <p>
                 Joseph F. Fragnoli is a CPA licensed in Florida and the President and CEO of Advance
                 Accounting &amp; Tax Solutions, Inc. He has spent 42 years in public accounting —
-                first licensed in California in {firmFacts.firstLicensed} — and the last ten of
+                first licensed in California in {firmFacts.firstLicensed} — and the last thirteen of
                 those in independent practice, working directly with the clients whose returns he
                 signs.
               </p>
@@ -118,7 +118,7 @@ export default function AboutPage() {
               <ul className="mt-4 space-y-2 text-slate-body">
                 <li>• Certified Public Accountant, licensed in Florida</li>
                 <li>• First licensed as a CPA in California in {firmFacts.firstLicensed}</li>
-                <li>• 42 years in public accounting; 10 years in independent practice</li>
+                <li>• 42 years in public accounting; 13 years in independent practice</li>
                 <li>
                   • B.A. in Business Administration, emphasis in Accounting — California State
                   University, Fullerton (also attended UCLA)

@@ -10,8 +10,8 @@ content was recoverable through search. The following are now **real, sourced
 facts** in the build — no longer placeholders:
 
 - **Joseph F. Fragnoli, CPA** — President & CEO; CPA licensed in Florida, first
-  licensed in California in 1984; 40+ years in public accounting, the last ten
-  in independent practice; attended UCLA and California State University,
+  licensed in California in 1984; 42 years in public accounting, the last 13 in
+  independent practice; attended UCLA and California State University,
   Fullerton (B.A. Business Administration, emphasis in Accounting).
 - **Patricia Alcantara** — Vice President, Office Manager & Executive Assistant.
   Now on the About page team section.
@@ -21,9 +21,10 @@ facts** in the build — no longer placeholders:
 - **Fax** — (615) 751-0288. On the contact page and in schema.
 - **Photo** — Joseph's headshot is live at `public/images/joseph.jpg`, used on
   the About page and in the homepage hero.
-- **Stats** — the `X+` placeholders are gone. 42 years in public accounting
-  (confirmed by the client), 10 years in independent practice, and the
-  $200K–$20M client revenue range are all real.
+- **Stats** — the `X+` placeholders are gone. 42 years in public accounting and
+  13 years in independent practice (both confirmed by the client — the old site
+  said "more than forty" and "the last ten", which had gone stale), plus the
+  $200K–$20M client revenue range, are all real.
 - **Trust badges** — "Licensed CPA Firm" became "Florida-Licensed CPA" and
   "42 Years in Public Accounting", both verifiable.
 

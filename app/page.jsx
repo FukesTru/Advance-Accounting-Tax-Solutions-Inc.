@@ -210,7 +210,7 @@ export default function HomePage() {
             <div className="mt-6 space-y-4 leading-relaxed text-slate-body">
               <p>
                 Advance Accounting &amp; Tax Solutions is led by Joseph F. Fragnoli, CPA, a
-                Florida-licensed CPA with 42 years in public accounting and the last ten in
+                Florida-licensed CPA with 42 years in public accounting and the last thirteen in
                 independent practice. The firm was built around a simple observation: most
                 people only hear from their accountant when a deadline is close. By then the
                 decisions that mattered — how the business was structured, how owners paid
