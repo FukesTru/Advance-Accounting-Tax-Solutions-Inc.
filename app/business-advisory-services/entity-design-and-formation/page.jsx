@@ -50,7 +50,7 @@ export default function EntityFormationPage() {
         'The confusion usually starts with the LLC-versus-S-corp framing, which compares two different things. An LLC is a legal entity registered with the state. An S-corp is a federal tax election that an LLC or a corporation can make. You can have both, and for many profitable owner-operated businesses that combination is exactly right — but only above a profit level where the self-employment tax savings outweigh the payroll and filing costs it adds.',
         'So we start with your numbers rather than a rule of thumb. Expected profit, how many owners, whether you plan to raise capital, what your exit horizon looks like. Then we model the realistic options, recommend one with the reasoning attached, and handle the Florida registration, EIN, and elections. If your attorney needs to draft an operating agreement, we work with them so the legal documents and the tax structure actually agree.',
       ]}
-      image={images.advisory}
+      image={images.legal}
       whoFor={[
         {
           title: 'New business owners',

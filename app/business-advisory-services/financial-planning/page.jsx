@@ -48,7 +48,7 @@ export default function FinancialPlanningPage() {
         'To be direct about scope: we are not investment managers. We do not sell products, manage portfolios, or earn commissions, which means the advice has no product attached to it. If you already work with a financial advisor, we coordinate with them. If you do not have one and need one, we will point you toward good options. Our role is the plan and the tax reasoning that makes it hold together.',
       ]}
       note="Scope note: we provide tax-aware financial planning, not investment management or securities advice. We do not sell financial products or manage portfolios. Investment implementation stays with your licensed financial advisor, and we coordinate directly with them."
-      image={images.advisory}
+      image={images.taxDesk}
       whoFor={[
         {
           title: 'Individuals planning for retirement',

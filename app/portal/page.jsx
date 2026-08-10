@@ -122,7 +122,7 @@ export default function PortalPage() {
           </FadeIn>
 
           <FadeIn delay={120}>
-            <Media image={images.portal} sizes="(max-width: 1024px) 100vw, 34vw" />
+            <Media image={images.workingOnline} sizes="(max-width: 1024px) 100vw, 34vw" />
 
             <div className="mt-6 rounded-2xl border border-navy/10 bg-shell p-7">
               <h2 className="text-lg">Already a client?</h2>

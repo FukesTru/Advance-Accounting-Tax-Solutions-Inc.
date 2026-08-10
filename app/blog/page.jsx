@@ -70,7 +70,7 @@ export default function BlogPage() {
       <Section tone="shell">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center">
           <FadeIn>
-            <Media image={images.blog} sizes="(max-width: 1024px) 100vw, 45vw" />
+            <Media image={images.workingOnline} sizes="(max-width: 1024px) 100vw, 45vw" />
           </FadeIn>
           <FadeIn delay={120}>
             <SectionHeading

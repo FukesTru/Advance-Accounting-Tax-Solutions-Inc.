@@ -79,7 +79,7 @@ for work the firm actually sells:
 | # | Item | Where |
 |---|------|-------|
 | 9 | **Logo** | `components/Logo.jsx` — placeholder AATS monogram + wordmark. `app/icon.svg` is the matching favicon. |
-| 10 | **Remaining photography** | Five of ten image slots still need photos — see the shot list in the Images section below. |
+| 10 | **Remaining photography** | One slot left: a Naples, FL photo for the homepage area card — see the Images section below. |
 | 11 | **Blog articles** | `lib/posts.js` — the five starter topics exist as cards. Each links to its most relevant service page until the article is written, so no card dead-ends. Once written, add `/blog/<slug>` pages and point `href` at them. |
 | 12 | **LinkedIn** | `components/Footer.jsx` — currently "Social profiles coming soon." Joseph has a LinkedIn profile; link it if he wants it public. |
 | 13 | **Email vs. site domain** | Site is `taxstrategiesandaccountingservices.com`; email is `@accounting-tax-solutions.com`. Worth aligning eventually — mismatched domains cost a little trust and a little deliverability. |
@@ -95,22 +95,30 @@ for work the firm actually sells:
 | `analysis.jpg` | `analysis` | Homepage story, Fractional CFO, Business Advisory hub |
 | `accounting-desk.jpg` | `accounting` | Accounting & CFO hub, Accounting Services, Payroll |
 | `tax-forms.jpg` | `taxForms` | Tax Services hub, Tax Compliance & Preparation |
-| `tax-desk.jpg` | `taxDesk` | Tax Planning, Estate Planning |
+| `tax-desk.jpg` | `taxDesk` | Tax Planning, Financial Planning |
+| `justice.jpg` | `legal` | Estate Planning, Entity Design & Formation |
+| `working-online.jpg` | `workingOnline` | Client Portal, Blog |
+| `swfl-waterfront.jpg` | `fortMyers` | Homepage Fort Myers card |
 
-No photo appears more than three times, and never twice on the same page.
+Every page carries a photo. No image appears more than three times, and never
+twice on the same page.
 
-### Still needed — shot list
+### Still needed — one shot
 
-Five slots remain on placeholders. Each is marked `NEEDS PHOTO` in
-`lib/images.js`:
-
-| Slot | Pages | What would work |
+| Slot | Page | What is needed |
 |---|---|---|
-| `advisory` | Entity Design & Formation, Financial Planning | Two people in conversation across a desk — a consultation, not paperwork. Landscape. |
-| `fortMyers` | Homepage service-area card | A recognizable Fort Myers / Lee County scene. Landscape. |
-| `naples` | Homepage service-area card | A recognizable Naples / Collier County scene. Landscape. |
-| `portal` | Client Portal | Someone uploading or signing documents on a laptop or phone. Landscape. |
-| `blog` | Blog index | A reading or writing scene, or the office itself. Landscape. |
+| `naples` | Homepage Naples service-area card | A recognizable **Naples, Florida** scene — the pier, 5th Avenue South, Tin City, or the beach. Landscape. |
+
+The photo supplied for this slot showed the Fontana del Nettuno in **Naples,
+Italy**. It was not used: the area page exists to establish local credibility in
+Collier County, and an Italian piazza would undercut exactly that for any local
+reader who recognizes it. Until a Naples FL photo arrives, the card shows the
+branded placeholder — which sits directly beside the Fort Myers photo on the
+homepage, so the pair currently looks uneven.
+
+Also unused: the LinkedIn signup screenshot. It carries LinkedIn's branding and
+tagline, and on a page headed "Client Portal" it would read as a claim that the
+firm's portal is LinkedIn. The laptop photo went there instead.
 
 Two optional upgrades:
 
@@ -121,12 +129,11 @@ Two optional upgrades:
 
 ### How to add one
 
-Drop the file in `public/images/` using the filename already listed in that
-slot's `local` array: `advisory.jpg`, `fort-myers.jpg`, `naples.jpg`,
-`portal.jpg`, `blog.jpg`. The slot resolves the first candidate that exists on
-disk, so no code change is needed. Update the slot's `alt` text if the photo
-shows something different from what is described, and set `aspect` (`4/3`,
-`4/5`, `2/3`, or `square`) if the shot is not landscape.
+Drop the file in `public/images/` using the filename listed in that slot's
+`local` array — for the outstanding slot that is `naples.jpg`. The slot resolves
+the first candidate that exists on disk, so no code change is needed. Update the
+slot's `alt` text if the photo shows something different from what is described,
+and set `aspect` (`4/3`, `4/5`, `2/3`, or `square`) if the shot is not landscape.
 
 Images are served through `next/image`, so they are resized and lazy-loaded
 automatically — but keep source files under roughly 500KB.
