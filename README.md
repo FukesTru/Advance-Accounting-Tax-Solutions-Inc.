@@ -35,6 +35,11 @@ Tokens are defined once in `app/globals.css` under `@theme` and consumed as
 Tailwind utilities (`bg-navy`, `text-gold-700`, `bg-shell`, …). Light
 backgrounds throughout — no dark hero.
 
+The logo mark lives at `public/images/logo-mark.png` (transparent PNG) and is
+rendered by `components/Logo.jsx`. On navy the mark sits on a white chip, since
+its darker teals otherwise sink into the background. `app/icon.png` is the
+matching favicon.
+
 ## Structure
 
 ```
@@ -47,7 +52,7 @@ app/
   business-advisory-services/    Category page + 2 sub-services
   areas/fort-myers-fl/ areas/naples-fl/
   api/contact/route.js           Contact form endpoint
-  sitemap.js  robots.js  icon.svg  not-found.jsx
+  sitemap.js  robots.js  icon.png  not-found.jsx
 components/
   Navbar  Footer  FloatingCall  Breadcrumbs  Logo  Icons
   primitives.jsx                 Container, Section, Button, CheckList, …
