@@ -45,7 +45,7 @@ export default function BusinessAdvisoryPage() {
         'Those are the decisions worth taking outside counsel on. Advisory work here means sitting down with the specifics of your situation and modeling the real consequences: what an S-corp election saves at your profit level and what it costs in administration, whether a second entity genuinely protects anything, what a partner buyout would look like in tax terms.',
         'It covers two connected areas — entity design and formation, and financial planning that keeps your personal goals and your business in the same picture. Because the same firm handles your tax and accounting work, the advice is grounded in your actual numbers rather than a general principle that may or may not apply to you.',
       ]}
-      image={images.advisory}
+      image={images.analysis}
       included={[
         {
           title: 'Entity structure review',

@@ -48,7 +48,7 @@ export default function EstatePlanningPage() {
         'Florida helps here — no state estate tax and no state inheritance tax removes a whole layer that clients moving from the Northeast are used to fighting. But the federal rules still apply, inherited retirement accounts carry their own distribution timelines, and business owners planning a succession have an entirely separate set of questions. Getting those right is worth doing before the event, not after.',
       ]}
       note="Scope note: we provide tax analysis and compliance for estates and trusts. We do not draft wills, trusts, or other legal instruments — that work belongs with your estate attorney, and we coordinate directly with them."
-      image={images.advisory}
+      image={images.taxDesk}
       whoFor={[
         {
           title: 'Individuals with significant assets',

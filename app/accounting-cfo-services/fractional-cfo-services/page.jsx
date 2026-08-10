@@ -47,7 +47,7 @@ export default function FractionalCfoPage() {
         'That is CFO work, and until recently it came in one size: a full-time executive with a salary to match. Fractional changes the shape of it. You get the same discipline — forecasting, budget-versus-actual review, margin analysis, KPI reporting, capital planning — on a monthly cadence sized to what your business actually needs right now.',
         'In practice that means you stop making seven-figure decisions on instinct. You know which customers are worth keeping, what a price change does to contribution margin, and how many months of runway you have under a few different scenarios. And when you need to show numbers to a bank, an investor, or a buyer, they are already in a form those people expect.',
       ]}
-      image={images.advisory}
+      image={images.analysis}
       whoFor={[
         {
           title: 'Established small and mid-size businesses',

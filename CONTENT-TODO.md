@@ -79,7 +79,7 @@ for work the firm actually sells:
 | # | Item | Where |
 |---|------|-------|
 | 9 | **Logo** | `components/Logo.jsx` — placeholder AATS monogram + wordmark. `app/icon.svg` is the matching favicon. |
-| 10 | **Remaining photography** | `lib/images.js` — see below. Joseph's headshot is in; the other eight slots are still placeholders. A **higher-resolution copy of the headshot** would also help: the supplied file is 360×360, which is sharp at its current display size but cannot be used any larger. |
+| 10 | **Remaining photography** | Five of ten image slots still need photos — see the shot list in the Images section below. |
 | 11 | **Blog articles** | `lib/posts.js` — the five starter topics exist as cards. Each links to its most relevant service page until the article is written, so no card dead-ends. Once written, add `/blog/<slug>` pages and point `href` at them. |
 | 12 | **LinkedIn** | `components/Footer.jsx` — currently "Social profiles coming soon." Joseph has a LinkedIn profile; link it if he wants it public. |
 | 13 | **Email vs. site domain** | Site is `taxstrategiesandaccountingservices.com`; email is `@accounting-tax-solutions.com`. Worth aligning eventually — mismatched domains cost a little trust and a little deliverability. |
@@ -87,28 +87,55 @@ for work the firm actually sells:
 
 ## Images
 
-Joseph's headshot is in place at `public/images/joseph.jpg` and fills both the
-About portrait and the homepage hero. The remaining eight slots have no
-photography: this build environment blocks every image CDN
-(`images.unsplash.com` returns 403 at the egress proxy), so nothing could be
-downloaded or verified. Those slots render a branded navy/gold gradient
-placeholder with correct alt text and the right aspect ratio — the layout is
-final, only the pixels are missing.
+### In place
 
-Two ways to fill them, both in `lib/images.js`:
+| File | Slot | Used on |
+|---|---|---|
+| `joseph.jpg` | `joseph`, `heroHome` | About, homepage hero |
+| `analysis.jpg` | `analysis` | Homepage story, Fractional CFO, Business Advisory hub |
+| `accounting-desk.jpg` | `accounting` | Accounting & CFO hub, Accounting Services, Payroll |
+| `tax-forms.jpg` | `taxForms` | Tax Services hub, Tax Compliance & Preparation |
+| `tax-desk.jpg` | `taxDesk` | Tax Planning, Estate Planning |
 
-- **Real photos (preferred).** Drop a file in `public/images/` and add its path
-  to that slot's `local` array — the first candidate that exists on disk wins,
-  so no code change is needed beyond the filename. Use the Drive folder photos
-  (office, SWFL) wherever they cover a slot. Adding a wide
-  `public/images/hero.jpg` automatically takes over the homepage hero from the
-  headshot.
-- **Stock.** Each slot carries a candidate Unsplash URL in its `unsplash`
-  field. Setting `NEXT_PUBLIC_USE_STOCK_IMAGES=1` switches every slot to those
-  URLs at once (`images.unsplash.com` is already allow-listed in
-  `next.config.mjs`). **The candidate URLs are unverified** — they were written
-  from memory and could not be fetched to confirm what they show. Check each one
-  in a browser before relying on it.
+No photo appears more than three times, and never twice on the same page.
 
-Alt text is already written for every slot and describes the intended subject;
-update it if the final photo shows something different.
+### Still needed — shot list
+
+Five slots remain on placeholders. Each is marked `NEEDS PHOTO` in
+`lib/images.js`:
+
+| Slot | Pages | What would work |
+|---|---|---|
+| `advisory` | Entity Design & Formation, Financial Planning | Two people in conversation across a desk — a consultation, not paperwork. Landscape. |
+| `fortMyers` | Homepage service-area card | A recognizable Fort Myers / Lee County scene. Landscape. |
+| `naples` | Homepage service-area card | A recognizable Naples / Collier County scene. Landscape. |
+| `portal` | Client Portal | Someone uploading or signing documents on a laptop or phone. Landscape. |
+| `blog` | Blog index | A reading or writing scene, or the office itself. Landscape. |
+
+Two optional upgrades:
+
+- **A wider hero image.** Drop in `public/images/hero.jpg` and it takes over the
+  homepage hero from the headshot automatically.
+- **A higher-resolution copy of Joseph's headshot.** The supplied file is
+  360x360 — sharp at its current framed size, but it cannot be used any larger.
+
+### How to add one
+
+Drop the file in `public/images/` using the filename already listed in that
+slot's `local` array: `advisory.jpg`, `fort-myers.jpg`, `naples.jpg`,
+`portal.jpg`, `blog.jpg`. The slot resolves the first candidate that exists on
+disk, so no code change is needed. Update the slot's `alt` text if the photo
+shows something different from what is described, and set `aspect` (`4/3`,
+`4/5`, `2/3`, or `square`) if the shot is not landscape.
+
+Images are served through `next/image`, so they are resized and lazy-loaded
+automatically — but keep source files under roughly 500KB.
+
+### Stock fallback
+
+Each slot also carries a candidate Unsplash URL in its `unsplash` field.
+Setting `NEXT_PUBLIC_USE_STOCK_IMAGES=1` switches any slot without a local file
+to that URL (`images.unsplash.com` is already allow-listed in
+`next.config.mjs`). **The candidate URLs are unverified** — this build
+environment blocks image CDNs, so they could not be fetched to confirm what
+they show. Check each in a browser before relying on it.

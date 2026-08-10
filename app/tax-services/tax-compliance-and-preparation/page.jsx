@@ -54,7 +54,7 @@ export default function TaxCompliancePage() {
         'We treat preparation as a controlled process rather than a spring sprint. Documents come in through a secure portal so nothing gets lost in an email thread. Returns are prepared, then reviewed against your books and your prior year before anything is filed. Deadlines and extensions are tracked on our calendar, not yours. And your records are kept organized in a way that would survive an audit without a scramble.',
         'Individuals, S-corps, partnerships, LLCs, and C-corps are all handled here, along with the state filings that come with them. If your business return and personal return are connected — and for most owners they are — they are prepared together so the two actually agree.',
       ]}
-      image={images.taxServices}
+      image={images.taxForms}
       whoFor={[
         {
           title: 'Individuals and families',

@@ -4,7 +4,14 @@ import { ImagePlaceholder } from '@/components/primitives';
 const aspects = {
   '4/3': 'aspect-4/3',
   '4/5': 'aspect-4/5',
+  '2/3': 'aspect-2/3',
   square: 'aspect-square',
+};
+
+const focusClasses = {
+  top: 'object-top',
+  center: 'object-center',
+  bottom: 'object-bottom',
 };
 
 /**
@@ -46,7 +53,7 @@ export default function Media({
         sizes={sizes}
         priority={priority}
         loading={priority ? undefined : 'lazy'}
-        className="object-cover object-top"
+        className={`object-cover ${focusClasses[image.focus] ?? focusClasses.center}`}
       />
     </div>
   );

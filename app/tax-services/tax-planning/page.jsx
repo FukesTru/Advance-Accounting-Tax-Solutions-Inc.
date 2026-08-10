@@ -51,7 +51,7 @@ export default function TaxPlanningPage() {
         'Tax planning moves that conversation forward by a few months, which turns out to make all the difference. While the year is still open we can look at how your entity is structured, how you are paying yourself, when income lands and when expenses clear, what your retirement contributions could be doing, and how a major purchase or sale should be timed. Every one of those is a decision. After December 31, they are all just history.',
         'This is ongoing work, not a one-time report. We meet through the year, adjust estimated payments as your actual results come in, and sit down in Q4 while there is still time to act on what we find. You should never be surprised by your own tax bill — and with enough runway, you rarely will be.',
       ]}
-      image={images.taxServices}
+      image={images.taxDesk}
       whoFor={[
         {
           title: 'Business owners',

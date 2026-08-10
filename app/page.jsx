@@ -200,12 +200,12 @@ export default function HomePage() {
       <Section>
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <FadeIn>
-            <Media image={images.story} sizes="(max-width: 1024px) 100vw, 45vw" />
+            <Media image={images.analysis} sizes="(max-width: 1024px) 100vw, 45vw" />
           </FadeIn>
           <FadeIn delay={120}>
             <SectionHeading
               eyebrow="Our Story"
-              title="Forty years of doing this, built for the other eleven months"
+              title="Forty-two years of doing this, built for the other eleven months"
             />
             <div className="mt-6 space-y-4 leading-relaxed text-slate-body">
               <p>

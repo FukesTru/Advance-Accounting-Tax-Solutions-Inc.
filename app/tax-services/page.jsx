@@ -49,7 +49,7 @@ export default function TaxServicesPage() {
         'We run it the other way. Planning conversations happen while the year is still open and the levers still move. Then compliance work becomes the straightforward part: the documentation of a plan you already understood, filed accurately and on time.',
         'That covers three connected areas — proactive tax planning, compliance and preparation for individuals and every common business entity type, and estate and trust tax planning coordinated with your attorney. Whether you need all three or just one, you work with the same advisor throughout.',
       ]}
-      image={images.taxServices}
+      image={images.taxForms}
       included={[
         {
           title: 'Year-round tax strategy',
