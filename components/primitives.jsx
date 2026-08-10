@@ -138,13 +138,19 @@ export function CheckList({ items, columns = 1, onDark = false }) {
 }
 
 /** Decorative gradient panel standing in for photography. */
-export function ImagePlaceholder({ label, className = '', icon = 'users', tall = false }) {
+export function ImagePlaceholder({
+  label,
+  className = '',
+  icon = 'users',
+  tall = false,
+  ratioClass,
+}) {
   return (
     <div
       role="img"
       aria-label={label}
       className={`relative overflow-hidden rounded-2xl border border-navy/10 bg-linear-to-br from-navy via-navy-600 to-navy-900 ${
-        tall ? 'aspect-4/5' : 'aspect-4/3'
+        ratioClass ?? (tall ? 'aspect-4/5' : 'aspect-4/3')
       } ${className}`}
     >
       <div

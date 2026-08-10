@@ -139,12 +139,34 @@ export default function HomePage() {
             </FadeIn>
 
             <FadeIn delay={140}>
-              <Media
-                image={images.heroHome}
-                priority
-                tall
-                sizes="(max-width: 1024px) 100vw, 42vw"
-              />
+              {/*
+                The headshot is 360px square, so it sits in a capped frame on a
+                gradient backdrop rather than being stretched to fill the column.
+                Drop a wider /public/images/hero.jpg in and this slot uses that
+                instead — see lib/images.js.
+              */}
+              <div className="relative mx-auto w-full max-w-md">
+                <div
+                  aria-hidden="true"
+                  className="absolute -inset-4 -z-10 rounded-3xl bg-linear-to-br from-navy via-navy-600 to-navy-900 sm:-inset-6"
+                />
+                <div
+                  aria-hidden="true"
+                  className="absolute -right-3 -top-3 h-24 w-24 rounded-full bg-gold/30 blur-2xl"
+                />
+                <Media
+                  image={images.heroHome}
+                  priority
+                  className="shadow-xl"
+                  sizes="(max-width: 1024px) 90vw, 400px"
+                />
+                <figcaption className="mt-4 text-center text-sm text-navy-100 sm:text-left">
+                  <span className="block font-display font-bold text-white">
+                    Joseph F. Fragnoli, CPA
+                  </span>
+                  <span className="text-gold">President &amp; CEO · 42 years in practice</span>
+                </figcaption>
+              </div>
             </FadeIn>
           </div>
         </Container>
@@ -188,8 +210,8 @@ export default function HomePage() {
             <div className="mt-6 space-y-4 leading-relaxed text-slate-body">
               <p>
                 Advance Accounting &amp; Tax Solutions is led by Joseph F. Fragnoli, CPA, a
-                Florida-licensed CPA with more than forty years in public accounting and the last
-                ten in independent practice. The firm was built around a simple observation: most
+                Florida-licensed CPA with 42 years in public accounting and the last ten in
+                independent practice. The firm was built around a simple observation: most
                 people only hear from their accountant when a deadline is close. By then the
                 decisions that mattered — how the business was structured, how owners paid
                 themselves, when equipment was bought — had already been made without any tax input

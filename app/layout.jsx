@@ -42,6 +42,12 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${plusJakarta.variable}`}>
+      <head>
+        <noscript>
+          {/* Belt and braces alongside the `scripting: none` rule in globals.css. */}
+          <style>{`.fade-up{opacity:1 !important;transform:none !important}`}</style>
+        </noscript>
+      </head>
       <body className="flex min-h-screen flex-col bg-white">
         {/* GA4 placeholder — TODO(client): swap gaMeasurementId in lib/site.js */}
         <Script

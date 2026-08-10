@@ -7,12 +7,12 @@ import { CTABanner, PageHero, RelatedLinks, StatRow } from '@/components/section
 import { images } from '@/lib/images';
 import { breadcrumbSchema, personSchema } from '@/lib/schema';
 import { buildMetadata } from '@/lib/seo';
-import { firmFacts, site, stats, team } from '@/lib/site';
+import { aboutStats, firmFacts, site, team } from '@/lib/site';
 
 export const metadata = buildMetadata({
   title: 'Meet Joseph F. Fragnoli, CPA — President & CEO',
   description:
-    'Joseph F. Fragnoli, CPA has spent 40+ years in public accounting. Meet the founder of Advance Accounting & Tax Solutions in Ave Maria, Florida.',
+    'Joseph F. Fragnoli, CPA has spent 42 years in public accounting. Meet the founder of Advance Accounting & Tax Solutions in Ave Maria, Florida.',
   path: '/about',
 });
 
@@ -64,8 +64,8 @@ export default function AboutPage() {
 
       <PageHero
         eyebrow="About the firm"
-        title="Meet Joseph F. Fragnoli, CPA — President & CEO, Advance Accounting & Tax Solutions"
-        subtitle="Forty years in public accounting, the last ten in independent practice. Straight answers and real planning — not just a once-a-year filing service."
+        title="Meet Joseph F. Fragnoli, CPA — President & CEO"
+        subtitle="Forty-two years in public accounting, the last ten in independent practice. Straight answers and real planning — not just a once-a-year filing service."
       >
         <Button href="/contact" variant="gold">
           Schedule a Free Consultation
@@ -78,7 +78,12 @@ export default function AboutPage() {
       <Section>
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:items-start">
           <FadeIn>
-            <Media image={images.joseph} tall sizes="(max-width: 1024px) 100vw, 36vw" />
+            {/* Capped so the 360px source is not upscaled into softness. */}
+            <Media
+              image={images.joseph}
+              className="mx-auto w-full max-w-90 lg:mx-0"
+              sizes="(max-width: 1024px) 90vw, 360px"
+            />
           </FadeIn>
 
           <FadeIn delay={120}>
@@ -86,10 +91,10 @@ export default function AboutPage() {
             <div className="mt-6 space-y-4 leading-relaxed text-slate-body">
               <p>
                 Joseph F. Fragnoli is a CPA licensed in Florida and the President and CEO of Advance
-                Accounting &amp; Tax Solutions, Inc. He has spent more than forty years in public
-                accounting — first licensed in California in {firmFacts.firstLicensed} — and the
-                last ten of those in independent practice, working directly with the clients whose
-                returns he signs.
+                Accounting &amp; Tax Solutions, Inc. He has spent 42 years in public accounting —
+                first licensed in California in {firmFacts.firstLicensed} — and the last ten of
+                those in independent practice, working directly with the clients whose returns he
+                signs.
               </p>
               <p>
                 He attended UCLA and California State University, Fullerton, graduating from CSUF
@@ -113,7 +118,7 @@ export default function AboutPage() {
               <ul className="mt-4 space-y-2 text-slate-body">
                 <li>• Certified Public Accountant, licensed in Florida</li>
                 <li>• First licensed as a CPA in California in {firmFacts.firstLicensed}</li>
-                <li>• 40+ years in public accounting; 10 years in independent practice</li>
+                <li>• 42 years in public accounting; 10 years in independent practice</li>
                 <li>
                   • B.A. in Business Administration, emphasis in Accounting — California State
                   University, Fullerton (also attended UCLA)
@@ -151,7 +156,7 @@ export default function AboutPage() {
         <FadeIn>
           <SectionHeading eyebrow="By the numbers" title="The practice at a glance" />
           <div className="mt-10">
-            <StatRow stats={stats} />
+            <StatRow stats={aboutStats} />
           </div>
         </FadeIn>
       </Section>

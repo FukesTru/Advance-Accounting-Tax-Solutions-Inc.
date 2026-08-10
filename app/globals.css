@@ -96,6 +96,20 @@
   }
 }
 
+/*
+ * Without JavaScript nothing ever sets data-visible, so the fade-up sections
+ * would stay at opacity 0 and the page would read as blank. Reveal everything
+ * when scripting is unavailable. A <noscript> override in the layout covers
+ * browsers that do not support the `scripting` media feature.
+ */
+@media (scripting: none) {
+  .fade-up {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 /* Long-form legal / article copy. */
 .prose-legal h2 {
   font-size: 1.375rem;

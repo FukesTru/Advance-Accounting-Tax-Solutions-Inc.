@@ -33,7 +33,16 @@ export default function FadeIn({ as: Tag = 'div', delay = 0, className = '', chi
     );
 
     observer.observe(node);
-    return () => observer.disconnect();
+
+    // Safety net: a hash jump or an instant scroll can skip past a section
+    // without the observer ever seeing it intersect, which would leave the
+    // content permanently invisible. Reveal anything still hidden after a beat.
+    const fallback = setTimeout(() => setVisible(true), 4000);
+
+    return () => {
+      clearTimeout(fallback);
+      observer.disconnect();
+    };
   }, []);
 
   return (
