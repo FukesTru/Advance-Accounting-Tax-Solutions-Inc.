@@ -19,7 +19,7 @@ export default function Logo({ variant = 'dark', className = '' }) {
     <Link
       href="/"
       aria-label={`${site.name} — home`}
-      className={`group flex items-center gap-3 ${className}`}
+      className={`group flex shrink-0 items-center gap-3 ${className}`}
     >
       <span
         className={`flex shrink-0 items-center justify-center rounded-lg transition-transform duration-200 group-hover:scale-105 ${
@@ -39,14 +39,14 @@ export default function Logo({ variant = 'dark', className = '' }) {
 
       <span className="flex flex-col leading-tight">
         <span
-          className={`font-display text-[0.95rem] font-bold tracking-tight sm:text-base ${
+          className={`whitespace-nowrap font-display text-[0.95rem] font-bold tracking-tight sm:text-base ${
             onNavy ? 'text-white' : 'text-navy'
           }`}
         >
           Advance Accounting
         </span>
         <span
-          className={`font-display text-[0.7rem] font-semibold uppercase tracking-[0.18em] ${
+          className={`whitespace-nowrap font-display text-[0.7rem] font-semibold uppercase tracking-[0.18em] ${
             onNavy ? 'text-gold' : 'text-gold-700'
           }`}
         >

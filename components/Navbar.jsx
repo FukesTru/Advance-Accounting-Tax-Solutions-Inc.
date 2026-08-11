@@ -62,17 +62,19 @@ export default function Navbar() {
         Skip to main content
       </a>
 
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-5 py-3.5 sm:px-8">
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-3 px-5 py-3.5 sm:px-8 xl:gap-4">
         <Logo />
 
         {/* Desktop navigation */}
         <nav aria-label="Main" className="hidden items-center gap-1 lg:flex">
           {mainNav.map((item) => {
             if (item.mega) {
+              // Deliberately NOT `relative` — the mega panel below anchors to
+              // the sticky <header> so it spans the page container instead of
+              // overflowing from a trigger-relative origin.
               return (
                 <div
                   key={item.label}
-                  className="relative"
                   onMouseEnter={() => setOpenMenu(item.label)}
                   onMouseLeave={() => setOpenMenu(null)}
                 >
@@ -81,7 +83,7 @@ export default function Navbar() {
                     aria-expanded={openMenu === item.label}
                     aria-haspopup="true"
                     onClick={() => setOpenMenu(openMenu === item.label ? null : item.label)}
-                    className={`flex items-center gap-1.5 rounded-md px-3 py-2 font-display text-[0.9rem] font-semibold transition-colors ${
+                    className={`flex items-center gap-1.5 whitespace-nowrap rounded-md px-2 py-2 font-display text-[0.875rem] font-semibold transition-colors xl:px-3 xl:text-[0.9rem] ${
                       isActive('/tax-services') ||
                       isActive('/accounting-cfo-services') ||
                       isActive('/business-advisory-services')
@@ -93,37 +95,46 @@ export default function Navbar() {
                     <Chevron open={openMenu === item.label} />
                   </button>
 
+                  {/*
+                    Anchored to the <header> (left-0 right-0), not centred on the
+                    trigger — the trigger sits left of centre, so a centred panel
+                    ran off the left edge at narrower desktop widths.
+                  */}
                   {openMenu === item.label ? (
-                    <div className="absolute left-1/2 top-full z-50 w-[62rem] max-w-[92vw] -translate-x-1/2 pt-3">
-                      <div className="grid grid-cols-3 gap-6 rounded-xl border border-navy/10 bg-white p-6 shadow-xl">
-                        {serviceCategories.map((category) => (
-                          <div key={category.slug}>
-                            <Link
-                              href={category.slug}
-                              className="flex items-center gap-2 font-display text-sm font-bold text-navy hover:text-gold-700"
-                            >
-                              <span className="text-gold-700">
-                                <Icon name={category.icon} className="h-5 w-5" />
-                              </span>
-                              {category.title}
-                            </Link>
-                            <p className="mt-2 text-xs leading-relaxed text-slate-body">
-                              {category.blurb}
-                            </p>
-                            <ul className="mt-3 space-y-1 border-t border-navy/10 pt-3">
-                              {category.children.map((child) => (
-                                <li key={child.slug}>
-                                  <Link
-                                    href={child.slug}
-                                    className="block rounded-md px-2 py-1.5 text-sm text-slate-body transition-colors hover:bg-navy-50 hover:text-navy"
-                                  >
-                                    {child.title}
-                                  </Link>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        ))}
+                    <div className="absolute inset-x-0 top-full z-50 pt-3">
+                      {/* Same container as the page body, so the panel's edges
+                          line up with the logo and the header CTA. */}
+                      <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
+                        <div className="grid grid-cols-3 gap-6 rounded-xl border border-navy/10 bg-white p-6 shadow-xl">
+                          {serviceCategories.map((category) => (
+                            <div key={category.slug}>
+                              <Link
+                                href={category.slug}
+                                className="flex items-center gap-2 font-display text-sm font-bold text-navy hover:text-gold-700"
+                              >
+                                <span className="text-gold-700">
+                                  <Icon name={category.icon} className="h-5 w-5" />
+                                </span>
+                                {category.title}
+                              </Link>
+                              <p className="mt-2 text-xs leading-relaxed text-slate-body">
+                                {category.blurb}
+                              </p>
+                              <ul className="mt-3 space-y-1 border-t border-navy/10 pt-3">
+                                {category.children.map((child) => (
+                                  <li key={child.slug}>
+                                    <Link
+                                      href={child.slug}
+                                      className="block rounded-md px-2 py-1.5 text-sm text-slate-body transition-colors hover:bg-navy-50 hover:text-navy"
+                                    >
+                                      {child.title}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   ) : null}
@@ -144,11 +155,11 @@ export default function Navbar() {
                     aria-expanded={openMenu === item.label}
                     aria-haspopup="true"
                     onClick={() => setOpenMenu(openMenu === item.label ? null : item.label)}
-                    className={`flex items-center gap-1.5 rounded-md px-3 py-2 font-display text-[0.9rem] font-semibold transition-colors ${
+                    className={`flex items-center gap-1.5 whitespace-nowrap rounded-md px-2 py-2 font-display text-[0.875rem] font-semibold transition-colors xl:px-3 xl:text-[0.9rem] ${
                       isActive('/areas') ? 'text-gold-700' : 'text-navy hover:text-gold-700'
                     }`}
                   >
-                    {item.label}
+                    <NavLabel item={item} />
                     <Chevron open={openMenu === item.label} />
                   </button>
                   {openMenu === item.label ? (
@@ -175,30 +186,31 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`rounded-md px-3 py-2 font-display text-[0.9rem] font-semibold transition-colors ${
+                className={`whitespace-nowrap rounded-md px-2 py-2 font-display text-[0.875rem] font-semibold transition-colors xl:px-3 xl:text-[0.9rem] ${
                   isActive(item.href) ? 'text-gold-700' : 'text-navy hover:text-gold-700'
                 }`}
               >
-                {item.label}
+                <NavLabel item={item} />
               </Link>
             );
           })}
         </nav>
 
         {/* Desktop CTAs */}
-        <div className="hidden items-center gap-4 lg:flex">
+        <div className="hidden items-center gap-3 lg:flex xl:gap-4">
           <a
             href={site.phoneHref}
-            className="flex items-center gap-2 font-display text-sm font-bold text-navy hover:text-gold-700"
+            className="flex items-center gap-2 whitespace-nowrap font-display text-[0.85rem] font-bold text-navy hover:text-gold-700 xl:text-sm"
           >
-            <Icon name="phone" className="h-4 w-4 text-gold-700" />
+            <Icon name="phone" className="h-4 w-4 shrink-0 text-gold-700" />
             {site.phone}
           </a>
           <Link
             href="/contact"
-            className="rounded-lg bg-gold px-5 py-3 font-display text-sm font-bold text-navy-900 shadow-sm transition-colors hover:bg-gold-600 hover:text-white"
+            className="whitespace-nowrap rounded-lg bg-gold px-4 py-3 font-display text-[0.85rem] font-bold text-navy-900 shadow-sm transition-colors hover:bg-gold-600 hover:text-white xl:px-5 xl:text-sm"
           >
-            Schedule a Free Consultation
+            <span className="xl:hidden">Free Consultation</span>
+            <span className="hidden xl:inline">Schedule a Free Consultation</span>
           </Link>
         </div>
 
@@ -309,6 +321,17 @@ export default function Navbar() {
 }
 
 const serviceAreaLinks = mainNav.find((item) => item.dropdown)?.dropdown ?? [];
+
+/** Full label from xl up; a shorter one below, where the row is tight. */
+function NavLabel({ item }) {
+  if (!item.short) return item.label;
+  return (
+    <>
+      <span className="xl:hidden">{item.short}</span>
+      <span className="hidden xl:inline">{item.label}</span>
+    </>
+  );
+}
 
 function Chevron({ open }) {
   return (
