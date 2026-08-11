@@ -95,7 +95,7 @@ export default function BlogPage() {
 
       <RelatedLinks links={related} title="Related services" />
 
-      <CTABanner showBadges />
+      <CTABanner />
     </>
   );
 }

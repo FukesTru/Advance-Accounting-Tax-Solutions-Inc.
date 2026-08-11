@@ -112,7 +112,7 @@ export function CategoryPageTemplate({
 
       <RelatedLinks links={related} title="Keep exploring" />
 
-      <CTABanner showBadges />
+      <CTABanner />
     </>
   );
 }
@@ -201,7 +201,7 @@ export function SubServicePageTemplate({
 
       <RelatedLinks links={related} title="Related services" />
 
-      <CTABanner showBadges />
+      <CTABanner />
     </>
   );
 }
@@ -319,7 +319,7 @@ export function AreaPageTemplate({
 
       <RelatedLinks links={related} title="Related pages" />
 
-      <CTABanner showBadges />
+      <CTABanner />
     </>
   );
 }

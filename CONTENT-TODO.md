@@ -18,13 +18,14 @@ facts** in the build — no longer placeholders:
 - **Client profile** — closely held corporations, partnerships, LLCs, and
   individuals; businesses generally $200,000–$20,000,000 in annual revenue.
   This replaced a guessed range in the Accounting & CFO FAQ.
-- **Fax** — (615) 751-0288. On the contact page and in schema.
+- **Phone** — (239) 492-6784, confirmed by the client. Set once in `lib/site.js`; flows to the nav, footer, every CTA, the mobile call button, and all schema.
 - **Photo** — Joseph's headshot is live at `public/images/joseph.jpg`, used on
   the About page and in the homepage hero.
 - **Stats** — the `X+` placeholders are gone. 42 years in public accounting and
   13 years in independent practice (both confirmed by the client — the old site
   said "more than forty" and "the last ten", which had gone stale), plus the
-  $200K–$20M client revenue range, are all real.
+  $200,000–$20,000,000 client revenue range (now referenced in prose rather
+  than as a stat box), are all real.
 - **Trust badges** — "Licensed CPA Firm" became "Florida-Licensed CPA" and
   "42 Years in Public Accounting", both verifiable.
 
@@ -43,6 +44,10 @@ scaled to a 42-year career. **They are not measured.** They live in
 | Clients served | 1,200+ | Cumulative over the career, not active clients |
 | Industries supported | 30+ | Round number, no underlying count |
 
+They appear on the About page only — the homepage stat row was reduced to the
+two confirmed figures (42 years, 13 years) when the client revenue box was
+removed.
+
 They read as factual claims to a visitor, so please confirm them or swap in real
 figures. Deleting the last three entries from `aboutStats` leaves a clean
 three-stat row of verified numbers if you would rather not publish estimates.
@@ -51,7 +56,7 @@ three-stat row of verified numbers if you would rather not publish estimates.
 
 | # | Item | Where | Notes |
 |---|------|-------|-------|
-| 1 | **Business phone number** | `lib/site.js` → `site.phone`, `site.phoneHref` | Currently `(615) 513-5522` — the number the old site also used. Swap to the new business line once it is live. It appears in the nav, footer, every CTA, the floating mobile button, and all schema — change it in one place. |
+| 1 | **Fax number** | `lib/site.js` → `site.fax` | The business line is now `(239) 492-6784`, confirmed and live sitewide. The fax is still the old `(615) 751-0288` Tennessee number carried over from the previous site — a 615 fax beside a 239 phone looks odd for a Florida firm. Confirm it works, replace it, or drop it. |
 | 2 | **Review data / AggregateRating** | `lib/testimonials.js`, `app/testimonials/page.jsx` | All six reviews are clearly-labelled placeholders and the `AggregateRating` schema is a stand-in. Publishing invented reviews or ratings violates Google's review policies and risks a structured-data penalty. Replace with verified Google Business Profile reviews, **or delete the `aggregateRatingSchema` block entirely** if real reviews are not ready at launch. |
 | 3 | **Privacy Policy attorney review** | `app/privacy-policy/page.jsx` | The client confidentiality and IRC §7216 sections in particular. There is a visible reviewer note at the top of the page — delete it once reviewed. |
 | 4 | **Contact form delivery** | Hosting env var `CONTACT_WEBHOOK_URL` | Until it is set, the form returns 503 and tells visitors to call or email. See `.env.example`. |
@@ -59,6 +64,25 @@ three-stat row of verified numbers if you would rather not publish estimates.
 | 6 | **GA4 measurement ID** | `lib/site.js` → `site.gaMeasurementId` | Currently `G-XXXXXXXXXX`; the tag fires but reports nowhere. |
 | 7 | **Business hours** | `lib/site.js` → `site.hours` and `site.openingHoursSpec` | Still unknown — the old site's contact page did not publish them. Assumed Mon–Fri 9–5. Keep both fields in sync; the second feeds schema. |
 | 8 | **Google Business Profile review link** | `lib/site.js` → `site.googleReviewUrl` | Currently a search URL. Replace with the direct "write a review" link from the GBP dashboard. |
+
+## Service areas — how to add another
+
+Seven area pages now live under `/areas/<slug>`, all generated from
+`lib/areas.js` by a single dynamic route, with `/areas` as the hub:
+
+Fort Myers · Naples · Cape Coral · Bonita Springs · Estero · Marco Island ·
+Immokalee
+
+**Adding a city means writing real content for it.** Each entry carries its own
+intro, county-level filing detail, FAQs, and testimonial, because city pages
+that differ only by a swapped place name are the textbook definition of a
+doorway page and Google devalues them. Measured 3-gram overlap between the
+current pages tops out at 24%, which is comfortably distinct — a find-and-
+replace clone would land above 80% and put the whole set at risk.
+
+Obvious next candidates, if the firm actually serves them: Lehigh Acres,
+Golden Gate, Sanibel, Fort Myers Beach, Punta Gorda. Only add ones where there
+is something true and specific to say.
 
 ## Worth deciding — brand palette vs. logo
 
@@ -70,7 +94,7 @@ as part of the same family.
 
 If you would rather the site match the logo exactly, changing one token in
 `app/globals.css` (`--color-gold` and its shades) swaps every CTA button,
-underline, and icon accent across all 20 pages at once. Say the word and it is
+underline, and icon accent across every page at once. Say the word and it is
 a ten-minute change. Doing nothing is also a defensible choice.
 
 ## Worth deciding — service lines the old site had that the new sitemap does not

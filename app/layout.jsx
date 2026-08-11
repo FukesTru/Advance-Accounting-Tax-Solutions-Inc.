@@ -12,10 +12,11 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
+// No `weight` — that pulls the variable font (one file covering 200–800)
+// instead of three separate static instances.
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
   display: 'swap',
-  weight: ['600', '700', '800'],
   variable: '--font-plus-jakarta',
 });
 
@@ -39,6 +40,10 @@ export const viewport = {
   initialScale: 1,
 };
 
+// A configured GA4 property looks like G-XXXXXXXXXX with real characters; the
+// shipped placeholder is all X.
+const analyticsEnabled = /^G-[A-Z0-9]+$/.test(site.gaMeasurementId) && !/^G-X+$/.test(site.gaMeasurementId);
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${plusJakarta.variable}`}>
@@ -49,17 +54,27 @@ export default function RootLayout({ children }) {
         </noscript>
       </head>
       <body className="flex min-h-screen flex-col bg-white">
-        {/* GA4 placeholder — TODO(client): swap gaMeasurementId in lib/site.js */}
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${site.gaMeasurementId}`}
-          strategy="afterInteractive"
-        />
-        <Script id="ga4-init" strategy="afterInteractive">
-          {`window.dataLayer = window.dataLayer || [];
+        {/*
+          Analytics only mounts once a real measurement ID is configured — the
+          placeholder ID would otherwise cost every visitor a third-party
+          request that reports nowhere. `lazyOnload` keeps the tag off the
+          critical path so it cannot affect LCP or interaction readiness.
+          TODO(client): set gaMeasurementId in lib/site.js.
+        */}
+        {analyticsEnabled ? (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${site.gaMeasurementId}`}
+              strategy="lazyOnload"
+            />
+            <Script id="ga4-init" strategy="lazyOnload">
+              {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', '${site.gaMeasurementId}');`}
-        </Script>
+            </Script>
+          </>
+        ) : null}
 
         <Navbar />
         <main id="main" className="flex-1">

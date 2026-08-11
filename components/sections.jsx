@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import FadeIn from '@/components/FadeIn';
 import FAQ from '@/components/FAQ';
+import MapEmbed from '@/components/MapEmbed';
 import { Icon } from '@/components/Icons';
 import {
   Button,
@@ -10,7 +11,7 @@ import {
   SectionHeading,
   TextLink,
 } from '@/components/primitives';
-import { addressLine, mapEmbedSrc, site, trustBadges } from '@/lib/site';
+import { addressLine, site } from '@/lib/site';
 
 /* ------------------------------------------------------------------ */
 /* Inner-page hero                                                     */
@@ -117,44 +118,47 @@ export function ProcessSteps({ steps, eyebrow = 'How It Works', title, intro }) 
 /* CTA banners                                                         */
 /* ------------------------------------------------------------------ */
 
+/**
+ * Closing / mid-page call to action.
+ *
+ * Rendered as an inset navy card on a light section rather than a full-bleed
+ * navy band: the footer is also navy, so a full-bleed banner merged with it
+ * into one undifferentiated slab. Trust badges deliberately live only in the
+ * footer — showing them here too repeated the same four chips twice in a row.
+ */
 export function CTABanner({
   title = 'Ready for a tax and accounting partner who plans ahead?',
   text = 'Book a free consultation and we will map out exactly what you need — no pressure, no jargon.',
   primaryLabel = 'Schedule a Free Consultation',
-  showBadges = false,
+  tone = 'white',
 }) {
   return (
-    <section className="bg-navy py-14 sm:py-16">
+    <section className={`${tone === 'shell' ? 'bg-shell' : 'bg-white'} py-14 sm:py-16`}>
       <Container>
-        <FadeIn className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
-          <div className="max-w-2xl">
-            <h2 className="text-3xl leading-tight text-white sm:text-[2.1rem]">{title}</h2>
-            <p className="mt-4 leading-relaxed text-navy-100">{text}</p>
-            {showBadges ? (
-              <ul className="mt-6 flex flex-wrap gap-2">
-                {trustBadges.map((badge) => (
-                  <li
-                    key={badge}
-                    className="flex items-center gap-1.5 rounded-full border border-gold/40 px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-wide text-gold"
-                  >
-                    <Icon name="check" className="h-3 w-3" />
-                    {badge}
-                  </li>
-                ))}
-              </ul>
-            ) : null}
-          </div>
-          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row lg:flex-col xl:flex-row">
-            <Button href="/contact" variant="gold">
-              {primaryLabel}
-            </Button>
-            <Button href={site.phoneHref} variant="outlineLight">
-              <Icon name="phone" className="h-4 w-4" />
-              {site.phone}
-            </Button>
+        <FadeIn>
+          <div className="relative overflow-hidden rounded-2xl bg-navy px-7 py-10 shadow-[0_24px_60px_-40px_rgba(11,37,69,0.9)] sm:px-10 sm:py-12">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-gold/10 blur-3xl"
+            />
+            <div className="relative flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
+              <div className="max-w-2xl">
+                <h2 className="text-3xl leading-tight text-white sm:text-[2.1rem]">{title}</h2>
+                <p className="mt-4 leading-relaxed text-navy-100">{text}</p>
+                <p className="mt-4 text-sm text-navy-200">{site.responseTime}</p>
+              </div>
+              <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row lg:flex-col xl:flex-row">
+                <Button href="/contact" variant="gold">
+                  {primaryLabel}
+                </Button>
+                <Button href={site.phoneHref} variant="outlineLight">
+                  <Icon name="phone" className="h-4 w-4" />
+                  {site.phone}
+                </Button>
+              </div>
+            </div>
           </div>
         </FadeIn>
-        <p className="mt-6 text-sm text-navy-200">{site.responseTime}</p>
       </Container>
     </section>
   );
@@ -194,13 +198,17 @@ export function FAQSection({ faqs, title = 'Frequently Asked Questions', eyebrow
 /* Stats                                                               */
 /* ------------------------------------------------------------------ */
 
+/**
+ * Wraps rather than using a fixed column count, so an odd number of stats
+ * fills the last row instead of leaving a hole.
+ */
 export function StatRow({ stats, onDark = false }) {
   return (
-    <dl className="grid gap-6 sm:grid-cols-3">
+    <dl className="flex flex-wrap gap-6">
       {stats.map((stat) => (
         <div
           key={stat.label}
-          className={`rounded-xl border p-6 ${
+          className={`min-w-56 flex-1 rounded-xl border p-6 ${
             onDark ? 'border-white/15 bg-white/5' : 'border-navy/10 bg-shell'
           }`}
         >
@@ -289,17 +297,7 @@ export function MapBlock({
         </FadeIn>
 
         <FadeIn delay={120}>
-          <div className="overflow-hidden rounded-2xl border border-navy/10 shadow-sm">
-            <iframe
-              title={`Google Map showing ${site.name} at ${addressLine}`}
-              src={mapEmbedSrc}
-              width="100%"
-              height="420"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              style={{ border: 0 }}
-            />
-          </div>
+          <MapEmbed title={`Google Map showing ${site.name} at ${addressLine}`} />
         </FadeIn>
       </div>
     </Section>

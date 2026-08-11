@@ -227,7 +227,7 @@ export default function HomePage() {
             </div>
 
             <div className="mt-9">
-              <dl className="grid gap-4 sm:grid-cols-3">
+              <dl className="grid gap-4 sm:grid-cols-2">
                 {stats.map((stat) => (
                   <div key={stat.label} className="rounded-xl border border-navy/10 bg-shell p-5">
                     <dd className="font-display text-3xl font-extrabold text-navy">{stat.value}</dd>
@@ -267,8 +267,10 @@ export default function HomePage() {
           title="Rooted in Southwest Florida, working with clients nationwide"
           intro="Our office is in Ave Maria, between Naples and Fort Myers, and we meet local clients in person. Everyone else works with us remotely — same advisor, same responsiveness, wherever you are."
         />
+        {/* Two flagship markets get a card; the rest are linked below so the
+            section stays scannable as the area list grows. */}
         <div className="mt-12 grid gap-6 sm:grid-cols-2">
-          {serviceAreas.map((area, index) => (
+          {serviceAreas.slice(0, 2).map((area, index) => (
             <FadeIn key={area.slug} delay={index * 100}>
               <Link
                 href={area.slug}
@@ -296,12 +298,38 @@ export default function HomePage() {
             </FadeIn>
           ))}
         </div>
-        <p className="mt-8 text-sm text-slate-body">
-          Outside Southwest Florida?{' '}
-          <Link href="/contact" className="font-semibold text-navy underline hover:text-gold-700">
-            We work with clients across the country remotely.
-          </Link>
-        </p>
+
+        <FadeIn delay={120}>
+          <div className="mt-8 rounded-2xl border border-navy/10 bg-shell p-7">
+            <h3 className="text-lg">Also serving across Lee &amp; Collier counties</h3>
+            <ul className="mt-4 flex flex-wrap gap-x-3 gap-y-2">
+              {serviceAreas.slice(2).map((area) => (
+                <li key={area.slug}>
+                  <Link
+                    href={area.slug}
+                    className="inline-flex items-center gap-1.5 rounded-full border border-navy/15 bg-white px-4 py-2 font-display text-sm font-semibold text-navy transition-colors hover:border-gold hover:text-gold-700"
+                  >
+                    <Icon name="pin" className="h-3.5 w-3.5 text-gold-700" />
+                    {area.city}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-5 text-sm text-slate-body">
+              <Link href="/areas" className="font-semibold text-navy underline hover:text-gold-700">
+                See all service areas
+              </Link>{' '}
+              — or, if you are outside Southwest Florida,{' '}
+              <Link
+                href="/contact"
+                className="font-semibold text-navy underline hover:text-gold-700"
+              >
+                we work with clients across the country remotely
+              </Link>
+              .
+            </p>
+          </div>
+        </FadeIn>
       </Section>
 
       {/* ---------------------------------------------------------- */}
@@ -359,7 +387,6 @@ export default function HomePage() {
       <CTABanner
         title="Schedule your free consultation"
         text="Bring your questions, your last return, or just a rough idea of what you need. We will tell you straight whether we can help."
-        showBadges
       />
     </>
   );

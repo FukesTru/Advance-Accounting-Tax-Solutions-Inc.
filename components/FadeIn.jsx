@@ -3,9 +3,50 @@
 import { useEffect, useRef, useState } from 'react';
 
 /**
- * Scroll-triggered fade-up. Uses IntersectionObserver so it costs nothing
- * until the element approaches the viewport, and it degrades to
- * "already visible" when JS or IntersectionObserver is unavailable.
+ * One IntersectionObserver for the whole page.
+ *
+ * A typical page mounts 15–30 FadeIn sections. Giving each its own observer
+ * meant that many separate observation loops on the main thread for no benefit
+ * — they all watch for the same threshold. This shares a single instance and
+ * dispatches to per-element callbacks.
+ */
+let sharedObserver = null;
+const callbacks = new WeakMap();
+
+function observe(node, onVisible) {
+  if (typeof IntersectionObserver === 'undefined') {
+    onVisible();
+    return () => {};
+  }
+
+  if (!sharedObserver) {
+    sharedObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const cb = callbacks.get(entry.target);
+          if (cb) cb();
+          callbacks.delete(entry.target);
+          sharedObserver.unobserve(entry.target);
+        });
+      },
+      { rootMargin: '0px 0px -10% 0px', threshold: 0.05 }
+    );
+  }
+
+  callbacks.set(node, onVisible);
+  sharedObserver.observe(node);
+
+  return () => {
+    callbacks.delete(node);
+    sharedObserver?.unobserve(node);
+  };
+}
+
+/**
+ * Scroll-triggered fade-up. Degrades to "already visible" when JavaScript or
+ * IntersectionObserver is unavailable, and honours prefers-reduced-motion via
+ * CSS in globals.css.
  */
 export default function FadeIn({ as: Tag = 'div', delay = 0, className = '', children, ...rest }) {
   const ref = useRef(null);
@@ -15,24 +56,7 @@ export default function FadeIn({ as: Tag = 'div', delay = 0, className = '', chi
     const node = ref.current;
     if (!node) return undefined;
 
-    if (typeof IntersectionObserver === 'undefined') {
-      setVisible(true);
-      return undefined;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisible(true);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { rootMargin: '0px 0px -10% 0px', threshold: 0.05 }
-    );
-
-    observer.observe(node);
+    const unobserve = observe(node, () => setVisible(true));
 
     // Safety net: a hash jump or an instant scroll can skip past a section
     // without the observer ever seeing it intersect, which would leave the
@@ -41,7 +65,7 @@ export default function FadeIn({ as: Tag = 'div', delay = 0, className = '', chi
 
     return () => {
       clearTimeout(fallback);
-      observer.disconnect();
+      unobserve();
     };
   }, []);
 

@@ -133,7 +133,7 @@ export default function TestimonialsPage() {
 
       <RelatedLinks links={related} title="Explore the firm" />
 
-      <CTABanner showBadges />
+      <CTABanner />
     </>
   );
 }

@@ -248,6 +248,13 @@ export default function Navbar() {
           className="max-h-[calc(100vh-4.5rem)] overflow-y-auto border-t border-navy/10 bg-white lg:hidden"
         >
           <nav aria-label="Mobile" className="space-y-6 px-5 py-6">
+            <Link
+              href="/"
+              className="block border-b border-navy/10 pb-4 font-display text-base font-bold text-navy"
+            >
+              Home
+            </Link>
+
             {serviceCategories.map((category) => (
               <div key={category.slug}>
                 <Link

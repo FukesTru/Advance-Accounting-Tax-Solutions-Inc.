@@ -1,7 +1,7 @@
 # Advance Accounting & Tax Solutions, Inc. — Website
 
-Twenty-page marketing site for a CPA/tax advisory firm in Ave Maria, Florida,
-serving Fort Myers, Naples, and clients nationwide.
+Twenty-six-page marketing site for a CPA/tax advisory firm in Ave Maria,
+Florida, serving Lee and Collier counties and clients nationwide.
 
 Built with **Next.js 16 (App Router)**, **React 19**, and **Tailwind CSS v4**.
 
@@ -50,7 +50,7 @@ app/
   tax-services/                  Category page + 3 sub-services
   accounting-cfo-services/       Category page + 3 sub-services
   business-advisory-services/    Category page + 2 sub-services
-  areas/fort-myers-fl/ areas/naples-fl/
+  areas/                         Hub page + [slug] route generating 7 city pages
   api/contact/route.js           Contact form endpoint
   sitemap.js  robots.js  icon.png  not-found.jsx
 components/
@@ -61,6 +61,7 @@ components/
   FAQ  FadeIn  Media  ContactForm  BlogFilter  JsonLd
 lib/
   site.js          Firm details, nav, service tree — single source of truth
+  areas.js         Per-city service-area content (intro, local detail, FAQs)
   images.js        Image slots (see CONTENT-TODO.md)
   schema.js        Schema.org JSON-LD builders
   seo.js           Metadata builder (title, description, canonical, OG)
@@ -91,15 +92,32 @@ URL, Open Graph and Twitter tags, exactly one `<h1>`, breadcrumb navigation
 | Homepage | `AccountingService` + `FAQPage` |
 | About | `Person` + `BreadcrumbList` |
 | Service pages (8) | `Service` + `FAQPage` + `BreadcrumbList` |
-| Area pages (2) | `AccountingService` (local) + `FAQPage` + `BreadcrumbList` |
+| Area hub | `ItemList` + `BreadcrumbList` |
+| Area pages (7) | `AccountingService` (local) + `FAQPage` + `BreadcrumbList` |
 | Testimonials | `AggregateRating` (placeholder) + `BreadcrumbList` |
 | Blog | `Blog` / `BlogPosting` + `BreadcrumbList` |
 | Contact | `ContactPage` + `BreadcrumbList` |
 | Portal, Privacy | `BreadcrumbList` |
 
-`robots.txt` and `sitemap.xml` are generated at build time from `lib/site.js`.
-The GA4 tag loads sitewide with `next/script` on the `afterInteractive`
-strategy. Every page links to at least three related pages.
+`robots.txt` and `sitemap.xml` are generated at build time from `lib/site.js`
+and `lib/areas.js`. Every page links to at least three related pages.
+
+## Performance
+
+- **No third-party requests on load.** The Google Maps embed sits behind a
+  facade (`components/MapEmbed.jsx`) that renders the address and a directions
+  link, and only mounts the iframe when a visitor asks for it. Analytics is
+  gated on a real GA4 measurement ID and loads `lazyOnload`, so the placeholder
+  ID costs nothing.
+- **Images** are served as AVIF/WebP through `next/image` at layout-matched
+  widths — around 8KB total on the homepage.
+- **Fonts** are self-hosted variable files via `next/font` (two files, no
+  external requests, `display: swap`).
+- **One shared IntersectionObserver** drives every scroll animation on a page
+  instead of one per section.
+- Static assets under `/images` are served `immutable` with a one-year
+  max-age; security headers are set in `next.config.mjs`.
+- Every page is prerendered at build time.
 
 ## Accessibility
 

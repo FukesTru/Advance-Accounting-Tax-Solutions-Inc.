@@ -1,4 +1,5 @@
-import { allServicePages, serviceAreas, site } from '@/lib/site';
+import { areas } from '@/lib/areas';
+import { allServicePages, site } from '@/lib/site';
 
 /** Generates /sitemap.xml at build time. */
 export default function sitemap() {
@@ -12,9 +13,10 @@ export default function sitemap() {
       priority: page.slug.split('/').length === 2 ? 0.9 : 0.8,
       changeFrequency: 'monthly',
     })),
-    ...serviceAreas.map((area) => ({
-      path: area.slug,
-      priority: 0.9,
+    { path: '/areas', priority: 0.8, changeFrequency: 'monthly' },
+    ...areas.map((area) => ({
+      path: `/areas/${area.slug}`,
+      priority: area.primary ? 0.9 : 0.7,
       changeFrequency: 'monthly',
     })),
     { path: '/testimonials', priority: 0.6, changeFrequency: 'monthly' },

@@ -38,18 +38,18 @@ export default function Footer() {
             <ul className="mt-5 space-y-2.5 text-sm">
               {serviceCategories.map((category) => (
                 <li key={category.slug}>
-                  <Link href={category.slug} className="hover:text-gold hover:underline">
+                  <Link href={category.slug} prefetch={false} className="hover:text-gold hover:underline">
                     {category.title}
                   </Link>
                 </li>
               ))}
               <li>
-                <Link href="/blog" className="hover:text-gold hover:underline">
+                <Link href="/blog" prefetch={false} className="hover:text-gold hover:underline">
                   Insights &amp; Blog
                 </Link>
               </li>
               <li>
-                <Link href="/testimonials" className="hover:text-gold hover:underline">
+                <Link href="/testimonials" prefetch={false} className="hover:text-gold hover:underline">
                   Client Reviews
                 </Link>
               </li>
@@ -64,11 +64,16 @@ export default function Footer() {
             <ul className="mt-5 space-y-2.5 text-sm">
               {serviceAreas.map((area) => (
                 <li key={area.slug}>
-                  <Link href={area.slug} className="hover:text-gold hover:underline">
+                  <Link href={area.slug} prefetch={false} className="hover:text-gold hover:underline">
                     {area.city}, FL
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link href="/areas" prefetch={false} className="font-semibold hover:text-gold hover:underline">
+                  All service areas
+                </Link>
+              </li>
               <li className="pt-1 text-navy-200">Remote service nationwide</li>
             </ul>
 
@@ -123,10 +128,10 @@ export default function Footer() {
               &copy; {year} {site.name} All rights reserved.
             </p>
             <div className="flex items-center gap-5">
-              <Link href="/privacy-policy" className="hover:text-gold hover:underline">
+              <Link href="/privacy-policy" prefetch={false} className="hover:text-gold hover:underline">
                 Privacy Policy
               </Link>
-              <Link href="/portal" className="hover:text-gold hover:underline">
+              <Link href="/portal" prefetch={false} className="hover:text-gold hover:underline">
                 Client Portal
               </Link>
             </div>
