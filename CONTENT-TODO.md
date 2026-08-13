@@ -84,19 +84,6 @@ Obvious next candidates, if the firm actually serves them: Lehigh Acres,
 Golden Gate, Sanibel, Fort Myers Beach, Punta Gorda. Only add ones where there
 is something true and specific to say.
 
-## Worth deciding — brand palette vs. logo
-
-The logo is blue and teal; the site's accent colour is champagne gold
-(`#C9A44B`), chosen before the logo existed. Teal and gold is a legitimate,
-long-established pairing and the two currently coexist without looking
-accidental — the mark's deepest teal is close enough to the navy that it reads
-as part of the same family.
-
-If you would rather the site match the logo exactly, changing one token in
-`app/globals.css` (`--color-gold` and its shades) swaps every CTA button,
-underline, and icon accent across every page at once. Say the word and it is
-a ten-minute change. Doing nothing is also a defensible choice.
-
 ## Worth deciding — service lines the old site had that the new sitemap does not
 
 The old site carried real service pages that the 20-page plan has no home for.
@@ -115,7 +102,7 @@ for work the firm actually sells:
 
 | # | Item | Where |
 |---|------|-------|
-| 9 | **Logo source file** | The supplied logo was a raster JPEG on a white background. It has been background-knocked-out, trimmed, and quantized to `public/images/logo-mark.png` (512px, 54KB), which is plenty for current use — but a **vector original (SVG/AI/EPS)** would future-proof print, signage, and any large-format use. Worth asking the designer for. |
+| 9 | **Logo** | Removed at the client's request — the site now uses a text wordmark only (`components/Logo.jsx`), with a navy/gold "AATS" favicon at `app/icon.svg`. If a mark is commissioned later, ask for a **vector original (SVG/AI/EPS)** so it works for print and signage as well as the site. |
 | 10 | **Remaining photography** | One slot left: a Naples, FL photo for the homepage area card — see the Images section below. |
 | 11 | **Blog articles** | `lib/posts.js` — the five starter topics exist as cards. Each links to its most relevant service page until the article is written, so no card dead-ends. Once written, add `/blog/<slug>` pages and point `href` at them. |
 | 12 | **LinkedIn** | `components/Footer.jsx` — currently "Social profiles coming soon." Joseph has a LinkedIn profile; link it if he wants it public. |

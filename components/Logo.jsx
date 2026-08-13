@@ -1,16 +1,13 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { site } from '@/lib/site';
 
-const MARK_SRC = '/images/logo-mark.png';
-const MARK_W = 512;
-const MARK_H = 435;
-
 /**
- * Firm lockup: the growth-arrow mark plus the wordmark.
+ * Text wordmark, no graphic mark.
  *
- * The mark's darker teals sit close to the navy footer, so the `light` variant
- * places it on a white chip rather than letting it fade into the background.
+ * Still the primary "go home" affordance alongside the explicit Home item in
+ * the nav. If a mark is reinstated later, drop the image back in ahead of the
+ * text block and give the light variant a white chip — its dark tones sink
+ * into the navy footer otherwise.
  */
 export default function Logo({ variant = 'dark', className = '' }) {
   const onNavy = variant === 'light';
@@ -19,39 +16,21 @@ export default function Logo({ variant = 'dark', className = '' }) {
     <Link
       href="/"
       aria-label={`${site.name} — home`}
-      className={`group flex shrink-0 items-center gap-3 ${className}`}
+      className={`group flex shrink-0 flex-col leading-tight ${className}`}
     >
       <span
-        className={`flex shrink-0 items-center justify-center rounded-lg transition-transform duration-200 group-hover:scale-105 ${
-          onNavy ? 'bg-white p-1.5' : ''
+        className={`whitespace-nowrap font-display text-base font-bold tracking-tight transition-colors sm:text-lg ${
+          onNavy ? 'text-white' : 'text-navy group-hover:text-gold-700'
         }`}
       >
-        <Image
-          src={MARK_SRC}
-          alt=""
-          width={MARK_W}
-          height={MARK_H}
-          priority
-          sizes="56px"
-          className="h-9 w-auto sm:h-10"
-        />
+        Advance Accounting
       </span>
-
-      <span className="flex flex-col leading-tight">
-        <span
-          className={`whitespace-nowrap font-display text-[0.95rem] font-bold tracking-tight sm:text-base ${
-            onNavy ? 'text-white' : 'text-navy'
-          }`}
-        >
-          Advance Accounting
-        </span>
-        <span
-          className={`whitespace-nowrap font-display text-[0.7rem] font-semibold uppercase tracking-[0.18em] ${
-            onNavy ? 'text-gold' : 'text-gold-700'
-          }`}
-        >
-          &amp; Tax Solutions
-        </span>
+      <span
+        className={`whitespace-nowrap font-display text-[0.7rem] font-semibold uppercase tracking-[0.18em] ${
+          onNavy ? 'text-gold' : 'text-gold-700'
+        }`}
+      >
+        &amp; Tax Solutions
       </span>
     </Link>
   );
