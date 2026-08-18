@@ -149,7 +149,7 @@ for work the firm actually sells:
 
 | # | Item | Where |
 |---|------|-------|
-| 9 | **Logo** | Removed at the client's request — the site now uses a text wordmark only (`components/Logo.jsx`), with a navy/gold "AATS" favicon at `app/icon.svg`. If a mark is commissioned later, ask for a **vector original (SVG/AI/EPS)** so it works for print and signage as well as the site. |
+| 9 | **Logo vector original** | The real lockup is in and used sitewide. It came as a raster JPEG, background-removed and cropped into three PNGs (see README). Ask the designer for the **vector original (SVG/AI/EPS)** — the current files are fine for the website but cannot scale to signage, print, or a large-format banner. |
 | 10 | **Remaining photography** | One slot left: a Naples, FL photo for the homepage area card — see the Images section below. |
 | 11 | **Blog articles** | `lib/posts.js` — the five starter topics exist as cards. Each links to its most relevant service page until the article is written, so no card dead-ends. Once written, add `/blog/<slug>` pages and point `href` at them. |
 | 12 | **LinkedIn** | `components/Footer.jsx` — currently "Social profiles coming soon." Joseph has a LinkedIn profile; link it if he wants it public. |

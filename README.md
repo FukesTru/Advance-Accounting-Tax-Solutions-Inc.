@@ -35,9 +35,21 @@ Tokens are defined once in `app/globals.css` under `@theme` and consumed as
 Tailwind utilities (`bg-navy`, `text-gold-700`, `bg-shell`, …). Light
 backgrounds throughout — no dark hero.
 
-Branding is a text wordmark only — `components/Logo.jsx` renders "Advance
-Accounting / & Tax Solutions" and links home. There is no graphic mark.
-`app/icon.svg` is a small navy/gold "AATS" favicon.
+The firm logo is rendered by `components/Logo.jsx` from three crops of one
+source artwork, all background-knocked-out to transparency:
+
+| File | Contents | Used |
+|---|---|---|
+| `public/images/logo.png` | Mark + wordmark, tagline cropped | Nav, at 56px tall |
+| `public/images/logo-full.png` | Complete lockup incl. STRATEGY · COMPLIANCE · RESULTS | Footer, at 80px tall |
+| `public/images/logo-mark.png` | The "A" mark alone | Square placements |
+
+The artwork is navy and silver, so on the navy footer it sits on a white chip.
+The nav is 56px tall because that is where "SOLUTIONS, INC." stops rendering as
+mush — below roughly 48px the third line is unreadable. `app/icon.png` is the
+favicon, derived from the mark. The tagline is also stored as text in
+`lib/site.js` (`site.tagline`) so it is crawlable, and feeds `slogan` in
+Organization schema.
 
 ## Structure
 
@@ -51,7 +63,7 @@ app/
   business-advisory-services/    Category page + 2 sub-services
   areas/                         Hub page + [slug] route generating 7 city pages
   api/contact/route.js           Contact form endpoint
-  sitemap.js  robots.js  icon.svg  not-found.jsx
+  sitemap.js  robots.js  icon.png  not-found.jsx
 components/
   Navbar  Footer  FloatingCall  Breadcrumbs  Logo  Icons
   primitives.jsx                 Container, Section, Button, CheckList, …
