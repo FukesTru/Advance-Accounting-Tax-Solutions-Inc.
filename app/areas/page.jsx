@@ -5,6 +5,8 @@ import JsonLd from '@/components/JsonLd';
 import { Icon } from '@/components/Icons';
 import { Button, Section, SectionHeading } from '@/components/primitives';
 import { CTABanner, MapBlock, PageHero, ServiceCardGrid } from '@/components/sections';
+import Media from '@/components/Media';
+import { images } from '@/lib/images';
 import { areas } from '@/lib/areas';
 import { breadcrumbSchema, serviceAreaListSchema } from '@/lib/schema';
 import { buildMetadata } from '@/lib/seo';
@@ -49,6 +51,34 @@ export default function ServiceAreasPage() {
       </PageHero>
 
       <Section>
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:items-center">
+          <FadeIn>
+            <SectionHeading
+              eyebrow="Based in Ave Maria"
+              title="A town in the middle of everything"
+            />
+            <div className="mt-6 space-y-4 leading-relaxed text-slate-body">
+              <p>
+                Ave Maria sits in eastern Collier County, roughly half an hour from Naples and an
+                hour from Fort Myers, with Immokalee ten minutes up the road. Being off the coast
+                turns out to be an advantage: we are a straightforward drive from most of Lee and
+                Collier, without the seasonal traffic that makes a Naples or Fort Myers appointment
+                a half-day commitment.
+              </p>
+              <p>
+                Clients who prefer to keep everything remote never make the drive at all. Secure
+                portal for documents, video calls for planning, e-signature for filings — the same
+                advisor and the same turnaround either way.
+              </p>
+            </div>
+          </FadeIn>
+          <FadeIn delay={120}>
+            <Media image={images.aveMaria} sizes="(max-width: 1024px) 100vw, 45vw" />
+          </FadeIn>
+        </div>
+      </Section>
+
+      <Section tone="shell">
         <SectionHeading
           eyebrow="Communities"
           title="Local to Lee and Collier counties"
@@ -103,7 +133,7 @@ export default function ServiceAreasPage() {
         </FadeIn>
       </Section>
 
-      <Section tone="shell">
+      <Section>
         <SectionHeading
           eyebrow="Services"
           title="The same work, wherever you are"
@@ -114,9 +144,9 @@ export default function ServiceAreasPage() {
         </div>
       </Section>
 
-      <MapBlock />
+      <MapBlock tone="shell" />
 
-      <CTABanner tone="shell" />
+      <CTABanner />
     </>
   );
 }

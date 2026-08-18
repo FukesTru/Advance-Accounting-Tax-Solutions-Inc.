@@ -6,7 +6,7 @@ import { buildMetadata } from '@/lib/seo';
 export const metadata = buildMetadata({
   title: 'Small Business Accounting | Fort Myers & Naples',
   description:
-    'Reliable monthly bookkeeping and financial reporting so you always know where your business stands. Serving Fort Myers, Naples, and clients nationwide.',
+    'Reliable monthly bookkeeping and management reporting so you always know where your business stands. Serving Fort Myers, Naples, and clients nationwide.',
   path: '/accounting-cfo-services/accounting-services',
 });
 
@@ -29,6 +29,10 @@ const faqs = [
     a: 'Monthly suits most businesses: it is frequent enough to catch problems while they are small and steady enough to be affordable. Higher-volume operations sometimes need weekly reconciliation, and very small or seasonal businesses do fine quarterly. We match the cadence to your transaction volume rather than selling everyone the same package.',
   },
   {
+    q: 'Can you produce financial statements for my bank or investor?',
+    a: 'Not under this entity, and that is a deliberate structure rather than a gap. Advance Accounting & Tax Solutions does bookkeeping and internal management reporting; it does not issue audited, reviewed, or compiled financial statements. When a lender or investor needs statements with an accountant\u2019s report attached, the affiliated CPA firm, Joseph F. Fragnoli, CPA, Inc., handles that engagement — same people, correct entity.',
+  },
+  {
     q: 'Is this different from tax preparation?',
     a: 'Yes, though the two connect directly. Accounting is the ongoing record of what your business does — maintained monthly, used for decisions all year. Tax preparation is the annual filing built on top of that record. Good books make the return faster, cheaper, and far more likely to be right.',
   },
@@ -48,6 +52,7 @@ export default function AccountingServicesPage() {
         'The immediate benefit is knowing where you stand. The compounding one is that everything downstream gets easier — tax planning has real numbers to work with, CFO-level analysis has a foundation, and filing season becomes a handoff instead of a reconstruction project.',
       ]}
       image={images.accounting}
+      note="Scope note: this is bookkeeping and internal management reporting. Advance Accounting & Tax Solutions does not perform audits, reviews, compilations, or prepared financial statements with an accountant's report attached. Where an engagement genuinely requires a CPA firm, the affiliated firm Joseph F. Fragnoli, CPA, Inc. takes it on."
       whoFor={[
         {
           title: 'Small businesses',
@@ -72,8 +77,8 @@ export default function AccountingServicesPage() {
           text: 'Every bank, credit card, and loan account reconciled monthly so the balances are real.',
         },
         {
-          title: 'Financial statement preparation',
-          text: 'P&L, balance sheet, and cash flow delivered on a set schedule with the anomalies flagged.',
+          title: 'Monthly management reporting',
+          text: 'P&L, balance sheet, and cash flow for internal use, delivered on a set schedule with the anomalies flagged.',
         },
         {
           title: 'Chart of accounts cleanup',
@@ -126,7 +131,7 @@ export default function AccountingServicesPage() {
           name: 'Accounting Services',
           serviceType: 'Bookkeeping',
           description:
-            'Monthly bookkeeping, reconciliation, financial statement preparation, chart of accounts cleanup, and sales tax support for small businesses in Southwest Florida.',
+            'Monthly bookkeeping, reconciliation, management reporting, chart of accounts cleanup, and sales tax support for small businesses in Southwest Florida.',
           path: '/accounting-cfo-services/accounting-services',
         }),
       ]}

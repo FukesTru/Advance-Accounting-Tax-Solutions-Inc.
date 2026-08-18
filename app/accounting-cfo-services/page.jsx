@@ -30,6 +30,10 @@ const faqs = [
     a: 'We do. Payroll processing, federal and Florida payroll tax filings, new-hire reporting, and year-end W-2s and 1099s are all covered. Payroll tax penalties are among the most avoidable costs a small business incurs, and they are avoided by someone owning the calendar.',
   },
   {
+    q: 'Do you issue audited or reviewed financial statements?',
+    a: 'Not under this entity. Advance Accounting & Tax Solutions was set up for the work that sits outside traditional CPA-firm services: tax compliance and planning, tax resolution, start-up assistance, bookkeeping, and accounting. Audits, reviews, compilations, and prepared financial statements with a report attached go through the affiliated CPA firm, Joseph F. Fragnoli, CPA, Inc. You deal with the same people either way.',
+  },
+  {
     q: 'How do fees work?',
     a: 'Recurring accounting and CFO work is priced as a flat monthly fee based on scope, transaction volume, and how many entities are involved — so you know the number in advance and are not billed for asking a question. Cleanup or catch-up work is quoted separately once we have seen the current state of the books.',
   },
@@ -52,8 +56,8 @@ export default function AccountingCfoServicesPage() {
       image={images.accounting}
       included={[
         {
-          title: 'Monthly financial statements',
-          text: 'P&L, balance sheet, and cash flow delivered on a set schedule, reconciled and ready to act on.',
+          title: 'Monthly management reports',
+          text: 'P&L, balance sheet, and cash flow for your own decision-making, delivered on a set schedule and reconciled.',
         },
         {
           title: 'Cash-flow visibility',

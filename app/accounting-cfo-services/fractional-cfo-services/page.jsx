@@ -29,6 +29,10 @@ const faqs = [
     a: 'That is the point of the model. Engagements start small and expand as the questions get bigger. Eventually some clients outgrow fractional entirely and hire internally — when that point arrives we will say so, and help with the transition rather than holding onto the work.',
   },
   {
+    q: 'Who actually does the CFO work?',
+    a: 'Joseph leads the engagement and James Fragnoli provides the senior-level input. James is a retired CFO of a hundred-million-dollar manufacturing company who spent most of his career in private industry as a Controller and CFO across multiple companies and entity types. He was a CPA and has since retired his license — the value he brings is operating experience, not attest work.',
+  },
+  {
     q: 'Do you work with our existing bookkeeper?',
     a: 'Frequently, yes. If your bookkeeper is doing solid work there is no reason to displace them; we layer strategy on top and give them a clearer reporting structure to work within. If the underlying records will not support real analysis, we will tell you that plainly, since forecasting on bad data is worse than not forecasting at all.',
   },
@@ -46,6 +50,7 @@ export default function FractionalCfoPage() {
         'There is a stage most growing businesses hit where the questions outrun the reporting. Revenue is up but cash is tight and nobody can explain why. One service line feels profitable but nothing confirms it. A big hire, a new location, or an equipment purchase is on the table and the decision comes down to gut feel. The books are fine. What is missing is someone whose job is to interpret them.',
         'That is CFO work, and until recently it came in one size: a full-time executive with a salary to match. Fractional changes the shape of it. You get the same discipline — forecasting, budget-versus-actual review, margin analysis, KPI reporting, capital planning — on a monthly cadence sized to what your business actually needs right now.',
         'In practice that means you stop making seven-figure decisions on instinct. You know which customers are worth keeping, what a price change does to contribution margin, and how many months of runway you have under a few different scenarios. And when you need to show numbers to a bank, an investor, or a buyer, they are already in a form those people expect.',
+        'The senior input on these engagements comes from James Fragnoli, a retired CFO who ran finance for a hundred-million-dollar manufacturing company and spent his career as a Controller and CFO across several industries and entity types. That is operator experience rather than advisory theory — he has sat in the chair the client is sitting in.',
       ]}
       image={images.analysis}
       whoFor={[

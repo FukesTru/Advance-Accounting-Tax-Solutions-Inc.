@@ -5,9 +5,9 @@ import Media from '@/components/Media';
 import { Button, CheckList, Section, SectionHeading } from '@/components/primitives';
 import { CTABanner, PageHero, RelatedLinks, StatRow } from '@/components/sections';
 import { images } from '@/lib/images';
-import { breadcrumbSchema, personSchema } from '@/lib/schema';
+import { affiliatedFirmSchema, breadcrumbSchema, personSchema } from '@/lib/schema';
 import { buildMetadata } from '@/lib/seo';
-import { aboutStats, firmFacts, site, team } from '@/lib/site';
+import { aboutStats, affiliatedFirm, firmFacts, scopeExclusions, site, team } from '@/lib/site';
 
 export const metadata = buildMetadata({
   title: 'Meet Joseph F. Fragnoli, CPA — President & CEO',
@@ -59,7 +59,7 @@ const related = [
 export default function AboutPage() {
   return (
     <>
-      <JsonLd data={[personSchema(), breadcrumbSchema(breadcrumb)]} />
+      <JsonLd data={[personSchema(), affiliatedFirmSchema(), breadcrumbSchema(breadcrumb)]} />
       <Breadcrumbs trail={breadcrumb} />
 
       <PageHero
@@ -105,6 +105,13 @@ export default function AboutPage() {
                 else depends on.
               </p>
               <p>
+                Advance Accounting &amp; Tax Solutions was created deliberately to hold the work
+                that falls <em>outside</em> traditional CPA-firm services. It is co-owned with
+                Patricia Alcantara, and it does not perform financial statement preparation or the
+                reporting that goes with it. That is not a limitation so much as a decision about
+                focus &mdash; and where a client genuinely needs a CPA firm, there is one.
+              </p>
+              <p>
                 The firm works with {firmFacts.clientTypes} — businesses generally running between{' '}
                 {firmFacts.clientRevenueLong} in annual revenue. Based in Ave Maria and serving Fort
                 Myers, Naples, and the surrounding Southwest Florida communities, the practice also
@@ -123,7 +130,8 @@ export default function AboutPage() {
                   • B.A. in Business Administration, emphasis in Accounting — California State
                   University, Fullerton (also attended UCLA)
                 </li>
-                <li>• President, Joseph F. Fragnoli, CPA, Inc. — Ave Maria, Florida</li>
+                <li>• Co-owner of Advance Accounting &amp; Tax Solutions, Inc.</li>
+                <li>• Sole owner of Joseph F. Fragnoli, CPA, Inc., the affiliated CPA firm</li>
               </ul>
             </div>
 
@@ -167,7 +175,7 @@ export default function AboutPage() {
           title="Who you will be working with"
           intro="A small practice on purpose — the person who reviews your work is the person who answers your call."
         />
-        <div className="mt-12 grid gap-6 sm:grid-cols-2">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {team.map((member, index) => (
             <FadeIn key={member.name} delay={index * 100} className="h-full">
               <article className="flex h-full flex-col rounded-xl border border-navy/10 bg-white p-7">
@@ -179,6 +187,58 @@ export default function AboutPage() {
               </article>
             </FadeIn>
           ))}
+        </div>
+      </Section>
+
+      <Section>
+        <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
+          <FadeIn>
+            <SectionHeading
+              eyebrow="How the firm is structured"
+              title="Two entities, one team"
+            />
+            <div className="mt-6 space-y-4 leading-relaxed text-slate-body">
+              <p>
+                <strong className="text-navy">{site.name}</strong> handles tax compliance and
+                planning, tax resolution, start-up assistance, bookkeeping, and accounting. It was
+                built specifically for that work, and it does not take on financial statement
+                preparation or the reporting attached to it.
+              </p>
+              <p>
+                <strong className="text-navy">{affiliatedFirm.name}</strong> is the affiliated
+                general practice public accounting firm, wholly owned by Joseph. It emphasizes tax
+                planning and compliance for closely held companies and high-net-worth individuals,
+                tax resolution, and accounting for small and regional businesses.{' '}
+                {affiliatedFirm.whenItApplies}
+              </p>
+              <p>
+                Practically speaking, you deal with the same people either way. The distinction
+                exists so that engagements land in the entity licensed and structured for them.
+              </p>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={120}>
+            <div className="rounded-2xl border border-navy/10 bg-shell p-8">
+              <h3 className="text-lg">What we do not do</h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-body">
+                Worth stating plainly, so nobody engages us expecting it.
+              </p>
+              <ul className="mt-5 space-y-3">
+                {scopeExclusions.map((item) => (
+                  <li key={item} className="flex gap-3 text-sm leading-relaxed text-slate-body">
+                    <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-6 text-sm leading-relaxed text-slate-body">
+                For attest work we point you to the affiliated CPA firm; for legal documents and
+                investment management, to your attorney and your advisor. We coordinate with all
+                three.
+              </p>
+            </div>
+          </FadeIn>
         </div>
       </Section>
 

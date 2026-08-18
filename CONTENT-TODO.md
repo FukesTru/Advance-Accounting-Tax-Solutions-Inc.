@@ -13,8 +13,6 @@ facts** in the build — no longer placeholders:
   licensed in California in 1984; 42 years in public accounting, the last 13 in
   independent practice; attended UCLA and California State University,
   Fullerton (B.A. Business Administration, emphasis in Accounting).
-- **Patricia Alcantara** — Vice President, Office Manager & Executive Assistant.
-  Now on the About page team section.
 - **Client profile** — closely held corporations, partnerships, LLCs, and
   individuals; businesses generally $200,000–$20,000,000 in annual revenue.
   This replaced a guessed range in the Accounting & CFO FAQ.
@@ -28,9 +26,45 @@ facts** in the build — no longer placeholders:
   than as a stat box), are all real.
 - **Trust badges** — "Licensed CPA Firm" became "Florida-Licensed CPA" and
   "42 Years in Public Accounting", both verifiable.
+- **Full bios** for all three firm members, from the client's Bios.docx:
+  Joseph (President & CEO, co-owner), **Patricia Alcantara** (Vice President,
+  co-owner, former ESL teacher in Brazil, runs office coordination and file
+  maintenance), and **James Fragnoli** (consultant; retired CFO of a $100M
+  manufacturing company, career Controller/CFO in private industry, former CPA
+  now retired from licensure — he provides the senior input on fractional CFO
+  and accounting engagements). All three are on the About page, and James is
+  named on the Fractional CFO page where his experience is the actual selling
+  point.
+- **The two-entity structure.** Advance Accounting & Tax Solutions, Inc. was
+  created deliberately for work outside traditional CPA-firm services and does
+  **not** perform financial statement preparation or the reporting attached to
+  it. Joseph F. Fragnoli, CPA, Inc. is the affiliated general-practice CPA firm
+  (100% Joseph) for engagements that require one. This is now explained on the
+  About page, declared in schema, and — importantly — the site's copy was
+  corrected to stop advertising work the entity does not do (see below).
+- **Ave Maria photo** — the town-center aerial is now on the `/areas` hub.
 
 Sources: the old site's Home, Team, Tax Services, Business Services, and
-Contact pages.
+Contact pages, plus the client's Bios.docx.
+
+## Corrected: the site was advertising attest work
+
+The bios document states that Advance Accounting & Tax Solutions "does not do
+financial statement preparation and applicable reporting on thereto." The build
+had three places implying otherwise — "Financial statement preparation" as a
+service bullet, "Monthly financial statements" on the hub, and the same phrase
+in `Service` schema.
+
+All three now read as **management reporting** (internal-use P&L, balance sheet,
+cash flow), which is what bookkeeping actually produces. Scope notes and FAQs on
+the Accounting hub and Accounting Services pages state plainly that audits,
+reviews, compilations, and reported financial statements go through the
+affiliated CPA firm. `lib/site.js` → `scopeExclusions` is the single list, and
+`team`'s doc comment warns against reintroducing the claim.
+
+**Worth an explicit confirmation from Joseph**, since the line between
+"management reports" and SSARS "prepared financial statements" is his call, not
+mine. If he wants the site silent on reporting altogether, it is a small edit.
 
 ## Estimated figures — confirm or replace
 
@@ -51,6 +85,19 @@ removed.
 They read as factual claims to a visitor, so please confirm them or swap in real
 figures. Deleting the last three entries from `aboutStats` leaves a clean
 three-stat row of verified numbers if you would rather not publish estimates.
+
+## Contact details — three conflicts to settle
+
+Joe's email signature does not match what the site currently uses. None of
+these are guesses on my part; they are genuine conflicts between sources, and
+each needs a decision:
+
+| Field | Site uses | Signature says | Note |
+|---|---|---|---|
+| Phone | `(239) 492-6784` | `(615) 513-5522` (cell) | You gave the 239 number as the website number, so that is what ships. The signature is presumably older. |
+| Email | `jfragnoli@accounting-tax-solutions.com` | `jfragnolicpa@gmail.com` | I kept the domain address — a Gmail address on a CPA site costs real trust. Confirm the domain mailbox actually receives mail. |
+| Website | `taxstrategiesandaccountingservices.com` | `accounting-tax-solutions.com` | The new domain is what the site is built for; the old one should 301-redirect to it. |
+| Years independent | 13 | Bios.docx says "fourteen" | You said "about 13"; the document says fourteen. One word to change either way. |
 
 ## Blocking — must be resolved before launch
 
@@ -106,6 +153,7 @@ for work the firm actually sells:
 | 10 | **Remaining photography** | One slot left: a Naples, FL photo for the homepage area card — see the Images section below. |
 | 11 | **Blog articles** | `lib/posts.js` — the five starter topics exist as cards. Each links to its most relevant service page until the article is written, so no card dead-ends. Once written, add `/blog/<slug>` pages and point `href` at them. |
 | 12 | **LinkedIn** | `components/Footer.jsx` — currently "Social profiles coming soon." Joseph has a LinkedIn profile; link it if he wants it public. |
+| 15 | **Headshots for Patricia and James** | `app/about/page.jsx` — the team cards are text-only. Two photos would finish the section; Joseph's is already in place. |
 | 13 | **Email vs. site domain** | Site is `taxstrategiesandaccountingservices.com`; email is `@accounting-tax-solutions.com`. Worth aligning eventually — mismatched domains cost a little trust and a little deliverability. |
 | 14 | **301 redirects from the old site** | Hosting config — map the old `.php` URLs to the new pages so existing rankings and links are not lost. Suggested mapping: `taxservices.php` → `/tax-services`, `taxprep.php` → `/tax-services/tax-compliance-and-preparation`, `bizservices.php` → `/accounting-cfo-services`, `bookkeeping.php` → `/accounting-cfo-services/accounting-services`, `bizplan.php` → `/business-advisory-services`, `Team.php` → `/about`, `contact.php` → `/contact`, `irs-backtaxes.php` / `internalcontrols.php` / `qbtraining.php` / `lawfirms.php` / `links.php` → nearest match above. |
 
