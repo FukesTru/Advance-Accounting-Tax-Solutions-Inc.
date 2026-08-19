@@ -89,17 +89,30 @@ three-stat row of verified numbers if you would rather not publish estimates.
 ## Why the homepage no longer leads with a portrait
 
 A single headshot in the hero reads as a sole practitioner, which undersells a
-three-person firm. The hero now carries a **roster card** — all three names,
-roles, and avatars, with a link through to `/team`. It communicates "firm"
-immediately and does not depend on headshots that do not exist yet.
+three-person firm. Two changes fix that:
+
+- **The hero shows photography, not a face.** The `heroHome` slot resolves
+  `public/images/hero.jpg` first and falls back to the Ave Maria town shot until
+  that file exists. It no longer falls back to Joseph's headshot at all.
+- **The roster sits below the fold as its own section** — "A small firm, on
+  purpose", with all three names, roles, focus areas, and avatars, each card
+  linking through to that person's profile on `/team`.
 
 Joseph's portrait moved to where it belongs: the About page and his profile on
 `/team`. A new `/team` page carries a full profile for each member, the
 two-entity explanation, and the scope list.
 
-If you would rather the hero show photography instead, drop a wide office or
-team photo in at `public/images/hero.jpg` and tell me — the roster card can move
-below the fold as its own section.
+**Two reserved image slots, both waiting on files:**
+
+| Drop this file in `public/images/` | What happens |
+|---|---|
+| `hero.jpg` | Takes over the homepage hero automatically. Wide/landscape — the office, the three of you, or a Southwest Florida scene. 1400px wide or larger. |
+| `patricia.jpg` | Fills Patricia's space in the roster card, on `/team`, and on the About page. Square, head and shoulders, 600px or larger. |
+
+Until each file arrives the slot degrades on purpose rather than breaking:
+the hero shows the Ave Maria town photo, and Patricia's space shows a navy-and-gold
+monogram that reads as deliberate. Nothing needs to be re-coded when the photos
+land — the filenames are the wiring.
 
 ## Contact details — three conflicts to settle
 
@@ -165,10 +178,10 @@ for work the firm actually sells:
 | # | Item | Where |
 |---|------|-------|
 | 9 | **Logo vector original** | The real lockup is in and used sitewide. It came as a raster JPEG, background-removed and cropped into three PNGs (see README). Ask the designer for the **vector original (SVG/AI/EPS)** — the current files are fine for the website but cannot scale to signage, print, or a large-format banner. |
-| 10 | **Remaining photography** | One slot left: a Naples, FL photo for the homepage area card — see the Images section below. |
+| 10 | **Remaining photography** | Three slots: a Naples, FL photo for the homepage area card, plus the reserved `hero.jpg` and `patricia.jpg` — see the Images section below. |
 | 11 | **Blog articles** | `lib/posts.js` — the five starter topics exist as cards. Each links to its most relevant service page until the article is written, so no card dead-ends. Once written, add `/blog/<slug>` pages and point `href` at them. |
 | 12 | **LinkedIn** | `components/Footer.jsx` — currently "Social profiles coming soon." Joseph has a LinkedIn profile; link it if he wants it public. |
-| 15 | **Headshots for Patricia and James** | Drop `patricia.jpg` and `james.jpg` into `public/images/` and they appear automatically on `/team`, in the homepage roster card, and on the About page. Until then `components/Avatar.jsx` renders a monogram, which looks deliberate rather than broken — but two real faces would finish the team page properly. Square crops, head and shoulders, 600px or larger. |
+| 15 | **Headshots for Patricia and James** | Drop `patricia.jpg` and `james.jpg` into `public/images/` and they appear automatically on `/team`, in the homepage roster section, and on the About page. Until then `components/Avatar.jsx` renders a monogram, which looks deliberate rather than broken — but two real faces would finish the team page properly. Square crops, head and shoulders, 600px or larger. |
 | 13 | **Email vs. site domain** | Site is `taxstrategiesandaccountingservices.com`; email is `@accounting-tax-solutions.com`. Worth aligning eventually — mismatched domains cost a little trust and a little deliverability. |
 | 14 | **301 redirects from the old site** | Hosting config — map the old `.php` URLs to the new pages so existing rankings and links are not lost. Suggested mapping: `taxservices.php` → `/tax-services`, `taxprep.php` → `/tax-services/tax-compliance-and-preparation`, `bizservices.php` → `/accounting-cfo-services`, `bookkeeping.php` → `/accounting-cfo-services/accounting-services`, `bizplan.php` → `/business-advisory-services`, `Team.php` → `/about`, `contact.php` → `/contact`, `irs-backtaxes.php` / `internalcontrols.php` / `qbtraining.php` / `lawfirms.php` / `links.php` → nearest match above. |
 
@@ -178,7 +191,8 @@ for work the firm actually sells:
 
 | File | Slot | Used on |
 |---|---|---|
-| `joseph.jpg` | `joseph`, `heroHome` | About, homepage hero |
+| `joseph.jpg` | `joseph` | About, `/team`, homepage roster card |
+| `ave-maria.jpg` | `heroHome` (fallback), `aveMaria` | Homepage hero, Service Areas hub |
 | `analysis.jpg` | `analysis` | Homepage story, Fractional CFO, Business Advisory hub |
 | `accounting-desk.jpg` | `accounting` | Accounting & CFO hub, Accounting Services, Payroll |
 | `tax-forms.jpg` | `taxForms` | Tax Services hub, Tax Compliance & Preparation |
@@ -188,17 +202,21 @@ for work the firm actually sells:
 | `swfl-waterfront.jpg` | `fortMyers` | Homepage Fort Myers card |
 
 Every page carries a photo. No image appears more than three times, and never
-twice on the same page.
+twice on the same page. `ave-maria.jpg` is the one image on two pages, and only
+until `hero.jpg` arrives.
 
-### Still needed — one shot
+### Still needed
 
-| Slot | Page | What is needed |
-|---|---|---|
-| `naples` | Homepage Naples service-area card | A recognizable **Naples, Florida** scene — the pier, 5th Avenue South, Tin City, or the beach. Landscape. |
+| Slot | File to add | Page | What is needed |
+|---|---|---|---|
+| `naples` | `naples.jpg` | Homepage Naples service-area card | A recognizable **Naples, Florida** scene — the pier, 5th Avenue South, Tin City, or the beach. Landscape. |
+| `heroHome` | `hero.jpg` | Homepage hero | Wide/landscape — the office, the three of you together, or a Southwest Florida scene. 1400px or wider. Reserved; the Ave Maria town photo holds the space. |
+| `patricia` | `patricia.jpg` | `/team`, homepage roster, About | Square headshot, head and shoulders, 600px or larger. Reserved; a monogram holds the space. |
+| `james` | `james.jpg` | `/team`, homepage roster, About | Square headshot, head and shoulders, 600px or larger. Reserved; a monogram holds the space. |
 
-The photo supplied for this slot showed the Fontana del Nettuno in **Naples,
-Italy**. It was not used: the area page exists to establish local credibility in
-Collier County, and an Italian piazza would undercut exactly that for any local
+The photo supplied for the Naples slot showed the Fontana del Nettuno in
+**Naples, Italy**. It was not used: the area page exists to establish local
+credibility in Collier County, and an Italian piazza would undercut exactly that for any local
 reader who recognizes it. Until a Naples FL photo arrives, the card shows the
 branded placeholder — which sits directly beside the Fort Myers photo on the
 homepage, so the pair currently looks uneven.
@@ -207,20 +225,19 @@ Also unused: the LinkedIn signup screenshot. It carries LinkedIn's branding and
 tagline, and on a page headed "Client Portal" it would read as a claim that the
 firm's portal is LinkedIn. The laptop photo went there instead.
 
-Two optional upgrades:
+One optional upgrade: **a higher-resolution copy of Joseph's headshot.** The
+supplied file is 360x360 — sharp at its current framed size, but it cannot be
+used any larger.
 
-- **A wider hero image.** Drop in `public/images/hero.jpg` and it takes over the
-  homepage hero from the headshot automatically.
-- **A higher-resolution copy of Joseph's headshot.** The supplied file is
-  360x360 — sharp at its current framed size, but it cannot be used any larger.
+Note that `ave-maria.jpg` is currently the only image used on two pages (the
+homepage hero and the Service Areas hub). Adding `hero.jpg` resolves that.
 
 ### How to add one
 
-Drop the file in `public/images/` using the filename listed in that slot's
-`local` array — for the outstanding slot that is `naples.jpg`. The slot resolves
-the first candidate that exists on disk, so no code change is needed. Update the
-slot's `alt` text if the photo shows something different from what is described,
-and set `aspect` (`4/3`, `4/5`, `2/3`, or `square`) if the shot is not landscape.
+Drop the file in `public/images/` using the filename listed in the table above.
+The slot resolves the first candidate that exists on disk, so no code change is
+needed. Update the slot's `alt` text if the photo shows something different from
+what is described, and set `aspect` (`4/3`, `4/5`, `2/3`, or `square`) if the shot is not landscape.
 
 Images are served through `next/image`, so they are resized and lazy-loaded
 automatically — but keep source files under roughly 500KB.

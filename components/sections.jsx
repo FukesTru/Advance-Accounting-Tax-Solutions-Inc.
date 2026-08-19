@@ -93,9 +93,9 @@ export function ServiceCardGrid({ items, columns = 3 }) {
 /* Process steps                                                       */
 /* ------------------------------------------------------------------ */
 
-export function ProcessSteps({ steps, eyebrow = 'How It Works', title, intro }) {
+export function ProcessSteps({ steps, eyebrow = 'How It Works', title, intro, tone = 'shell' }) {
   return (
-    <Section tone="shell">
+    <Section tone={tone}>
       <SectionHeading eyebrow={eyebrow} title={title} intro={intro} />
       <ol className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {steps.map((step, index) => (

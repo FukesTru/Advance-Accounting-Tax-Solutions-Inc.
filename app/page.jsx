@@ -141,59 +141,26 @@ export default function HomePage() {
 
             <FadeIn delay={140}>
               {/*
-                A roster card rather than a single portrait. One headshot in the
-                hero reads as a solo practitioner; three names and roles say
-                "firm" immediately, and it does not depend on headshots we do
-                not have yet — Avatar falls back to a monogram.
+                A firm-level photo, not a portrait of one person. Resolves
+                hero.jpg when supplied and the Ave Maria town shot until then —
+                see lib/images.js. The team roster lives in its own section
+                below rather than competing with the headline here.
               */}
-              <div className="relative mx-auto w-full max-w-md">
+              <div className="relative mx-auto w-full max-w-xl">
+                <div
+                  aria-hidden="true"
+                  className="absolute -inset-3 -z-10 rounded-3xl bg-linear-to-br from-navy via-navy-600 to-navy-900 sm:-inset-4"
+                />
                 <div
                   aria-hidden="true"
                   className="absolute -right-3 -top-3 h-24 w-24 rounded-full bg-gold/30 blur-2xl"
                 />
-                <div className="relative overflow-hidden rounded-2xl bg-linear-to-br from-navy via-navy-600 to-navy-900 p-7 shadow-xl sm:p-8">
-                  <p className="font-display text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-gold">
-                    The team you get
-                  </p>
-                  <h2 className="mt-3 font-display text-xl font-bold text-white">
-                    A small firm, on purpose
-                  </h2>
-                  <p className="mt-2 text-sm leading-relaxed text-navy-100">
-                    No call queue and no seasonal preparers. You will know all three of us by name.
-                  </p>
-
-                  <ul className="mt-6 space-y-4 border-t border-white/10 pt-6">
-                    {team.map((member) => (
-                      <li key={member.slug} className="flex items-center gap-4">
-                        <Avatar
-                          image={images[member.imageKey]}
-                          initials={member.initials}
-                          name={member.name}
-                          size="sm"
-                        />
-                        <span className="min-w-0">
-                          <span className="block truncate font-display text-[0.95rem] font-bold text-white">
-                            {member.name}
-                          </span>
-                          <span className="block truncate text-xs text-gold">{member.role}</span>
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <Link
-                    href="/team"
-                    className="group mt-7 inline-flex items-center gap-1.5 font-display text-sm font-bold text-white hover:text-gold"
-                  >
-                    Meet the team
-                    <span
-                      aria-hidden="true"
-                      className="transition-transform group-hover:translate-x-1"
-                    >
-                      &rarr;
-                    </span>
-                  </Link>
-                </div>
+                <Media
+                  image={images.heroHome}
+                  priority
+                  className="shadow-xl"
+                  sizes="(max-width: 1024px) 90vw, 520px"
+                />
               </div>
             </FadeIn>
           </div>
@@ -277,9 +244,51 @@ export default function HomePage() {
       </Section>
 
       {/* ---------------------------------------------------------- */}
+      {/* Meet the team                                               */}
+      {/* ---------------------------------------------------------- */}
+      <Section tone="shell">
+        <SectionHeading
+          eyebrow="Meet the team"
+          title="A small firm, on purpose"
+          intro="No call queue and no seasonal preparers. Three people, and you will know all of them by name — the person who reviews your work is the person who answers your call."
+        />
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {team.map((member, index) => (
+            <FadeIn key={member.slug} delay={index * 90} className="h-full">
+              <Link
+                href={`/team#${member.slug}`}
+                className="group flex h-full flex-col items-start rounded-xl border border-navy/10 bg-white p-7 transition-all hover:-translate-y-1 hover:border-gold/50 hover:shadow-lg"
+              >
+                <Avatar
+                  image={images[member.imageKey]}
+                  initials={member.initials}
+                  name={member.name}
+                  size="md"
+                />
+                <h3 className="mt-5 text-lg group-hover:text-gold-700">{member.name}</h3>
+                <p className="mt-1 font-display text-xs font-semibold uppercase tracking-[0.14em] text-gold-700">
+                  {member.role}
+                </p>
+                <p className="mt-3 flex-1 text-[0.95rem] leading-relaxed text-slate-body">
+                  {member.focus}
+                </p>
+                <span
+                  aria-hidden="true"
+                  className="mt-5 font-display text-sm font-bold text-navy group-hover:text-gold-700"
+                >
+                  Read {member.shortName}&rsquo;s profile &rarr;
+                </span>
+              </Link>
+            </FadeIn>
+          ))}
+        </div>
+      </Section>
+
+      {/* ---------------------------------------------------------- */}
       {/* How we work                                                 */}
       {/* ---------------------------------------------------------- */}
       <ProcessSteps
+        tone="white"
         steps={process}
         eyebrow="How We Work"
         title="Getting started takes one phone call"
