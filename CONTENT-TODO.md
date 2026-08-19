@@ -18,7 +18,7 @@ facts** in the build — no longer placeholders:
   This replaced a guessed range in the Accounting & CFO FAQ.
 - **Phone** — (239) 492-6784, confirmed by the client. Set once in `lib/site.js`; flows to the nav, footer, every CTA, the mobile call button, and all schema.
 - **Photo** — Joseph's headshot is live at `public/images/joseph.jpg`, used on
-  the About page and in the homepage hero.
+  the About page and his `/team` profile.
 - **Stats** — the `X+` placeholders are gone. 42 years in public accounting and
   13 years in independent practice (both confirmed by the client — the old site
   said "more than forty" and "the last ten", which had gone stale), plus the
@@ -32,9 +32,9 @@ facts** in the build — no longer placeholders:
   maintenance), and **James Fragnoli** (consultant; retired CFO of a $100M
   manufacturing company, career Controller/CFO in private industry, former CPA
   now retired from licensure — he provides the senior input on fractional CFO
-  and accounting engagements). All three are on the About page, and James is
-  named on the Fractional CFO page where his experience is the actual selling
-  point.
+  and accounting engagements). All three have full profiles on the new `/team`
+  page, appear in the homepage roster card, and James is named on the Fractional
+  CFO page where his experience is the actual selling point.
 - **The two-entity structure.** Advance Accounting & Tax Solutions, Inc. was
   created deliberately for work outside traditional CPA-firm services and does
   **not** perform financial statement preparation or the reporting attached to
@@ -85,6 +85,21 @@ removed.
 They read as factual claims to a visitor, so please confirm them or swap in real
 figures. Deleting the last three entries from `aboutStats` leaves a clean
 three-stat row of verified numbers if you would rather not publish estimates.
+
+## Why the homepage no longer leads with a portrait
+
+A single headshot in the hero reads as a sole practitioner, which undersells a
+three-person firm. The hero now carries a **roster card** — all three names,
+roles, and avatars, with a link through to `/team`. It communicates "firm"
+immediately and does not depend on headshots that do not exist yet.
+
+Joseph's portrait moved to where it belongs: the About page and his profile on
+`/team`. A new `/team` page carries a full profile for each member, the
+two-entity explanation, and the scope list.
+
+If you would rather the hero show photography instead, drop a wide office or
+team photo in at `public/images/hero.jpg` and tell me — the roster card can move
+below the fold as its own section.
 
 ## Contact details — three conflicts to settle
 
@@ -153,7 +168,7 @@ for work the firm actually sells:
 | 10 | **Remaining photography** | One slot left: a Naples, FL photo for the homepage area card — see the Images section below. |
 | 11 | **Blog articles** | `lib/posts.js` — the five starter topics exist as cards. Each links to its most relevant service page until the article is written, so no card dead-ends. Once written, add `/blog/<slug>` pages and point `href` at them. |
 | 12 | **LinkedIn** | `components/Footer.jsx` — currently "Social profiles coming soon." Joseph has a LinkedIn profile; link it if he wants it public. |
-| 15 | **Headshots for Patricia and James** | `app/about/page.jsx` — the team cards are text-only. Two photos would finish the section; Joseph's is already in place. |
+| 15 | **Headshots for Patricia and James** | Drop `patricia.jpg` and `james.jpg` into `public/images/` and they appear automatically on `/team`, in the homepage roster card, and on the About page. Until then `components/Avatar.jsx` renders a monogram, which looks deliberate rather than broken — but two real faces would finish the team page properly. Square crops, head and shoulders, 600px or larger. |
 | 13 | **Email vs. site domain** | Site is `taxstrategiesandaccountingservices.com`; email is `@accounting-tax-solutions.com`. Worth aligning eventually — mismatched domains cost a little trust and a little deliverability. |
 | 14 | **301 redirects from the old site** | Hosting config — map the old `.php` URLs to the new pages so existing rankings and links are not lost. Suggested mapping: `taxservices.php` → `/tax-services`, `taxprep.php` → `/tax-services/tax-compliance-and-preparation`, `bizservices.php` → `/accounting-cfo-services`, `bookkeeping.php` → `/accounting-cfo-services/accounting-services`, `bizplan.php` → `/business-advisory-services`, `Team.php` → `/about`, `contact.php` → `/contact`, `irs-backtaxes.php` / `internalcontrols.php` / `qbtraining.php` / `lawfirms.php` / `links.php` → nearest match above. |
 

@@ -1,6 +1,6 @@
 # Advance Accounting & Tax Solutions, Inc. — Website
 
-Twenty-six-page marketing site for a CPA/tax advisory firm in Ave Maria,
+Twenty-seven-page marketing site for a CPA/tax advisory firm in Ave Maria,
 Florida, serving Lee and Collier counties and clients nationwide.
 
 Built with **Next.js 16 (App Router)**, **React 19**, and **Tailwind CSS v4**.
@@ -57,7 +57,7 @@ Organization schema.
 app/
   layout.jsx                     Root layout: fonts, GA4 tag, nav, footer, floating call button
   page.jsx                       Homepage
-  about/ portal/ blog/ contact/ testimonials/ privacy-policy/
+  about/ team/ portal/ blog/ contact/ testimonials/ privacy-policy/
   tax-services/                  Category page + 3 sub-services
   accounting-cfo-services/       Category page + 3 sub-services
   business-advisory-services/    Category page + 2 sub-services
@@ -69,7 +69,7 @@ components/
   primitives.jsx                 Container, Section, Button, CheckList, …
   sections.jsx                   PageHero, ServiceCardGrid, ProcessSteps, CTABanner, FAQSection, MapBlock, …
   templates.jsx                  Template A (category), B (sub-service), C (service area)
-  FAQ  FadeIn  Media  ContactForm  BlogFilter  JsonLd
+  FAQ  FadeIn  Media  Avatar  ContactForm  BlogFilter  JsonLd  MapEmbed
 lib/
   site.js          Firm details, nav, service tree — single source of truth
   areas.js         Per-city service-area content (intro, local detail, FAQs)
@@ -101,7 +101,8 @@ URL, Open Graph and Twitter tags, exactly one `<h1>`, breadcrumb navigation
 | Page | Schema |
 |---|---|
 | Homepage | `AccountingService` + `FAQPage` |
-| About | `Person` + `BreadcrumbList` |
+| About | `Person` + `AccountingService` (affiliated firm) + `BreadcrumbList` |
+| Team | `Person` × 3 + `BreadcrumbList` |
 | Service pages (8) | `Service` + `FAQPage` + `BreadcrumbList` |
 | Area hub | `ItemList` + `BreadcrumbList` |
 | Area pages (7) | `AccountingService` (local) + `FAQPage` + `BreadcrumbList` |

@@ -156,7 +156,9 @@ export default function Navbar() {
                     aria-haspopup="true"
                     onClick={() => setOpenMenu(openMenu === item.label ? null : item.label)}
                     className={`flex items-center gap-1.5 whitespace-nowrap rounded-md px-2 py-2 font-display text-[0.875rem] font-semibold transition-colors xl:px-3 xl:text-[0.9rem] ${
-                      isActive('/areas') ? 'text-gold-700' : 'text-navy hover:text-gold-700'
+                      item.dropdown.some((link) => isActive(link.href))
+                        ? 'text-gold-700'
+                        : 'text-navy hover:text-gold-700'
                     }`}
                   >
                     <NavLabel item={item} />
@@ -280,7 +282,10 @@ export default function Navbar() {
 
             <div className="space-y-1 border-t border-navy/10 pt-5">
               <Link href="/about" className="block py-2 font-display font-semibold text-navy">
-                About
+                About the Firm
+              </Link>
+              <Link href="/team" className="block py-2 font-display font-semibold text-navy">
+                Our Team
               </Link>
               {serviceAreaLinks.map((link) => (
                 <Link

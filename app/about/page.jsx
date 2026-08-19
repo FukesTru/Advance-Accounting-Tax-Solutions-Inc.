@@ -1,3 +1,5 @@
+import Link from 'next/link';
+import Avatar from '@/components/Avatar';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import FadeIn from '@/components/FadeIn';
 import JsonLd from '@/components/JsonLd';
@@ -53,7 +55,7 @@ const related = [
     title: 'Business Advisory',
     text: 'Entity structure and long-term financial planning.',
   },
-  { href: '/contact', title: 'Contact', text: 'Book a free consultation with Joseph directly.' },
+  { href: '/team', title: 'Our Team', text: 'The three people behind the firm.' },
 ];
 
 export default function AboutPage() {
@@ -170,23 +172,45 @@ export default function AboutPage() {
       </Section>
 
       <Section tone="navyTint">
-        <SectionHeading
-          eyebrow="The team"
-          title="Who you will be working with"
-          intro="A small practice on purpose — the person who reviews your work is the person who answers your call."
-        />
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {team.map((member, index) => (
-            <FadeIn key={member.name} delay={index * 100} className="h-full">
-              <article className="flex h-full flex-col rounded-xl border border-navy/10 bg-white p-7">
-                <h3 className="text-lg">{member.name}</h3>
-                <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-gold-700">
-                  {member.role}
-                </p>
-                <p className="mt-4 leading-relaxed text-slate-body">{member.bio}</p>
-              </article>
-            </FadeIn>
-          ))}
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:items-center">
+          <FadeIn>
+            <SectionHeading
+              eyebrow="The team"
+              title="Joseph is not the whole firm"
+              intro="Patricia Alcantara co-owns the practice and runs its operations. James Fragnoli, a retired CFO of a hundred-million-dollar manufacturer, provides the senior input on fractional CFO and accounting engagements. Between them, you get a small firm rather than a sole practitioner."
+            />
+            <div className="mt-8">
+              <Button href="/team" variant="navy">
+                Meet the team
+              </Button>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={120}>
+            <ul className="space-y-4">
+              {team.map((member) => (
+                <li key={member.slug}>
+                  <Link
+                    href={`/team#${member.slug}`}
+                    className="flex items-center gap-4 rounded-xl border border-navy/10 bg-white p-4 transition-all hover:-translate-y-0.5 hover:border-gold/50 hover:shadow-md"
+                  >
+                    <Avatar
+                      image={images[member.imageKey]}
+                      initials={member.initials}
+                      name={member.name}
+                      size="sm"
+                    />
+                    <span className="min-w-0">
+                      <span className="block font-display text-[0.95rem] font-bold text-navy">
+                        {member.name}
+                      </span>
+                      <span className="block text-xs text-gold-700">{member.role}</span>
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </FadeIn>
         </div>
       </Section>
 

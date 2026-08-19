@@ -8,6 +8,7 @@ export default function sitemap() {
   const entries = [
     { path: '/', priority: 1.0, changeFrequency: 'weekly' },
     { path: '/about', priority: 0.8, changeFrequency: 'monthly' },
+    { path: '/team', priority: 0.8, changeFrequency: 'monthly' },
     ...allServicePages.map((page) => ({
       path: page.slug,
       priority: page.slug.split('/').length === 2 ? 0.9 : 0.8,

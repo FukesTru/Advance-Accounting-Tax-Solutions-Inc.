@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import FadeIn from '@/components/FadeIn';
 import JsonLd from '@/components/JsonLd';
+import Avatar from '@/components/Avatar';
 import Media from '@/components/Media';
 import { Icon } from '@/components/Icons';
 import {
@@ -21,7 +22,7 @@ import {
 import { images } from '@/lib/images';
 import { accountingServiceSchema, faqSchema } from '@/lib/schema';
 import { buildMetadata } from '@/lib/seo';
-import { firmFacts, serviceAreas, serviceCategories, site, stats, trustBadges } from '@/lib/site';
+import { firmFacts, serviceAreas, serviceCategories, site, stats, team, trustBadges } from '@/lib/site';
 import { testimonials } from '@/lib/testimonials';
 
 export const metadata = buildMetadata({
@@ -140,32 +141,59 @@ export default function HomePage() {
 
             <FadeIn delay={140}>
               {/*
-                The headshot is 360px square, so it sits in a capped frame on a
-                gradient backdrop rather than being stretched to fill the column.
-                Drop a wider /public/images/hero.jpg in and this slot uses that
-                instead — see lib/images.js.
+                A roster card rather than a single portrait. One headshot in the
+                hero reads as a solo practitioner; three names and roles say
+                "firm" immediately, and it does not depend on headshots we do
+                not have yet — Avatar falls back to a monogram.
               */}
               <div className="relative mx-auto w-full max-w-md">
                 <div
                   aria-hidden="true"
-                  className="absolute -inset-4 -z-10 rounded-3xl bg-linear-to-br from-navy via-navy-600 to-navy-900 sm:-inset-6"
-                />
-                <div
-                  aria-hidden="true"
                   className="absolute -right-3 -top-3 h-24 w-24 rounded-full bg-gold/30 blur-2xl"
                 />
-                <Media
-                  image={images.heroHome}
-                  priority
-                  className="shadow-xl"
-                  sizes="(max-width: 1024px) 90vw, 400px"
-                />
-                <figcaption className="mt-4 text-center text-sm text-navy-100 sm:text-left">
-                  <span className="block font-display font-bold text-white">
-                    Joseph F. Fragnoli, CPA
-                  </span>
-                  <span className="text-gold">President &amp; CEO · 42 years in practice</span>
-                </figcaption>
+                <div className="relative overflow-hidden rounded-2xl bg-linear-to-br from-navy via-navy-600 to-navy-900 p-7 shadow-xl sm:p-8">
+                  <p className="font-display text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-gold">
+                    The team you get
+                  </p>
+                  <h2 className="mt-3 font-display text-xl font-bold text-white">
+                    A small firm, on purpose
+                  </h2>
+                  <p className="mt-2 text-sm leading-relaxed text-navy-100">
+                    No call queue and no seasonal preparers. You will know all three of us by name.
+                  </p>
+
+                  <ul className="mt-6 space-y-4 border-t border-white/10 pt-6">
+                    {team.map((member) => (
+                      <li key={member.slug} className="flex items-center gap-4">
+                        <Avatar
+                          image={images[member.imageKey]}
+                          initials={member.initials}
+                          name={member.name}
+                          size="sm"
+                        />
+                        <span className="min-w-0">
+                          <span className="block truncate font-display text-[0.95rem] font-bold text-white">
+                            {member.name}
+                          </span>
+                          <span className="block truncate text-xs text-gold">{member.role}</span>
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Link
+                    href="/team"
+                    className="group mt-7 inline-flex items-center gap-1.5 font-display text-sm font-bold text-white hover:text-gold"
+                  >
+                    Meet the team
+                    <span
+                      aria-hidden="true"
+                      className="transition-transform group-hover:translate-x-1"
+                    >
+                      &rarr;
+                    </span>
+                  </Link>
+                </div>
               </div>
             </FadeIn>
           </div>

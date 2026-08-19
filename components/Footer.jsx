@@ -53,6 +53,11 @@ export default function Footer() {
                   Client Reviews
                 </Link>
               </li>
+              <li>
+                <Link href="/team" prefetch={false} className="hover:text-gold hover:underline">
+                  Our Team
+                </Link>
+              </li>
             </ul>
           </div>
 
