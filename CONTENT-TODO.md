@@ -178,7 +178,7 @@ for work the firm actually sells:
 | # | Item | Where |
 |---|------|-------|
 | 9 | **Logo vector original** | The real lockup is in and used sitewide. It came as a raster JPEG, background-removed and cropped into three PNGs (see README). Ask the designer for the **vector original (SVG/AI/EPS)** — the current files are fine for the website but cannot scale to signage, print, or a large-format banner. |
-| 10 | **Remaining photography** | Three slots: a Naples, FL photo for the homepage area card, plus the reserved `hero.jpg` and `patricia.jpg` — see the Images section below. |
+| 10 | **Remaining photography** | Three reserved slots, all optional and all degrading gracefully: `hero.jpg` (homepage hero), `patricia.jpg` and `james.jpg` (headshots) — see the Images section below. |
 | 11 | **Blog articles** | `lib/posts.js` — the five starter topics exist as cards. Each links to its most relevant service page until the article is written, so no card dead-ends. Once written, add `/blog/<slug>` pages and point `href` at them. |
 | 12 | **LinkedIn** | `components/Footer.jsx` — currently "Social profiles coming soon." Joseph has a LinkedIn profile; link it if he wants it public. |
 | 15 | **Headshots for Patricia and James** | Drop `patricia.jpg` and `james.jpg` into `public/images/` and they appear automatically on `/team`, in the homepage roster section, and on the About page. Until then `components/Avatar.jsx` renders a monogram, which looks deliberate rather than broken — but two real faces would finish the team page properly. Square crops, head and shoulders, 600px or larger. |
@@ -200,6 +200,7 @@ for work the firm actually sells:
 | `justice.jpg` | `legal` | Estate Planning, Entity Design & Formation |
 | `working-online.jpg` | `workingOnline` | Client Portal, Blog |
 | `swfl-waterfront.jpg` | `fortMyers` | Homepage Fort Myers card |
+| `naples.jpg` | `naples` | Homepage Naples card |
 
 Every page carries a photo. No image appears more than three times, and never
 twice on the same page. `ave-maria.jpg` is the one image on two pages, and only
@@ -209,17 +210,16 @@ until `hero.jpg` arrives.
 
 | Slot | File to add | Page | What is needed |
 |---|---|---|---|
-| `naples` | `naples.jpg` | Homepage Naples service-area card | A recognizable **Naples, Florida** scene — the pier, 5th Avenue South, Tin City, or the beach. Landscape. |
 | `heroHome` | `hero.jpg` | Homepage hero | Wide/landscape — the office, the three of you together, or a Southwest Florida scene. 1400px or wider. Reserved; the Ave Maria town photo holds the space. |
 | `patricia` | `patricia.jpg` | `/team`, homepage roster, About | Square headshot, head and shoulders, 600px or larger. Reserved; a monogram holds the space. |
 | `james` | `james.jpg` | `/team`, homepage roster, About | Square headshot, head and shoulders, 600px or larger. Reserved; a monogram holds the space. |
 
-The photo supplied for the Naples slot showed the Fontana del Nettuno in
-**Naples, Italy**. It was not used: the area page exists to establish local
-credibility in Collier County, and an Italian piazza would undercut exactly that for any local
-reader who recognizes it. Until a Naples FL photo arrives, the card shows the
-branded placeholder — which sits directly beside the Fort Myers photo on the
-homepage, so the pair currently looks uneven.
+One earlier submission for the Naples slot showed the Fontana del Nettuno in
+**Naples, Italy**. It was not used — the card exists to establish local
+credibility in Collier County, and an Italian piazza would undercut exactly
+that for any local reader who recognizes it. The Gulf-shore aerial now in place
+is unmistakably Naples, Florida, so the pair of homepage area cards finally
+reads as a matched set.
 
 Also unused: the LinkedIn signup screenshot. It carries LinkedIn's branding and
 tagline, and on a page headed "Client Portal" it would read as a claim that the
