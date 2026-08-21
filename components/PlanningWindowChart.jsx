@@ -1,20 +1,19 @@
 /**
- * The planning-window chart in the homepage hero.
+ * The chart in the homepage hero.
  *
- * Deliberately NOT client data. It is a schematic of one true principle: almost
- * every move that lowers a tax bill — entity elections, retirement
- * contributions, the timing of income and equipment purchases — has to happen
- * before the year closes, so the room to act shrinks as the year runs out. The
- * two series are complements of one another, which is the whole point, and the
- * footnote says so plainly.
+ * Shape, legend and framing follow the reference design: navy bars for tax
+ * owed falling away, a gold line for cash kept rising to meet them. The x-axis
+ * is the planning itself — baseline on the left, levers applied on the right —
+ * which is what makes the two series legible without a caption.
  *
- * The reference design carried a client tax position and a percentage saved.
- * Those are figures the firm cannot support, so the chart makes the argument
- * instead of claiming a result.
+ * The reference also carried "$164,800" and "31% TAX BURDEN". Those are client
+ * outcomes the firm has not measured, so they are not printed here; the card
+ * makes the argument without claiming a result. If real, documented figures
+ * ever exist, the headline slot is where they would go.
  */
 
-// Room left to act, sampled across the year. Complement = already locked in.
-const OPEN = [100, 94, 85, 72, 56, 38, 18];
+// Estimated tax owed as planning levers are applied. Complement = cash kept.
+const OWED = [100, 94, 85, 72, 56, 38, 18];
 
 const VIEW_W = 640;
 const VIEW_H = 268;
@@ -24,36 +23,37 @@ const BASELINE = 226;
 const PLOT_TOP = 26;
 const PLOT_H = BASELINE - PLOT_TOP;
 
-const STEP = (PLOT_R - PLOT_L) / OPEN.length;
+const STEP = (PLOT_R - PLOT_L) / OWED.length;
 const BAR_W = STEP * 0.58;
 
 const cx = (i) => PLOT_L + STEP * i + STEP / 2;
 const cy = (v) => BASELINE - (v / 100) * PLOT_H;
 
-const locked = OPEN.map((v) => 100 - v);
-const pts = locked.map((v, i) => [cx(i), cy(v)]);
+const kept = OWED.map((v) => 100 - v);
+const pts = kept.map((v, i) => [cx(i), cy(v)]);
 const line = pts.map(([x, y], i) => `${i === 0 ? 'M' : 'L'}${x.toFixed(1)},${y.toFixed(1)}`).join(' ');
-const area = `${line} L${cx(locked.length - 1).toFixed(1)},${BASELINE} L${cx(0).toFixed(1)},${BASELINE} Z`;
+const area = `${line} L${cx(kept.length - 1).toFixed(1)},${BASELINE} L${cx(0).toFixed(1)},${BASELINE} Z`;
 
 export default function PlanningWindowChart() {
   return (
     <figure className="m-0">
       <figcaption>
         <p className="font-display text-[0.68rem] font-bold uppercase tracking-[0.16em] text-slate-body/70">
-          The planning window · Any tax year
+          What proactive planning changes
         </p>
+        {/* Sized to sit on one line beside the pill, the way the reference put
+            its figure and badge side by side. */}
         <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-2">
-          <p className="font-display text-4xl font-extrabold leading-none text-navy sm:text-[2.9rem]">
-            Dec 31
+          <p className="font-display text-[1.75rem] font-extrabold leading-none text-navy sm:text-[2rem]">
+            Owe less. Keep more.
           </p>
           <p className="rounded-full bg-gold-50 px-3 py-1 font-display text-[0.68rem] font-bold uppercase tracking-wide text-gold-700">
-            Most options expire
+            Same income
           </p>
         </div>
         <p className="mt-3 text-sm leading-relaxed text-slate-body">
-          Entity elections, retirement contributions, and the timing of income and purchases nearly
-          all have to happen before the year closes. By April, a return only records what was
-          already decided.
+          Entity restructuring, S-corp election, retirement timing, and accelerated depreciation are
+          the levers — and nearly all of them have to be pulled before the year closes.
         </p>
       </figcaption>
 
@@ -64,11 +64,11 @@ export default function PlanningWindowChart() {
         aria-labelledby="pw-title pw-desc"
         preserveAspectRatio="xMidYMid meet"
       >
-        <title id="pw-title">How the tax-planning window narrows across the year</title>
+        <title id="pw-title">How tax planning shifts tax owed into cash you keep</title>
         <desc id="pw-desc">
-          An illustration, not client data. Bars show the moves still available to lower your bill,
-          highest in January and almost gone by December. A gold line shows the mirror image:
-          decisions already locked in, rising steadily across the year.
+          An illustration, not client data. Navy bars show estimated tax owed, highest with no
+          planning in place and falling as each lever is applied. A gold line shows the mirror
+          image: the cash you keep, rising as the tax owed drops.
         </desc>
 
         <defs>
@@ -95,8 +95,8 @@ export default function PlanningWindowChart() {
         ))}
         <line x1={PLOT_L} x2={PLOT_R} y1={BASELINE} y2={BASELINE} stroke="#0b2545" strokeOpacity="0.14" />
 
-        {/* Moves still on the table */}
-        {OPEN.map((v, i) => {
+        {/* Estimated tax owed */}
+        {OWED.map((v, i) => {
           const h = (v / 100) * PLOT_H;
           return (
             <rect
@@ -111,7 +111,7 @@ export default function PlanningWindowChart() {
           );
         })}
 
-        {/* Already locked in */}
+        {/* Cash you keep */}
         <path d={area} fill="url(#pw-area)" />
         <path
           d={line}
@@ -127,10 +127,10 @@ export default function PlanningWindowChart() {
           ) : null,
         )}
 
-        {/* Only the two ends are labelled — twelve month initials across a card
-            this size were unreadable and made the chart look busier than it is. */}
+        {/* The axis is the planning, not the calendar — that is what makes the
+            two series read without an explanation. */}
         <text x={PLOT_L} y={VIEW_H - 8} fontSize="15" fontWeight="600" fill="#4b5563" fillOpacity="0.7">
-          JAN
+          NO PLANNING
         </text>
         <text
           x={PLOT_R}
@@ -141,23 +141,23 @@ export default function PlanningWindowChart() {
           fill="#4b5563"
           fillOpacity="0.7"
         >
-          DEC 31
+          FULLY PLANNED
         </text>
       </svg>
 
       <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-navy/10 pt-4">
         <span className="flex items-center gap-2 text-xs font-semibold text-slate-body">
           <span aria-hidden="true" className="h-3 w-3 rounded bg-navy-600" />
-          Moves still on the table
+          Estimated tax owed
         </span>
         <span className="flex items-center gap-2 text-xs font-semibold text-slate-body">
           <span aria-hidden="true" className="h-3 w-3 rounded bg-gold" />
-          Already locked in
+          Cash you keep
         </span>
       </div>
 
       <p className="mt-3 text-[0.7rem] leading-relaxed text-slate-body/70">
-        Illustration of how the planning window narrows — not client data.
+        Illustration of the trade planning makes — not client data.
       </p>
     </figure>
   );
