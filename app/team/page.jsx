@@ -69,14 +69,18 @@ export default function TeamPage() {
                 : 'lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]'
             }`}
           >
-            <FadeIn className={index % 2 === 1 ? 'lg:col-start-2' : ''}>
+            {/* On the mirrored row the whole portrait column is right-aligned so
+                it sits against the outer edge, the way the left-hand rows sit
+                against theirs. Only from lg up — below that the avatar and name
+                are a single left-aligned row. */}
+            <FadeIn className={index % 2 === 1 ? 'lg:col-start-2 lg:text-right' : ''}>
               <div className="flex items-center gap-5 lg:block">
                 <Avatar
                   image={images[member.imageKey]}
                   initials={member.initials}
                   name={member.name}
                   size="lg"
-                  className="lg:h-52 lg:w-52"
+                  className={`lg:h-52 lg:w-52 ${index % 2 === 1 ? 'lg:ml-auto' : ''}`}
                 />
                 <div className="lg:mt-6">
                   <h2 className="text-2xl">{member.name}</h2>
