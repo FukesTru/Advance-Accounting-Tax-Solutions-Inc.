@@ -5,17 +5,10 @@ import { Icon } from '@/components/Icons';
 import { Button, Container } from '@/components/primitives';
 import { firmFacts, serviceAreas, site, trustBadges } from '@/lib/site';
 
-// Only verified facts belong here. Years in practice and the first-licence date
-// are confirmed; the community count is derived from lib/areas.js so it cannot
-// drift. No client-outcome figures — nothing has been measured.
-const heroStats = [
-  { value: firmFacts.yearsInPublicAccounting, suffix: '+', label: 'Years in public accounting' },
-  { value: firmFacts.yearsIndependent, label: 'Years in independent practice' },
-  { value: `${serviceAreas.length}`, label: 'SWFL communities served' },
-];
-
 export default function HomeHero() {
-  const cities = serviceAreas.slice(0, 4).map((area) => area.city);
+  // Three, not four: the badge list plus a fourth city overruns the 1216px
+  // content width even at 1440, which orphaned the last badge onto its own line.
+  const cities = serviceAreas.slice(0, 3).map((area) => area.city);
 
   return (
     <section className="relative overflow-hidden bg-linear-to-b from-navy-50 via-white to-white">
@@ -75,20 +68,6 @@ export default function HomeHero() {
                 {site.phone}
               </Button>
             </div>
-
-            <dl className="mt-10 flex flex-wrap gap-x-10 gap-y-6 border-t border-navy/10 pt-8">
-              {heroStats.map((stat) => (
-                <div key={stat.label}>
-                  <dd className="font-display text-3xl font-extrabold text-navy sm:text-4xl">
-                    {stat.value}
-                    {stat.suffix ? <span className="text-gold">{stat.suffix}</span> : null}
-                  </dd>
-                  <dt className="mt-1 max-w-35 text-xs font-semibold uppercase tracking-wide text-slate-body">
-                    {stat.label}
-                  </dt>
-                </div>
-              ))}
-            </dl>
           </FadeIn>
 
           {/* ------------------------------------------------------ */}
@@ -147,8 +126,11 @@ export default function HomeHero() {
       {/* ---------------------------------------------------------- */}
       <div className="relative border-t border-navy/10 bg-white/70">
         <Container>
-          <div className="flex flex-col gap-4 py-5 lg:flex-row lg:items-center lg:justify-between">
-            <ul className="flex flex-wrap items-center gap-x-6 gap-y-2">
+          {/* Splits at xl, not lg: at ~1024 the badges and the city list
+              together overflow one row, orphaning the last badge on a line of
+              its own. Stacked is tidier until there is genuinely room. */}
+          <div className="flex flex-col gap-4 py-5 xl:flex-row xl:items-center xl:justify-between">
+            <ul className="flex flex-wrap items-center gap-x-4 gap-y-2">
               <li className="font-display text-[0.68rem] font-bold uppercase tracking-[0.16em] text-slate-body/70">
                 Trusted across SWFL
               </li>
@@ -159,7 +141,7 @@ export default function HomeHero() {
                 </li>
               ))}
             </ul>
-            <p className="font-display text-sm font-semibold text-navy">
+            <p className="shrink-0 font-display text-sm font-semibold text-navy xl:whitespace-nowrap">
               {cities.map((city, index) => (
                 <span key={city}>
                   {index > 0 ? <span className="px-1.5 text-gold">·</span> : null}
