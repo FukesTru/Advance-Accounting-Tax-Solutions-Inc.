@@ -58,8 +58,8 @@ export default function PrivacyPolicyPage() {
             <li>
               <strong>Information you provide as a client.</strong> Engagements require sensitive
               financial and personal information — tax documents, identification numbers, financial
-              statements, payroll records, and similar material. This is collected through our
-              secure client portal, not through this website.
+              statements, payroll records, and similar material. That material is collected
+              directly during the engagement, not through this website.
             </li>
             <li>
               <strong>Information collected automatically.</strong> Like most websites, ours records
@@ -92,15 +92,15 @@ export default function PrivacyPolicyPage() {
           <h2>Data Security</h2>
           <p>
             We maintain administrative, technical, and physical safeguards designed to protect the
-            information in our care. Client documents are exchanged through an encrypted client
-            portal rather than email, access to client files is limited to personnel who need it,
+            information in our care. Access to client files is limited to the people who need it,
             and our systems are kept current with security updates.
           </p>
           <p>
             No method of transmission or storage is completely secure, and we will not claim
             otherwise. Please do not send Social Security numbers, account numbers, or tax documents
-            by email or through the website contact form — use the{' '}
-            <Link href="/portal">secure client portal</Link> instead.
+            by email or through the website contact form —{' '}
+            <Link href="/contact">contact the office</Link> and we will arrange a secure way to get
+            them to us.
           </p>
 
           <h2>Client Confidentiality</h2>
@@ -131,10 +131,6 @@ export default function PrivacyPolicyPage() {
           <h2>Third-Party Services</h2>
           <p>We rely on a small number of vendors to operate the practice:</p>
           <ul>
-            <li>
-              <strong>Client portal provider</strong> — secure document exchange, e-signature, and
-              messaging. Documents are stored on their infrastructure under their security program.
-            </li>
             <li>
               <strong>Google Analytics 4</strong> — website usage analytics.
             </li>

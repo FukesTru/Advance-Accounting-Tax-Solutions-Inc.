@@ -1,6 +1,6 @@
 # Advance Accounting & Tax Solutions, Inc. — Website
 
-Twenty-seven-page marketing site for a CPA/tax advisory firm in Ave Maria,
+Twenty-six-page marketing site for a CPA/tax advisory firm in Ave Maria,
 Florida, serving Lee and Collier counties and clients nationwide.
 
 Built with **Next.js 16 (App Router)**, **React 19**, and **Tailwind CSS v4**.
@@ -17,7 +17,7 @@ npm start        # serve the production build
 Copy `.env.example` to `.env.local` and fill in what applies.
 
 > **Before launch, work through [`CONTENT-TODO.md`](./CONTENT-TODO.md).** It lists
-> every placeholder in the build — phone number, review data, GA4 ID, portal URL,
+> every placeholder in the build — phone number, review data, GA4 ID, and
 > photography — with the file to edit for each.
 
 ## Design system
@@ -57,7 +57,7 @@ Organization schema.
 app/
   layout.jsx                     Root layout: fonts, GA4 tag, nav, footer, floating call button
   page.jsx                       Homepage
-  about/ team/ portal/ blog/ contact/ testimonials/ privacy-policy/
+  about/ team/ blog/ contact/ testimonials/ privacy-policy/
   tax-services/                  Category page + 3 sub-services
   accounting-cfo-services/       Category page + 3 sub-services
   business-advisory-services/    Category page + 2 sub-services
@@ -109,7 +109,7 @@ URL, Open Graph and Twitter tags, exactly one `<h1>`, breadcrumb navigation
 | Testimonials | `AggregateRating` (placeholder) + `BreadcrumbList` |
 | Blog | `Blog` / `BlogPosting` + `BreadcrumbList` |
 | Contact | `ContactPage` + `BreadcrumbList` |
-| Portal, Privacy | `BreadcrumbList` |
+| Privacy | `BreadcrumbList` |
 
 `robots.txt` and `sitemap.xml` are generated at build time from `lib/site.js`
 and `lib/areas.js`. Every page links to at least three related pages.

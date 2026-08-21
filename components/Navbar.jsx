@@ -302,9 +302,6 @@ export default function Navbar() {
               <Link href="/blog" className="block py-2 font-display font-semibold text-navy">
                 Blog
               </Link>
-              <Link href="/portal" className="block py-2 font-display font-semibold text-navy">
-                Client Portal
-              </Link>
               <Link href="/contact" className="block py-2 font-display font-semibold text-navy">
                 Contact
               </Link>
@@ -332,7 +329,11 @@ export default function Navbar() {
   );
 }
 
-const serviceAreaLinks = mainNav.find((item) => item.dropdown)?.dropdown ?? [];
+// Match on the label, not merely on having a dropdown — About carries one too,
+// and find() would return it instead, duplicating About in the mobile nav and
+// dropping every city link.
+const serviceAreaLinks =
+  mainNav.find((item) => item.label === 'Service Areas')?.dropdown ?? [];
 
 /** Full label from xl up; a shorter one below, where the row is tight. */
 function NavLabel({ item }) {

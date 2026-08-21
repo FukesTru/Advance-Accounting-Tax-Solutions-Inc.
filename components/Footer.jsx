@@ -136,8 +136,8 @@ export default function Footer() {
               <Link href="/privacy-policy" prefetch={false} className="hover:text-gold hover:underline">
                 Privacy Policy
               </Link>
-              <Link href="/portal" prefetch={false} className="hover:text-gold hover:underline">
-                Client Portal
+              <Link href="/contact" prefetch={false} className="hover:text-gold hover:underline">
+                Contact
               </Link>
             </div>
           </div>

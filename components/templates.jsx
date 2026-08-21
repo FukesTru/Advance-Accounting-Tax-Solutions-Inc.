@@ -260,7 +260,7 @@ export function AreaPageTemplate({
         tone="shell"
         eyebrow="Meet With Us"
         title={`Serving ${city} in person and online`}
-        intro={`Our office sits in Ave Maria, a short drive from ${city}. Clients who prefer to keep everything remote work with us by video call, phone, and secure document portal — same advisor, same responsiveness.`}
+        intro={`Our office sits in Ave Maria, a short drive from ${city}. Clients who prefer to keep everything remote work with us by video call and phone — same advisor, same responsiveness.`}
       />
 
       <Section>

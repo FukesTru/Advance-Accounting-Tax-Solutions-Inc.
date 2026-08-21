@@ -135,10 +135,9 @@ each needs a decision:
 | 2 | **Review data / AggregateRating** | `lib/testimonials.js`, `app/testimonials/page.jsx` | All six reviews are clearly-labelled placeholders and the `AggregateRating` schema is a stand-in. Publishing invented reviews or ratings violates Google's review policies and risks a structured-data penalty. Replace with verified Google Business Profile reviews, **or delete the `aggregateRatingSchema` block entirely** if real reviews are not ready at launch. |
 | 3 | **Privacy Policy attorney review** | `app/privacy-policy/page.jsx` | The client confidentiality and IRC §7216 sections in particular. There is a visible reviewer note at the top of the page — delete it once reviewed. |
 | 4 | **Contact form delivery** | Hosting env var `CONTACT_WEBHOOK_URL` | Until it is set, the form returns 503 and tells visitors to call or email. See `.env.example`. |
-| 5 | **Client portal URL** | `lib/site.js` → `site.portalLoginUrl` | Currently points at a generic TaxDome login. Set it once the provider (TaxDome / SafeSend / SmartVault / Canopy) is chosen. |
-| 6 | **GA4 measurement ID** | `lib/site.js` → `site.gaMeasurementId` | Currently `G-XXXXXXXXXX`; the tag fires but reports nowhere. |
-| 7 | **Business hours** | `lib/site.js` → `site.hours` and `site.openingHoursSpec` | Still unknown — the old site's contact page did not publish them. Assumed Mon–Fri 9–5. Keep both fields in sync; the second feeds schema. |
-| 8 | **Google Business Profile review link** | `lib/site.js` → `site.googleReviewUrl` | Currently a search URL. Replace with the direct "write a review" link from the GBP dashboard. |
+| 5 | **GA4 measurement ID** | `lib/site.js` → `site.gaMeasurementId` | Currently `G-XXXXXXXXXX`; the tag fires but reports nowhere. |
+| 6 | **Business hours** | `lib/site.js` → `site.hours` and `site.openingHoursSpec` | Still unknown — the old site's contact page did not publish them. Assumed Mon–Fri 9–5. Keep both fields in sync; the second feeds schema. |
+| 7 | **Google Business Profile review link** | `lib/site.js` → `site.googleReviewUrl` | Currently a search URL. Replace with the direct "write a review" link from the GBP dashboard. |
 
 ## Service areas — how to add another
 
@@ -177,11 +176,11 @@ for work the firm actually sells:
 
 | # | Item | Where |
 |---|------|-------|
-| 9 | **Logo vector original** | The real lockup is in and used sitewide. It came as a raster JPEG, background-removed and cropped into three PNGs (see README). Ask the designer for the **vector original (SVG/AI/EPS)** — the current files are fine for the website but cannot scale to signage, print, or a large-format banner. |
-| 10 | **Remaining photography** | Three reserved slots, all optional and all degrading gracefully: `hero.jpg` (homepage hero), `patricia.jpg` and `james.jpg` (headshots) — see the Images section below. |
-| 11 | **Blog articles** | `lib/posts.js` — the five starter topics exist as cards. Each links to its most relevant service page until the article is written, so no card dead-ends. Once written, add `/blog/<slug>` pages and point `href` at them. |
-| 12 | **LinkedIn** | `components/Footer.jsx` — currently "Social profiles coming soon." Joseph has a LinkedIn profile; link it if he wants it public. |
-| 15 | **Headshots for Patricia and James** | Drop `patricia.jpg` and `james.jpg` into `public/images/` and they appear automatically on `/team`, in the homepage roster section, and on the About page. Until then `components/Avatar.jsx` renders a monogram, which looks deliberate rather than broken — but two real faces would finish the team page properly. Square crops, head and shoulders, 600px or larger. |
+| 8 | **Logo vector original** | The real lockup is in and used sitewide. It came as a raster JPEG, background-removed and cropped into three PNGs (see README). Ask the designer for the **vector original (SVG/AI/EPS)** — the current files are fine for the website but cannot scale to signage, print, or a large-format banner. |
+| 9 | **Remaining photography** | Three reserved slots, all optional and all degrading gracefully: `hero.jpg` (homepage hero), `patricia.jpg` and `james.jpg` (headshots) — see the Images section below. |
+| 10 | **Blog articles** | `lib/posts.js` — the five starter topics exist as cards. Each links to its most relevant service page until the article is written, so no card dead-ends. Once written, add `/blog/<slug>` pages and point `href` at them. |
+| 11 | **LinkedIn** | `components/Footer.jsx` — currently "Social profiles coming soon." Joseph has a LinkedIn profile; link it if he wants it public. |
+| 12 | **Headshots for Patricia and James** | Drop `patricia.jpg` and `james.jpg` into `public/images/` and they appear automatically on `/team`, in the homepage roster section, and on the About page. Until then `components/Avatar.jsx` renders a monogram, which looks deliberate rather than broken — but two real faces would finish the team page properly. Square crops, head and shoulders, 600px or larger. |
 | 13 | **Email vs. site domain** | Site is `taxstrategiesandaccountingservices.com`; email is `@accounting-tax-solutions.com`. Worth aligning eventually — mismatched domains cost a little trust and a little deliverability. |
 | 14 | **301 redirects from the old site** | Hosting config — map the old `.php` URLs to the new pages so existing rankings and links are not lost. Suggested mapping: `taxservices.php` → `/tax-services`, `taxprep.php` → `/tax-services/tax-compliance-and-preparation`, `bizservices.php` → `/accounting-cfo-services`, `bookkeeping.php` → `/accounting-cfo-services/accounting-services`, `bizplan.php` → `/business-advisory-services`, `Team.php` → `/about`, `contact.php` → `/contact`, `irs-backtaxes.php` / `internalcontrols.php` / `qbtraining.php` / `lawfirms.php` / `links.php` → nearest match above. |
 
@@ -198,7 +197,7 @@ for work the firm actually sells:
 | `tax-forms.jpg` | `taxForms` | Tax Services hub, Tax Compliance & Preparation |
 | `tax-desk.jpg` | `taxDesk` | Tax Planning, Financial Planning |
 | `justice.jpg` | `legal` | Estate Planning, Entity Design & Formation |
-| `working-online.jpg` | `workingOnline` | Client Portal, Blog |
+| `working-online.jpg` | `workingOnline` | Blog |
 | `swfl-waterfront.jpg` | `fortMyers` | Homepage Fort Myers card |
 | `naples.jpg` | `naples` | Homepage Naples card |
 
@@ -221,9 +220,9 @@ that for any local reader who recognizes it. The Gulf-shore aerial now in place
 is unmistakably Naples, Florida, so the pair of homepage area cards finally
 reads as a matched set.
 
-Also unused: the LinkedIn signup screenshot. It carries LinkedIn's branding and
-tagline, and on a page headed "Client Portal" it would read as a claim that the
-firm's portal is LinkedIn. The laptop photo went there instead.
+Also unused: the LinkedIn signup screenshot. It carries another company's
+branding and tagline, which is not something this firm's site should present as
+its own.
 
 One optional upgrade: **a higher-resolution copy of Joseph's headshot.** The
 supplied file is 360x360 — sharp at its current framed size, but it cannot be

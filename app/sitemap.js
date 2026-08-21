@@ -21,7 +21,6 @@ export default function sitemap() {
       changeFrequency: 'monthly',
     })),
     { path: '/testimonials', priority: 0.6, changeFrequency: 'monthly' },
-    { path: '/portal', priority: 0.5, changeFrequency: 'yearly' },
     { path: '/blog', priority: 0.7, changeFrequency: 'weekly' },
     { path: '/contact', priority: 0.9, changeFrequency: 'monthly' },
   ];

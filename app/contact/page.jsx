@@ -19,7 +19,7 @@ export const metadata = buildMetadata({
 const breadcrumb = [{ name: 'Contact', href: '/contact' }];
 
 const related = [
-  { href: '/portal', title: 'Client Portal', text: 'Existing clients: sign in securely.' },
+  { href: '/team', title: 'Our Team', text: 'The three people you will be working with.' },
   { href: '/tax-services', title: 'Tax Services', text: 'Planning, compliance, and estate work.' },
   {
     href: '/accounting-cfo-services',

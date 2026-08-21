@@ -235,7 +235,7 @@ export function StatRow({ stats, onDark = false }) {
 export function MapBlock({
   eyebrow = 'Find Us',
   title = 'Visit the office or meet with us virtually',
-  intro = 'Our office is in Ave Maria, minutes from both Naples and Fort Myers. Prefer to keep it remote? Most of our clients work with us entirely by video call and secure portal.',
+  intro = 'Our office is in Ave Maria, minutes from both Naples and Fort Myers. Prefer to keep it remote? Most of our clients work with us entirely by video call and phone.',
   tone = 'white',
 }) {
   return (

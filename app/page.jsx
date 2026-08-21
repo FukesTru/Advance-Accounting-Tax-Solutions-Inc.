@@ -35,7 +35,7 @@ export const metadata = buildMetadata({
 const faqs = [
   {
     q: 'Do you work with clients outside of Florida?',
-    a: 'Yes. Fort Myers and Naples are our home markets and where we meet clients in person, but we serve individuals and businesses nationwide. Everything from onboarding to document exchange, planning meetings, and e-filing can be handled remotely through video calls and our secure client portal, including multi-state returns.',
+    a: 'Yes. Fort Myers and Naples are our home markets and where we meet clients in person, but we serve individuals and businesses nationwide. Onboarding, planning meetings, and e-filing are all handled remotely by video call and phone, including multi-state returns.',
   },
   {
     q: 'Do you offer fractional CFO services for small businesses?',

@@ -66,9 +66,9 @@ export default function ServiceAreasPage() {
                 a half-day commitment.
               </p>
               <p>
-                Clients who prefer to keep everything remote never make the drive at all. Secure
-                portal for documents, video calls for planning, e-signature for filings — the same
-                advisor and the same turnaround either way.
+                Clients who prefer to keep everything remote never make the drive at all. Video
+                calls for planning, electronic filing, and a secure way to send documents that we
+                set up during onboarding — the same advisor and the same turnaround either way.
               </p>
             </div>
           </FadeIn>
