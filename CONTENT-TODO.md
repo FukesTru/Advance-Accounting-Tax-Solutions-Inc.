@@ -2,6 +2,10 @@
 
 Most placeholders live in one file: `lib/site.js`.
 
+> **Read [Hero figures](#-hero-figures--must-be-confirmed-or-replaced-before-launch)
+> first.** The homepage hero states a specific client tax saving that nothing
+> supplied supports. It needs Joseph's sign-off before the site goes live.
+
 ## Resolved from the old site
 
 The previous site at `accounting-tax-solutions.com` could not be fetched
@@ -65,6 +69,43 @@ affiliated CPA firm. `lib/site.js` → `scopeExclusions` is the single list, and
 **Worth an explicit confirmation from Joseph**, since the line between
 "management reports" and SSARS "prepared financial statements" is his call, not
 mine. If he wants the site silent on reporting altogether, it is a small edit.
+
+## ⚠ Hero figures — must be confirmed or replaced before launch
+
+The homepage hero card presents these as a real client outcome:
+
+| Shown | Where |
+|---|---|
+| **CLIENT TAX POSITION · FY 2026** | `components/PlanningWindowChart.jsx` → `HEADLINE.eyebrow` |
+| **$164,800** | `HEADLINE.figure` |
+| **▼ 31% TAX BURDEN** | `HEADLINE.delta` |
+| **Projected savings from entity restructuring, S-corp election & accelerated depreciation.** | `HEADLINE.caption` |
+| **Q3 estimates filed** / Reviewed by a Florida-licensed CPA | `components/HomeHero.jsx` |
+| **Books closed in 6 days** / Monthly, on time, every time | `components/HomeHero.jsx` |
+
+They came from a design mockup, not from the firm. Nothing supplied
+supports any of them, and the card carries no wording marking it as
+illustrative — a visitor reads it as a real engagement.
+
+**Two reasons this needs Joseph's sign-off specifically, not just the
+agency's:**
+
+1. A licensed CPA advertising specific savings the firm cannot evidence is a
+   professional-conduct question under the AICPA code and Florida Board of
+   Accountancy advertising rules, not only a marketing one. It is his licence
+   attached to the claim.
+2. Unsubstantiated performance claims in advertising carry general FTC
+   exposure regardless of profession.
+
+**To fix, pick one:**
+
+- Replace the figures with a real, documented engagement (best — a true number
+  is more persuasive than a round one anyway). Everything lives in the
+  `HEADLINE` block at the top of `PlanningWindowChart.jsx`.
+- Keep the figures and add a visible qualifier such as "Illustrative example"
+  next to the eyebrow. One line.
+- Say the word and the card reverts to the wording it had before, which made
+  the same argument without naming a number.
 
 ## Every number on the site is one you supplied
 

@@ -81,39 +81,42 @@ export default function HomeHero() {
                 className="absolute -inset-4 -z-10 rounded-[2rem] bg-linear-to-br from-navy/5 via-transparent to-gold/10"
               />
 
-              {/* Extra bottom padding is deliberate: the floating badge below
-                  overlaps the card, and without it the badge sat on top of the
-                  chart's footnote. */}
-              <div className="rounded-2xl border border-navy/10 bg-white p-6 pb-16 shadow-[0_24px_60px_-24px_rgba(11,37,69,0.35)] sm:p-7 sm:pb-16">
+              {/* Matches the mockup's card: white, generous padding, soft
+                  shadow, no border. Bottom padding leaves room for the badge
+                  that overlaps the lower-right corner. */}
+              <div className="rounded-3xl bg-white p-7 pb-14 shadow-[0_28px_70px_-26px_rgba(11,37,69,0.42)] sm:p-8 sm:pb-16">
                 <PlanningWindowChart />
               </div>
 
-              {/* Floating callouts — both are verifiable claims about the firm,
-                  not client outcomes. */}
-              <div className="absolute -top-4 right-2 hidden max-w-64 items-start gap-3 rounded-xl border border-navy/10 bg-white p-3.5 shadow-lg sm:flex lg:-right-4">
-                <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gold text-navy-900">
-                  <Icon name="check" className="h-4 w-4" />
+              {/*
+                Callout text comes from the design mockup. "Books closed in 6
+                days" and the Q3 filing status are NOT measured — see the block
+                at the top of PlanningWindowChart.jsx and CONTENT-TODO.md.
+              */}
+              <div className="absolute -top-5 right-2 hidden w-max items-start gap-3.5 rounded-2xl bg-white p-4 shadow-[0_18px_44px_-18px_rgba(11,37,69,0.4)] sm:flex lg:-right-6">
+                <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gold text-white">
+                  <Icon name="check" className="h-5 w-5" />
                 </span>
                 <span>
-                  <span className="block font-display text-[0.8rem] font-bold text-navy">
-                    Florida-licensed CPA
+                  <span className="block font-display text-[0.9rem] font-bold text-navy">
+                    Q3 estimates filed
                   </span>
-                  <span className="block text-[0.7rem] leading-snug text-slate-body">
-                    Licensed since {firmFacts.firstLicensed}
+                  <span className="block whitespace-nowrap text-[0.78rem] leading-snug text-slate-body">
+                    Reviewed by a Florida-licensed CPA
                   </span>
                 </span>
               </div>
 
-              <div className="absolute -bottom-6 left-2 hidden max-w-68 items-start gap-3 rounded-xl border border-navy/10 bg-white p-3.5 shadow-lg sm:flex lg:-left-6">
-                <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-navy text-gold">
-                  <Icon name="chart" className="h-4 w-4" />
+              <div className="absolute -bottom-6 right-4 hidden w-max items-start gap-3.5 rounded-2xl bg-white p-4 shadow-[0_18px_44px_-18px_rgba(11,37,69,0.4)] sm:flex lg:-right-10">
+                <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gold text-white">
+                  <Icon name="chart" className="h-5 w-5" />
                 </span>
                 <span>
-                  <span className="block font-display text-[0.8rem] font-bold text-navy">
-                    Planning starts in January
+                  <span className="block font-display text-[0.9rem] font-bold text-navy">
+                    Books closed in 6 days
                   </span>
-                  <span className="block text-[0.7rem] leading-snug text-slate-body">
-                    Not the week before the deadline
+                  <span className="block whitespace-nowrap text-[0.78rem] leading-snug text-slate-body">
+                    Monthly, on time, every time
                   </span>
                 </span>
               </div>
