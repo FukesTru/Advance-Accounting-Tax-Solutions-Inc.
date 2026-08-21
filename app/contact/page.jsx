@@ -1,5 +1,6 @@
+import Link from 'next/link';
 import Breadcrumbs from '@/components/Breadcrumbs';
-import ContactForm from '@/components/ContactForm';
+import LeadConnectorForm from '@/components/LeadConnectorForm';
 import FadeIn from '@/components/FadeIn';
 import JsonLd from '@/components/JsonLd';
 import { Icon } from '@/components/Icons';
@@ -50,8 +51,22 @@ export default function ContactPage() {
           <FadeIn>
             <SectionHeading eyebrow="Send a message" title="Tell us about your situation" />
             <div className="mt-8">
-              <ContactForm />
+              <LeadConnectorForm />
             </div>
+            {/* This notice lived inside the old in-house form. It still needs to
+                be said, so it moved out here with the embed. */}
+            <p className="mt-5 text-xs leading-relaxed text-slate-body">
+              Please do not send Social Security numbers, bank details, or tax documents through
+              this form — once you are a client, everything sensitive goes through our secure{' '}
+              <Link href="/portal" className="underline hover:text-navy">
+                client portal
+              </Link>
+              . See our{' '}
+              <Link href="/privacy-policy" className="underline hover:text-navy">
+                Privacy Policy
+              </Link>
+              .
+            </p>
           </FadeIn>
 
           <FadeIn delay={120}>

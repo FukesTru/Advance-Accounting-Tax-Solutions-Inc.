@@ -62,14 +62,14 @@ app/
   accounting-cfo-services/       Category page + 3 sub-services
   business-advisory-services/    Category page + 2 sub-services
   areas/                         Hub page + [slug] route generating 7 city pages
-  api/contact/route.js           Contact form endpoint
   sitemap.js  robots.js  icon.png  not-found.jsx
 components/
   Navbar  Footer  FloatingCall  Breadcrumbs  Logo  Icons
+  HomeHero  PlanningWindowChart  LeadConnectorForm
   primitives.jsx                 Container, Section, Button, CheckList, …
   sections.jsx                   PageHero, ServiceCardGrid, ProcessSteps, CTABanner, FAQSection, MapBlock, …
   templates.jsx                  Template A (category), B (sub-service), C (service area)
-  FAQ  FadeIn  Media  Avatar  ContactForm  BlogFilter  JsonLd  MapEmbed
+  FAQ  FadeIn  Media  Avatar  BlogFilter  JsonLd  MapEmbed
 lib/
   site.js          Firm details, nav, service tree — single source of truth
   areas.js         Per-city service-area content (intro, local detail, FAQs)
@@ -114,11 +114,17 @@ and `lib/areas.js`. Every page links to at least three related pages.
 
 ## Performance
 
-- **No third-party requests on load.** The Google Maps embed sits behind a
-  facade (`components/MapEmbed.jsx`) that renders the address and a directions
-  link, and only mounts the iframe when a visitor asks for it. Analytics is
-  gated on a real GA4 measurement ID and loads `lazyOnload`, so the placeholder
-  ID costs nothing.
+- **Third-party scripts are kept off the critical path.** The LeadConnector
+  chat widget loads `lazyOnload`, so it never competes with the hero. The
+  Google Maps embed sits behind a facade (`components/MapEmbed.jsx`) that
+  renders the address and a directions link, and only mounts the iframe when a
+  visitor asks for it. Analytics is gated on a real GA4 measurement ID and
+  loads `lazyOnload`, so the placeholder ID costs nothing. The one third party
+  that loads eagerly is the LeadConnector form embed on `/contact` — it is that
+  page's whole purpose, so it uses `afterInteractive`.
+- **The homepage hero is vector, not photography.** The planning-window chart is
+  inline SVG built at compile time (`components/PlanningWindowChart.jsx`), so
+  the largest element above the fold costs no image request at all.
 - **Images** are served as AVIF/WebP through `next/image` at layout-matched
   widths — around 8KB total on the homepage.
 - **Fonts** are self-hosted variable files via `next/font` (two files, no
@@ -133,15 +139,26 @@ and `lib/areas.js`. Every page links to at least three related pages.
 
 Skip-to-content link, keyboard-accessible nav and accordions with correct
 `aria-expanded` / `aria-controls`, visible focus rings, alt text on every image,
-`aria-live` regions for form and filter status, WCAG AA contrast, and
+`aria-live` regions for filter status, a text alternative on the hero chart,
+WCAG AA contrast, and
 `prefers-reduced-motion` support on all scroll animations.
 
-## Contact form
+## Contact form & chat
 
-`app/api/contact/route.js` validates input, drops honeypot submissions, and
-forwards the payload as JSON to `CONTACT_WEBHOOK_URL`. If that variable is not
-set the endpoint returns 503 and the form shows the firm's phone and email
-instead — an enquiry is never silently dropped.
+Enquiries run through the firm's **LeadConnector (GoHighLevel)** account:
+
+- `components/LeadConnectorForm.jsx` embeds the enquiry form on `/contact`. The
+  iframe carries a `min-height` matching the form's own `data-height`, because
+  `form_embed.js` only sizes it once it runs — without that the section jumps
+  on load.
+- The chat widget is mounted in `app/layout.jsx` and appears on every page.
+  It occupies the bottom-right corner, so `components/FloatingCall.jsx` (the
+  mobile "Call Now" button) was moved to the bottom-left to avoid overlapping
+  it on a phone.
+
+Both are owned in the LeadConnector dashboard — form fields, routing, and
+autoresponders are changed there, not in this repo. The only values here are
+the form ID and widget ID.
 
 ## Deploying
 

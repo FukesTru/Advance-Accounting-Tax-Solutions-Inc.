@@ -86,33 +86,36 @@ They read as factual claims to a visitor, so please confirm them or swap in real
 figures. Deleting the last three entries from `aboutStats` leaves a clean
 three-stat row of verified numbers if you would rather not publish estimates.
 
-## Why the homepage no longer leads with a portrait
+## The homepage hero
 
-A single headshot in the hero reads as a sole practitioner, which undersells a
-three-person firm. Two changes fix that:
+The hero leads with the pitch and a chart, not a photograph and not a portrait
+of one person. A single headshot there read as a sole practitioner, which
+undersells a three-person firm.
 
-- **The hero shows photography, not a face.** The `heroHome` slot resolves
-  `public/images/hero.jpg` first and falls back to the Ave Maria town shot until
-  that file exists. It no longer falls back to Joseph's headshot at all.
-- **The roster sits below the fold as its own section** — "A small firm, on
-  purpose", with all three names, roles, focus areas, and avatars, each card
-  linking through to that person's profile on `/team`.
+**The chart is an illustration, not client data — and that is deliberate.** It
+shows how the tax-planning window narrows across the year: the decisions you can
+still influence fall away as December approaches, while the decisions already
+locked in rise to meet them. The point it makes is the firm's actual argument,
+and it makes it without publishing a client outcome the firm cannot evidence.
+The caption says so in as many words. If real, documented figures ever exist,
+`components/PlanningWindowChart.jsx` is where they would go.
 
-Joseph's portrait moved to where it belongs: the About page and his profile on
-`/team`. A new `/team` page carries a full profile for each member, the
-two-entity explanation, and the scope list.
+**The stats strip carries only verified numbers**: 42 years in public
+accounting, 13 in independent practice, and the count of service-area
+communities, which is derived from `lib/areas.js` so it cannot drift.
 
-**Two reserved image slots, both waiting on files:**
+The roster sits below the fold as its own section — "A small firm, on purpose" —
+with a card per member linking to their profile on `/team`.
+
+**One reserved image slot:**
 
 | Drop this file in `public/images/` | What happens |
 |---|---|
-| `hero.jpg` | Takes over the homepage hero automatically. Wide/landscape — the office, the three of you, or a Southwest Florida scene. 1400px wide or larger. |
 | `patricia.jpg` | Fills Patricia's space in the roster card, on `/team`, and on the About page. Square, head and shoulders, 600px or larger. |
 
-Until each file arrives the slot degrades on purpose rather than breaking:
-the hero shows the Ave Maria town photo, and Patricia's space shows a navy-and-gold
-monogram that reads as deliberate. Nothing needs to be re-coded when the photos
-land — the filenames are the wiring.
+Until it arrives, `components/Avatar.jsx` renders a navy-and-gold monogram that
+reads as deliberate rather than broken. Nothing needs re-coding when the photo
+lands — the filename is the wiring.
 
 ## Contact details — three conflicts to settle
 
@@ -133,7 +136,7 @@ each needs a decision:
 |---|------|-------|-------|
 | 1 | **Fax number** | `lib/site.js` → `site.fax` | The business line is now `(239) 492-6784`, confirmed and live sitewide. The fax is still the old `(615) 751-0288` Tennessee number carried over from the previous site — a 615 fax beside a 239 phone looks odd for a Florida firm. Confirm it works, replace it, or drop it. |
 | 2 | **Privacy Policy attorney review** | `app/privacy-policy/page.jsx` | The client confidentiality and IRC §7216 sections in particular. There is a visible reviewer note at the top of the page — delete it once reviewed. |
-| 3 | **Contact form delivery** | Hosting env var `CONTACT_WEBHOOK_URL` | Until it is set, the form returns 503 and tells visitors to call or email. See `.env.example`. |
+| 3 | **LeadConnector form & chat** | `components/LeadConnectorForm.jsx`, `app/layout.jsx` | Both are live and wired to the IDs you supplied. **Please submit the form once from the published site** to confirm the notification lands where Joseph expects — the embed could not be loaded from the build environment, so the wiring is verified but a real submission is not. Fields and routing are edited in LeadConnector, not in the repo. |
 | 4 | **Client portal sign-in URL** | `lib/site.js` → `site.portalLoginUrl` | Set to TitanFile's generic login at `https://www.titanfile.com/login/`, per the provider you confirmed. If TitanFile issued the firm a branded sign-in subdomain, use that instead — it is a better client experience and reassures people they are in the right place. Also confirm the `/portal` page's feature list matches your TitanFile plan; it claims secure exchange, large-file transfer, in-portal messaging, and return delivery, and deliberately does **not** claim e-signature. |
 | 5 | **GA4 measurement ID** | `lib/site.js` → `site.gaMeasurementId` | Currently `G-XXXXXXXXXX`; the tag fires but reports nowhere. |
 | 6 | **Business hours** | `lib/site.js` → `site.hours` and `site.openingHoursSpec` | Still unknown — the old site's contact page did not publish them. Assumed Mon–Fri 9–5. Keep both fields in sync; the second feeds schema. |
@@ -176,7 +179,7 @@ for work the firm actually sells:
 | # | Item | Where |
 |---|------|-------|
 | 7 | **Logo vector original** | The real lockup is in and used sitewide. It came as a raster JPEG, background-removed and cropped into three PNGs (see README). Ask the designer for the **vector original (SVG/AI/EPS)** — the current files are fine for the website but cannot scale to signage, print, or a large-format banner. |
-| 8 | **Remaining photography** | Three reserved slots, all optional and all degrading gracefully: `hero.jpg` (homepage hero), `patricia.jpg` and `james.jpg` (headshots) — see the Images section below. |
+| 8 | **Remaining photography** | Two reserved headshot slots, both optional and both degrading gracefully: `patricia.jpg` and `james.jpg` — see the Images section below. |
 | 9 | **Blog articles** | `lib/posts.js` — the five starter topics exist as cards. Each links to its most relevant service page until the article is written, so no card dead-ends. Once written, add `/blog/<slug>` pages and point `href` at them. |
 | 10 | **LinkedIn** | `components/Footer.jsx` — currently "Social profiles coming soon." Joseph has a LinkedIn profile; link it if he wants it public. |
 | 11 | **Headshots for Patricia and James** | Drop `patricia.jpg` and `james.jpg` into `public/images/` and they appear automatically on `/team`, in the homepage roster section, and on the About page. Until then `components/Avatar.jsx` renders a monogram, which looks deliberate rather than broken — but two real faces would finish the team page properly. Square crops, head and shoulders, 600px or larger. |
@@ -190,7 +193,7 @@ for work the firm actually sells:
 | File | Slot | Used on |
 |---|---|---|
 | `joseph.jpg` | `joseph` | About, `/team`, homepage roster card |
-| `ave-maria.jpg` | `heroHome` (fallback), `aveMaria` | Homepage hero, Service Areas hub |
+| `ave-maria.jpg` | `aveMaria` | Service Areas hub |
 | `analysis.jpg` | `analysis` | Homepage story, Fractional CFO, Business Advisory hub |
 | `accounting-desk.jpg` | `accounting` | Accounting & CFO hub, Accounting Services, Payroll |
 | `tax-forms.jpg` | `taxForms` | Tax Services hub, Tax Compliance & Preparation |
@@ -200,15 +203,14 @@ for work the firm actually sells:
 | `swfl-waterfront.jpg` | `fortMyers` | Homepage Fort Myers card |
 | `naples.jpg` | `naples` | Homepage Naples card |
 
-Every page carries a photo. No image appears more than three times, and never
-twice on the same page. `ave-maria.jpg` is the one image on two pages, and only
-until `hero.jpg` arrives.
+No image appears more than three times, and none appears twice on the same
+page. Since the homepage hero became a chart, every photo is now used on exactly
+one page or in one role.
 
 ### Still needed
 
 | Slot | File to add | Page | What is needed |
 |---|---|---|---|
-| `heroHome` | `hero.jpg` | Homepage hero | Wide/landscape — the office, the three of you together, or a Southwest Florida scene. 1400px or wider. Reserved; the Ave Maria town photo holds the space. |
 | `patricia` | `patricia.jpg` | `/team`, homepage roster, About | Square headshot, head and shoulders, 600px or larger. Reserved; a monogram holds the space. |
 | `james` | `james.jpg` | `/team`, homepage roster, About | Square headshot, head and shoulders, 600px or larger. Reserved; a monogram holds the space. |
 
@@ -227,8 +229,8 @@ One optional upgrade: **a higher-resolution copy of Joseph's headshot.** The
 supplied file is 360x360 — sharp at its current framed size, but it cannot be
 used any larger.
 
-Note that `ave-maria.jpg` is currently the only image used on two pages (the
-homepage hero and the Service Areas hub). Adding `hero.jpg` resolves that.
+A wide office or full-team photograph is no longer needed for the hero, which is
+now a chart. If one turns up it would sit well on the About page or `/team`.
 
 ### How to add one
 

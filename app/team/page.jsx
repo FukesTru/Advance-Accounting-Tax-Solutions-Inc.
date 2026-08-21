@@ -54,9 +54,14 @@ export default function TeamPage() {
       {/* One profile per member, alternating the photo side. */}
       {team.map((member, index) => (
         <Section key={member.slug} tone={index % 2 === 1 ? 'shell' : 'white'} id={member.slug}>
+          {/* Alternating rows put the portrait on the right. The track sizes
+              have to flip with it — otherwise the portrait lands in the wide
+              column and the bio is squeezed into the narrow one. */}
           <div
-            className={`grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:items-start ${
-              index % 2 === 1 ? 'lg:grid-flow-dense' : ''
+            className={`grid gap-10 lg:items-start ${
+              index % 2 === 1
+                ? 'lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]'
+                : 'lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]'
             }`}
           >
             <FadeIn className={index % 2 === 1 ? 'lg:col-start-2' : ''}>

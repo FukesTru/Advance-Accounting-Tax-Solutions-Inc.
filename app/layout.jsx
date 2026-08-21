@@ -82,6 +82,19 @@ gtag('config', '${site.gaMeasurementId}');`}
         </main>
         <Footer />
         <FloatingCall />
+
+        {/*
+          LeadConnector chat widget. `lazyOnload` deliberately: it mounts a
+          floating launcher, not page content, so it must not compete with the
+          hero for bandwidth or delay interaction readiness. It takes the
+          bottom-right corner, which is why FloatingCall now sits bottom-left.
+        */}
+        <Script
+          src="https://widgets.leadconnectorhq.com/loader.js"
+          data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+          data-widget-id="6a75c96eb0aa0f92825cb840"
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );

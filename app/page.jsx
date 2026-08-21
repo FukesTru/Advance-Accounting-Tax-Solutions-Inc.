@@ -1,16 +1,11 @@
 import Link from 'next/link';
 import FadeIn from '@/components/FadeIn';
+import HomeHero from '@/components/HomeHero';
 import JsonLd from '@/components/JsonLd';
 import Avatar from '@/components/Avatar';
 import Media from '@/components/Media';
 import { Icon } from '@/components/Icons';
-import {
-  Button,
-  Container,
-  Eyebrow,
-  Section,
-  SectionHeading,
-} from '@/components/primitives';
+import { Button, Section, SectionHeading } from '@/components/primitives';
 import {
   CTABanner,
   FAQSection,
@@ -21,7 +16,7 @@ import {
 import { images } from '@/lib/images';
 import { accountingServiceSchema, faqSchema } from '@/lib/schema';
 import { buildMetadata } from '@/lib/seo';
-import { firmFacts, serviceAreas, serviceCategories, site, stats, team, trustBadges } from '@/lib/site';
+import { firmFacts, serviceAreas, serviceCategories, site, stats, team } from '@/lib/site';
 
 export const metadata = buildMetadata({
   title: `Accountant & Tax Advisor in Fort Myers & Naples, FL | ${site.shortName}`,
@@ -82,73 +77,7 @@ export default function HomePage() {
     <>
       <JsonLd data={[accountingServiceSchema(), faqSchema(faqs)]} />
 
-      {/* ---------------------------------------------------------- */}
-      {/* Hero                                                        */}
-      {/* ---------------------------------------------------------- */}
-      <section className="relative overflow-hidden bg-linear-to-b from-navy-50 via-white to-white">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute -left-32 top-10 h-80 w-80 rounded-full bg-gold/10 blur-3xl"
-        />
-        <Container className="relative py-14 sm:py-20 lg:py-24">
-          <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
-            <FadeIn>
-              <Eyebrow>Southwest Florida&rsquo;s Trusted Advisory Firm</Eyebrow>
-              <h1 className="mt-5 text-4xl leading-[1.08] sm:text-5xl lg:text-[3.4rem]">
-                Trusted Tax &amp; Accounting Advisors Serving Fort Myers &amp; Naples, FL
-              </h1>
-              <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-body">
-                Tax planning, accounting, and fractional CFO support built around your goals — not
-                just your filing deadline.
-              </p>
-
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Button href="/contact" variant="gold">
-                  Schedule a Free Consultation
-                </Button>
-                <Button href={site.phoneHref} variant="outline">
-                  <Icon name="phone" className="h-4 w-4" />
-                  {site.phone}
-                </Button>
-              </div>
-
-              <ul className="mt-9 flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-body">
-                {trustBadges.map((badge) => (
-                  <li key={badge} className="flex items-center gap-2">
-                    <Icon name="check" className="h-4 w-4 text-gold-700" />
-                    {badge}
-                  </li>
-                ))}
-              </ul>
-            </FadeIn>
-
-            <FadeIn delay={140}>
-              {/*
-                A firm-level photo, not a portrait of one person. Resolves
-                hero.jpg when supplied and the Ave Maria town shot until then —
-                see lib/images.js. The team roster lives in its own section
-                below rather than competing with the headline here.
-              */}
-              <div className="relative mx-auto w-full max-w-xl">
-                <div
-                  aria-hidden="true"
-                  className="absolute -inset-3 -z-10 rounded-3xl bg-linear-to-br from-navy via-navy-600 to-navy-900 sm:-inset-4"
-                />
-                <div
-                  aria-hidden="true"
-                  className="absolute -right-3 -top-3 h-24 w-24 rounded-full bg-gold/30 blur-2xl"
-                />
-                <Media
-                  image={images.heroHome}
-                  priority
-                  className="shadow-xl"
-                  sizes="(max-width: 1024px) 90vw, 520px"
-                />
-              </div>
-            </FadeIn>
-          </div>
-        </Container>
-      </section>
+      <HomeHero />
 
       {/* ---------------------------------------------------------- */}
       {/* What we do                                                  */}
