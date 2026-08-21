@@ -66,6 +66,34 @@ affiliated CPA firm. `lib/site.js` → `scopeExclusions` is the single list, and
 "management reports" and SSARS "prepared financial statements" is his call, not
 mine. If he wants the site silent on reporting altogether, it is a small edit.
 
+## Every number on the site is one you supplied
+
+A sweep removed every figure that was not given by the client or taken from
+Bios.docx. What remains, and where it came from:
+
+| Figure | Source |
+|---|---|
+| 42 years in public accounting | Client message |
+| 13 years in independent practice | Client message (Bios.docx says fourteen; the client's figure wins) |
+| First licensed 1984 | Bios.docx |
+| Client revenue $200,000–$20,000,000 | Bios.docx |
+| Hundred-million-dollar manufacturer (James) | Bios.docx |
+| (239) 492-6784, (615) 751-0288, 5284 Juliet Court, 34142 | Client messages / Joe's signature |
+
+Removed as invented: business hours, "we respond within 1 business day",
+"same business day" portal turnaround, every drive time and distance between
+Ave Maria and the service-area cities, map coordinates, the `$$` price band,
+blog publication dates and read times, the privacy policy's "last updated"
+date, and the About stat row.
+
+Still on the page and deliberately kept: IRS form numbers (1040, 1120-S, 1065,
+941, 940, W-2, 1099, K-1, §7216, §179, 401(k)), statutory dates like December 31,
+the copyright year (computed at build time), and counts of things visible on the
+page itself ("Showing 5 articles").
+
+**If you add a number, add its source.** Anything that reads as a fact about the
+practice needs to come from the client, not from a plausible estimate.
+
 ## Estimated figures — removed
 
 The About page carried a stat row with three numbers that were never measured:
@@ -137,7 +165,7 @@ each needs a decision:
 | 3 | **LeadConnector form & chat** | `components/LeadConnectorForm.jsx`, `app/layout.jsx` | Both are live and wired to the IDs you supplied. **Please submit the form once from the published site** to confirm the notification lands where Joseph expects — the embed could not be loaded from the build environment, so the wiring is verified but a real submission is not. Fields and routing are edited in LeadConnector, not in the repo. |
 | 4 | **Client portal sign-in URL** | `lib/site.js` → `site.portalLoginUrl` | Set to TitanFile's generic login at `https://www.titanfile.com/login/`, per the provider you confirmed. If TitanFile issued the firm a branded sign-in subdomain, use that instead — it is a better client experience and reassures people they are in the right place. Also confirm the `/portal` page's feature list matches your TitanFile plan; it claims secure exchange, large-file transfer, in-portal messaging, and return delivery, and deliberately does **not** claim e-signature. |
 | 5 | **GA4 measurement ID** | `lib/site.js` → `site.gaMeasurementId` | Currently `G-XXXXXXXXXX`; the tag fires but reports nowhere. |
-| 6 | **Business hours** | `lib/site.js` → `site.hours` and `site.openingHoursSpec` | Still unknown — the old site's contact page did not publish them. Assumed Mon–Fri 9–5. Keep both fields in sync; the second feeds schema. |
+| 6 | **Business hours** | `lib/site.js` → `site.hours` | **Not published anywhere on the site.** The Mon–Fri 9–5 that used to show in the footer and on Contact was an assumption, never supplied, so it has been removed along with `openingHoursSpecification` in schema. Both pages now say to call or email to arrange a time. Send the real hours and they go back in. |
 
 ## Service areas — how to add another
 

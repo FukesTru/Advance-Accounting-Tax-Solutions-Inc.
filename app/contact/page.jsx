@@ -123,21 +123,17 @@ export default function ContactPage() {
                     <Icon name="clock" className="h-5 w-5" />
                   </span>
                   <span>
-                    <strong className="block font-display text-navy">Hours</strong>
-                    <ul className="text-slate-body">
-                      {site.hours.map((entry) => (
-                        <li key={entry.days}>
-                          {entry.days}: {entry.time}
-                        </li>
-                      ))}
-                    </ul>
+                    <strong className="block font-display text-navy">Appointments</strong>
+                    <span className="text-slate-body">
+                      Call or email to arrange a time, in person or by video call.
+                    </span>
                   </span>
                 </li>
               </ul>
 
               <p className="mt-7 flex items-start gap-2 rounded-lg border-l-4 border-gold bg-gold-50 p-4 text-sm leading-relaxed text-charcoal">
                 <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-gold-700" />
-                {site.responseTime} Consultations are free and carry no obligation.
+                Consultations are free and carry no obligation.
               </p>
             </div>
           </FadeIn>

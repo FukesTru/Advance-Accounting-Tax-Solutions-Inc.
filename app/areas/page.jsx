@@ -59,8 +59,8 @@ export default function ServiceAreasPage() {
             />
             <div className="mt-6 space-y-4 leading-relaxed text-slate-body">
               <p>
-                Ave Maria sits in eastern Collier County, roughly half an hour from Naples and an
-                hour from Fort Myers, with Immokalee ten minutes up the road. Being off the coast
+                Ave Maria sits in eastern Collier County, inland of Naples and south-east of Fort
+                Myers, with Immokalee the next community up the road. Being off the coast
                 turns out to be an advantage: we are a straightforward drive from most of Lee and
                 Collier, without the seasonal traffic that makes a Naples or Fort Myers appointment
                 a half-day commitment.

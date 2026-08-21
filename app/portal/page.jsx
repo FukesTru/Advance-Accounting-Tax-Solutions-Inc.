@@ -45,7 +45,7 @@ const steps = [
   },
   {
     title: 'Create your password',
-    text: 'Set a strong, unique password and turn on two-factor authentication if offered. It takes an extra thirty seconds and it protects the most sensitive documents you own.',
+    text: 'Set a strong, unique password and turn on two-factor authentication if offered. It takes a few extra seconds and it protects the most sensitive documents you own.',
   },
   {
     title: 'Send your first documents',

@@ -87,7 +87,7 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="What We Do"
             title="Three ways we support individuals and business owners"
-            intro="Most clients start with one service and grow into the others. Whether you need a return filed correctly or a financial strategy for the next five years, it is the same advisor and the same standard of work."
+            intro="Most clients start with one service and grow into the others. Whether you need a return filed correctly or a long-term financial strategy, it is the same advisor and the same standard of work."
           />
         </FadeIn>
         <div className="mt-12">

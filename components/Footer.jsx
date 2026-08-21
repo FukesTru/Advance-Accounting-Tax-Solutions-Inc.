@@ -110,18 +110,15 @@ export default function Footer() {
               </li>
             </ul>
 
+            {/* No published hours — the client has not supplied them. */}
             <h3 className="mt-7 flex items-center gap-2 font-display text-sm font-bold uppercase tracking-[0.18em] text-white">
               <Icon name="clock" className="h-4 w-4 text-gold" />
-              Hours
+              Appointments
             </h3>
-            <ul className="mt-3 space-y-1.5 text-sm">
-              {site.hours.map((entry) => (
-                <li key={entry.days} className="flex justify-between gap-4">
-                  <span>{entry.days}</span>
-                  <span className="text-navy-200">{entry.time}</span>
-                </li>
-              ))}
-            </ul>
+            <p className="mt-3 text-sm text-navy-100">
+              Call or email to arrange a time. Remote meetings by video call are available
+              nationwide.
+            </p>
           </div>
         </div>
       </Container>

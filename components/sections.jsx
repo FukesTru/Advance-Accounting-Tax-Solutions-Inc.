@@ -150,7 +150,6 @@ export function CTABanner({
               <div className="max-w-2xl">
                 <h2 className="text-3xl leading-tight text-white sm:text-[2.1rem]">{title}</h2>
                 <p className="mt-4 leading-relaxed text-navy-100">{text}</p>
-                <p className="mt-4 text-sm text-navy-200">{site.responseTime}</p>
               </div>
               <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row lg:flex-col xl:flex-row">
                 <Button href="/contact" variant="gold">
@@ -208,7 +207,7 @@ export function FAQSection({ faqs, title = 'Frequently Asked Questions', eyebrow
 export function MapBlock({
   eyebrow = 'Find Us',
   title = 'Visit the office or meet with us virtually',
-  intro = 'Our office is in Ave Maria, minutes from both Naples and Fort Myers. Prefer to keep it remote? Most of our clients work with us entirely by video call and phone.',
+  intro = 'Our office is in Ave Maria, between Naples and Fort Myers. Prefer to keep it remote? Most of our clients work with us entirely by video call and phone.',
   tone = 'white',
 }) {
   return (
@@ -256,14 +255,10 @@ export function MapBlock({
                 <Icon name="clock" className="h-5 w-5" />
               </span>
               <span>
-                <strong className="block font-display text-navy">Hours</strong>
-                <ul className="text-slate-body">
-                  {site.hours.map((entry) => (
-                    <li key={entry.days}>
-                      {entry.days}: {entry.time}
-                    </li>
-                  ))}
-                </ul>
+                <strong className="block font-display text-navy">Appointments</strong>
+                <span className="text-slate-body">
+                  Call or email to arrange a time, in person or by video call.
+                </span>
               </span>
             </li>
           </ul>

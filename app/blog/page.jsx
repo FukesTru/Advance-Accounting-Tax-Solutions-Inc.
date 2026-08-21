@@ -60,7 +60,7 @@ export default function BlogPage() {
           <SectionHeading
             eyebrow="Articles"
             title="Written for owners, not accountants"
-            intro="These are the five topics we get asked about most. Each article is in progress — in the meantime, every card links to the service page covering that topic in detail."
+            intro="The topics clients raise most often. Each article is in progress — in the meantime, every card links to the service page covering that topic in detail."
           />
         </FadeIn>
 

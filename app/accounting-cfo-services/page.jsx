@@ -49,7 +49,7 @@ export default function AccountingCfoServicesPage() {
       subtitle="Clean books, dependable payroll, and the strategic read on your numbers that most small businesses never get."
       introHeading="Between bookkeeping and a full-time CFO"
       intro={[
-        'There is a gap most growing businesses fall into. A bookkeeper records what happened. A full-time CFO costs six figures plus benefits. In between sits the owner, staring at a profit-and-loss statement that is technically accurate and practically useless, trying to decide whether they can afford to hire.',
+        'There is a gap most growing businesses fall into. A bookkeeper records what happened. A full-time CFO costs an executive salary plus benefits. In between sits the owner, staring at a profit-and-loss statement that is technically accurate and practically useless, trying to decide whether they can afford to hire.',
         'We cover that middle ground. The foundation is accounting done properly — monthly reconciliation, a chart of accounts that reflects how your business actually works, statements you receive on a predictable schedule. On top of that sits the interpretation: what your margins are by service line, where cash is going to be tight in four months, whether that price increase is worth the customers it will cost.',
         'Payroll rounds it out, because it is the piece that generates penalties fastest when nobody owns it. Take one service or all three — the books, the payroll, and the strategy stay consistent because the same firm handles them.',
       ]}

@@ -45,11 +45,11 @@ export default function FractionalCfoPage() {
       eyebrow="Accounting & CFO"
       h1="Fractional CFO Services"
       subtitle="CFO-level financial strategy — forecasting, margins, and growth planning — at a fraction of a full-time hire."
-      introHeading="Strategy, without the six-figure salary"
+      introHeading="Strategy, without the executive salary"
       intro={[
         'There is a stage most growing businesses hit where the questions outrun the reporting. Revenue is up but cash is tight and nobody can explain why. One service line feels profitable but nothing confirms it. A big hire, a new location, or an equipment purchase is on the table and the decision comes down to gut feel. The books are fine. What is missing is someone whose job is to interpret them.',
         'That is CFO work, and until recently it came in one size: a full-time executive with a salary to match. Fractional changes the shape of it. You get the same discipline — forecasting, budget-versus-actual review, margin analysis, KPI reporting, capital planning — on a monthly cadence sized to what your business actually needs right now.',
-        'In practice that means you stop making seven-figure decisions on instinct. You know which customers are worth keeping, what a price change does to contribution margin, and how many months of runway you have under a few different scenarios. And when you need to show numbers to a bank, an investor, or a buyer, they are already in a form those people expect.',
+        'In practice that means you stop making your biggest decisions on instinct. You know which customers are worth keeping, what a price change does to contribution margin, and how many months of runway you have under a few different scenarios. And when you need to show numbers to a bank, an investor, or a buyer, they are already in a form those people expect.',
         'The senior input on these engagements comes from James Fragnoli, a retired CFO who ran finance for a hundred-million-dollar manufacturing company and spent his career as a Controller and CFO across several industries and entity types. That is operator experience rather than advisory theory — he has sat in the chair the client is sitting in.',
       ]}
       image={images.analysis}
@@ -82,7 +82,7 @@ export default function FractionalCfoPage() {
         },
         {
           title: 'KPI dashboards',
-          text: 'The five or six numbers that actually run your business, tracked consistently and reviewed together.',
+          text: 'The handful of numbers that actually run your business, tracked consistently and reviewed together.',
         },
         {
           title: 'Pricing & margin analysis',

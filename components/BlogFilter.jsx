@@ -4,13 +4,6 @@ import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { categories } from '@/lib/posts';
 
-const formatter = new Intl.DateTimeFormat('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-  timeZone: 'UTC',
-});
-
 export default function BlogFilter({ posts }) {
   const [active, setActive] = useState('All');
 
@@ -55,10 +48,6 @@ export default function BlogFilter({ posts }) {
                 <span className="rounded-full bg-navy-50 px-3 py-1 font-semibold uppercase tracking-wide text-navy">
                   {post.category}
                 </span>
-                <time dateTime={post.date} className="text-slate-body">
-                  {formatter.format(new Date(post.date))}
-                </time>
-                <span className="text-slate-body">· {post.readTime}</span>
               </div>
 
               <h3 className="mt-4 text-lg leading-snug">{post.title}</h3>

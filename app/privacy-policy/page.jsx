@@ -17,7 +17,10 @@ export const metadata = buildMetadata({
 const breadcrumb = [{ name: 'Privacy Policy', href: '/privacy-policy' }];
 
 // TODO(client): update whenever the policy text changes.
-const lastUpdated = 'August 9, 2026';
+// TODO(client): set this to the date the attorney-reviewed policy is approved.
+// It was previously an invented date; a policy dated before it was approved is
+// worse than one that says plainly it has not been dated yet.
+const lastUpdated = null;
 
 export default function PrivacyPolicyPage() {
   return (
@@ -28,7 +31,9 @@ export default function PrivacyPolicyPage() {
       <div className="border-b border-navy/10 bg-shell">
         <Container className="py-12 sm:py-14">
           <h1 className="text-4xl">Privacy Policy</h1>
-          <p className="mt-3 text-sm text-slate-body">Last updated: {lastUpdated}</p>
+          <p className="mt-3 text-sm text-slate-body">
+            {lastUpdated ? `Last updated: ${lastUpdated}` : 'Awaiting review — not yet dated.'}
+          </p>
         </Container>
       </div>
 

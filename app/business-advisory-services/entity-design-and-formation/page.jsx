@@ -43,7 +43,7 @@ export default function EntityFormationPage() {
       breadcrumb={breadcrumb}
       eyebrow="Business Advisory"
       h1="Entity Design & Formation Assistance"
-      subtitle="Choose the structure that fits the business you are building — and set it up so it still works in five years."
+      subtitle="Choose the structure that fits the business you are building — and set it up so it still works as the business grows."
       introHeading="A decision you make once and live with for years"
       intro={[
         'Entity selection gets treated as paperwork. It is closer to a foundation. The structure you choose determines how your profit is taxed, how you can pay yourself, what liability protection you have, how hard it is to add a partner or take on investment, and what happens when you eventually sell or hand the business on. Changing it later is possible but rarely cheap or clean.',

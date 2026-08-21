@@ -51,7 +51,7 @@ export default function PayrollServicesPage() {
       whoFor={[
         {
           title: 'Small businesses with W-2 employees',
-          text: 'From a first hire to a team of fifty, where payroll compliance is nobody’s actual job.',
+          text: 'From a first hire to a full crew, where payroll compliance is nobody’s actual job.',
         },
         {
           title: 'Businesses using 1099 contractors',
