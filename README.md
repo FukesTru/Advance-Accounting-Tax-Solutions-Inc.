@@ -17,7 +17,7 @@ npm start        # serve the production build
 Copy `.env.example` to `.env.local` and fill in what applies.
 
 > **Before launch, work through [`CONTENT-TODO.md`](./CONTENT-TODO.md).** It lists
-> every placeholder in the build — phone number, review data, GA4 ID, and
+> every placeholder in the build — fax number, GA4 ID, business hours, and
 > photography — with the file to edit for each.
 
 ## Design system
@@ -57,7 +57,7 @@ Organization schema.
 app/
   layout.jsx                     Root layout: fonts, GA4 tag, nav, footer, floating call button
   page.jsx                       Homepage
-  about/ team/ blog/ contact/ testimonials/ privacy-policy/
+  about/ team/ portal/ blog/ contact/ privacy-policy/
   tax-services/                  Category page + 3 sub-services
   accounting-cfo-services/       Category page + 3 sub-services
   business-advisory-services/    Category page + 2 sub-services
@@ -77,7 +77,6 @@ lib/
   schema.js        Schema.org JSON-LD builders
   seo.js           Metadata builder (title, description, canonical, OG)
   posts.js         Blog index entries
-  testimonials.js  Reviews (placeholders)
 ```
 
 ### Page templates
@@ -90,7 +89,7 @@ consistent while each page supplies its own copy:
 - **Template B — sub-service page.** Hero → intro → Who This Is For → What We Do
   → 3-step process → FAQ → related links → CTA.
 - **Template C — service area page.** Hero → local intro → map/address →
-  services offered → county-level detail → review → FAQ → related links → CTA.
+  services offered → county-level detail → FAQ → related links → CTA.
 
 ## SEO
 
@@ -106,10 +105,9 @@ URL, Open Graph and Twitter tags, exactly one `<h1>`, breadcrumb navigation
 | Service pages (8) | `Service` + `FAQPage` + `BreadcrumbList` |
 | Area hub | `ItemList` + `BreadcrumbList` |
 | Area pages (7) | `AccountingService` (local) + `FAQPage` + `BreadcrumbList` |
-| Testimonials | `AggregateRating` (placeholder) + `BreadcrumbList` |
 | Blog | `Blog` / `BlogPosting` + `BreadcrumbList` |
 | Contact | `ContactPage` + `BreadcrumbList` |
-| Privacy | `BreadcrumbList` |
+| Portal, Privacy | `BreadcrumbList` |
 
 `robots.txt` and `sitemap.xml` are generated at build time from `lib/site.js`
 and `lib/areas.js`. Every page links to at least three related pages.

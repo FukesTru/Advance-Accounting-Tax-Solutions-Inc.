@@ -44,7 +44,6 @@ export default async function AreaPage({ params }) {
       introHeading={area.introHeading}
       intro={area.intro}
       localAuthority={area.localAuthority}
-      testimonial={area.testimonial}
       faqs={area.faqs}
       related={[
         ...others.map((item) => ({

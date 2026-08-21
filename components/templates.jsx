@@ -4,7 +4,7 @@ import FadeIn from '@/components/FadeIn';
 import JsonLd from '@/components/JsonLd';
 import Media from '@/components/Media';
 import { Icon } from '@/components/Icons';
-import { CheckList, Section, SectionHeading, TextLink } from '@/components/primitives';
+import { CheckList, Section, SectionHeading } from '@/components/primitives';
 import {
   CTABanner,
   FAQSection,
@@ -218,7 +218,6 @@ export function AreaPageTemplate({
   intro,
   introHeading,
   localAuthority,
-  testimonial,
   faqs,
   related,
   schema,
@@ -275,6 +274,8 @@ export function AreaPageTemplate({
       </Section>
 
       <Section tone="navyTint">
+        {/* Local detail reads as two columns: the narrative on the left, the
+            scannable points on the right. */}
         <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
           <FadeIn>
             <SectionHeading eyebrow="Local Detail" title={localAuthority.title} />
@@ -285,32 +286,12 @@ export function AreaPageTemplate({
                 </p>
               ))}
             </div>
-            <div className="mt-7">
-              <CheckList items={localAuthority.points} />
-            </div>
           </FadeIn>
 
           <FadeIn delay={120}>
-            <figure className="rounded-2xl border border-navy/10 bg-white p-8 shadow-sm">
-              <div aria-hidden="true" className="flex gap-1 text-gold">
-                {Array.from({ length: 5 }).map((_, index) => (
-                  <Icon key={index} name="star" className="h-4 w-4" />
-                ))}
-              </div>
-              <blockquote className="mt-5 text-lg leading-relaxed text-charcoal">
-                &ldquo;{testimonial.quote}&rdquo;
-              </blockquote>
-              <figcaption className="mt-5 border-t border-navy/10 pt-4 text-sm">
-                <span className="block font-display font-bold text-navy">{testimonial.name}</span>
-                <span className="text-slate-body">{testimonial.detail}</span>
-              </figcaption>
-              <p className="mt-5 text-xs text-slate-body">
-                {/* TODO(client): replace with a verified review from the Google Business Profile. */}
-                Sample review shown while the firm&rsquo;s Google Business Profile reviews are being
-                collected.{' '}
-                <TextLink href="/testimonials">See all reviews</TextLink>
-              </p>
-            </figure>
+            <div className="rounded-2xl border border-navy/10 bg-white p-8 shadow-sm">
+              <CheckList items={localAuthority.points} />
+            </div>
           </FadeIn>
         </div>
       </Section>

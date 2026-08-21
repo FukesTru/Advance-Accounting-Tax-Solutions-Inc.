@@ -222,7 +222,8 @@ export default function ContactForm() {
 
       <p className="text-xs leading-relaxed text-slate-body">
         Please do not send Social Security numbers, bank details, or tax documents through this
-        form. Tell us what you need and we will arrange a secure way to send them. See our{' '}
+        form — once you are a client, everything sensitive goes through our secure client portal.
+        See our{' '}
         <a href="/privacy-policy" className="underline hover:text-navy">
           Privacy Policy
         </a>

@@ -10,7 +10,6 @@ import {
   Eyebrow,
   Section,
   SectionHeading,
-  TextLink,
 } from '@/components/primitives';
 import {
   CTABanner,
@@ -23,7 +22,6 @@ import { images } from '@/lib/images';
 import { accountingServiceSchema, faqSchema } from '@/lib/schema';
 import { buildMetadata } from '@/lib/seo';
 import { firmFacts, serviceAreas, serviceCategories, site, stats, team, trustBadges } from '@/lib/site';
-import { testimonials } from '@/lib/testimonials';
 
 export const metadata = buildMetadata({
   title: `Accountant & Tax Advisor in Fort Myers & Naples, FL | ${site.shortName}`,
@@ -103,21 +101,6 @@ export default function HomePage() {
                 Tax planning, accounting, and fractional CFO support built around your goals — not
                 just your filing deadline.
               </p>
-
-              <div className="mt-7 flex items-center gap-3">
-                <div aria-hidden="true" className="flex gap-0.5 text-gold">
-                  {Array.from({ length: 5 }).map((_, index) => (
-                    <Icon key={index} name="star" className="h-5 w-5" />
-                  ))}
-                </div>
-                {/* TODO(client): swap for live Google review count once collected. */}
-                <p className="text-sm text-slate-body">
-                  5.0 rating ·{' '}
-                  <Link href="/testimonials" className="font-semibold text-navy underline hover:text-gold-700">
-                    Read client reviews
-                  </Link>
-                </p>
-              </div>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Button href="/contact" variant="gold">
@@ -367,40 +350,6 @@ export default function HomePage() {
             </p>
           </div>
         </FadeIn>
-      </Section>
-
-      {/* ---------------------------------------------------------- */}
-      {/* Testimonials preview                                        */}
-      {/* ---------------------------------------------------------- */}
-      <Section tone="shell">
-        <SectionHeading
-          eyebrow="Client Reviews"
-          title="What it's like to work with us"
-          intro="Sample reviews shown while the firm's Google Business Profile reviews are being collected."
-        />
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
-          {testimonials.slice(0, 3).map((review, index) => (
-            <FadeIn key={review.quote.slice(0, 30)} delay={index * 100} className="h-full">
-              <figure className="flex h-full flex-col rounded-xl border border-navy/10 bg-white p-7">
-                <div aria-hidden="true" className="flex gap-1 text-gold">
-                  {Array.from({ length: 5 }).map((_, starIndex) => (
-                    <Icon key={starIndex} name="star" className="h-4 w-4" />
-                  ))}
-                </div>
-                <blockquote className="mt-4 flex-1 leading-relaxed text-charcoal">
-                  &ldquo;{review.quote}&rdquo;
-                </blockquote>
-                <figcaption className="mt-5 border-t border-navy/10 pt-4 text-sm">
-                  <span className="block font-display font-bold text-navy">{review.name}</span>
-                  <span className="text-slate-body">{review.detail}</span>
-                </figcaption>
-              </figure>
-            </FadeIn>
-          ))}
-        </div>
-        <div className="mt-9">
-          <TextLink href="/testimonials">Read all client reviews</TextLink>
-        </div>
       </Section>
 
       {/* ---------------------------------------------------------- */}

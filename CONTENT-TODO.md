@@ -132,12 +132,11 @@ each needs a decision:
 | # | Item | Where | Notes |
 |---|------|-------|-------|
 | 1 | **Fax number** | `lib/site.js` → `site.fax` | The business line is now `(239) 492-6784`, confirmed and live sitewide. The fax is still the old `(615) 751-0288` Tennessee number carried over from the previous site — a 615 fax beside a 239 phone looks odd for a Florida firm. Confirm it works, replace it, or drop it. |
-| 2 | **Review data / AggregateRating** | `lib/testimonials.js`, `app/testimonials/page.jsx` | All six reviews are clearly-labelled placeholders and the `AggregateRating` schema is a stand-in. Publishing invented reviews or ratings violates Google's review policies and risks a structured-data penalty. Replace with verified Google Business Profile reviews, **or delete the `aggregateRatingSchema` block entirely** if real reviews are not ready at launch. |
-| 3 | **Privacy Policy attorney review** | `app/privacy-policy/page.jsx` | The client confidentiality and IRC §7216 sections in particular. There is a visible reviewer note at the top of the page — delete it once reviewed. |
-| 4 | **Contact form delivery** | Hosting env var `CONTACT_WEBHOOK_URL` | Until it is set, the form returns 503 and tells visitors to call or email. See `.env.example`. |
+| 2 | **Privacy Policy attorney review** | `app/privacy-policy/page.jsx` | The client confidentiality and IRC §7216 sections in particular. There is a visible reviewer note at the top of the page — delete it once reviewed. |
+| 3 | **Contact form delivery** | Hosting env var `CONTACT_WEBHOOK_URL` | Until it is set, the form returns 503 and tells visitors to call or email. See `.env.example`. |
+| 4 | **Client portal sign-in URL** | `lib/site.js` → `site.portalLoginUrl` | Set to TitanFile's generic login at `https://www.titanfile.com/login/`, per the provider you confirmed. If TitanFile issued the firm a branded sign-in subdomain, use that instead — it is a better client experience and reassures people they are in the right place. Also confirm the `/portal` page's feature list matches your TitanFile plan; it claims secure exchange, large-file transfer, in-portal messaging, and return delivery, and deliberately does **not** claim e-signature. |
 | 5 | **GA4 measurement ID** | `lib/site.js` → `site.gaMeasurementId` | Currently `G-XXXXXXXXXX`; the tag fires but reports nowhere. |
 | 6 | **Business hours** | `lib/site.js` → `site.hours` and `site.openingHoursSpec` | Still unknown — the old site's contact page did not publish them. Assumed Mon–Fri 9–5. Keep both fields in sync; the second feeds schema. |
-| 7 | **Google Business Profile review link** | `lib/site.js` → `site.googleReviewUrl` | Currently a search URL. Replace with the direct "write a review" link from the GBP dashboard. |
 
 ## Service areas — how to add another
 
@@ -148,7 +147,7 @@ Fort Myers · Naples · Cape Coral · Bonita Springs · Estero · Marco Island �
 Immokalee
 
 **Adding a city means writing real content for it.** Each entry carries its own
-intro, county-level filing detail, FAQs, and testimonial, because city pages
+intro, county-level filing detail, and FAQs, because city pages
 that differ only by a swapped place name are the textbook definition of a
 doorway page and Google devalues them. Measured 3-gram overlap between the
 current pages tops out at 24%, which is comfortably distinct — a find-and-
@@ -176,13 +175,13 @@ for work the firm actually sells:
 
 | # | Item | Where |
 |---|------|-------|
-| 8 | **Logo vector original** | The real lockup is in and used sitewide. It came as a raster JPEG, background-removed and cropped into three PNGs (see README). Ask the designer for the **vector original (SVG/AI/EPS)** — the current files are fine for the website but cannot scale to signage, print, or a large-format banner. |
-| 9 | **Remaining photography** | Three reserved slots, all optional and all degrading gracefully: `hero.jpg` (homepage hero), `patricia.jpg` and `james.jpg` (headshots) — see the Images section below. |
-| 10 | **Blog articles** | `lib/posts.js` — the five starter topics exist as cards. Each links to its most relevant service page until the article is written, so no card dead-ends. Once written, add `/blog/<slug>` pages and point `href` at them. |
-| 11 | **LinkedIn** | `components/Footer.jsx` — currently "Social profiles coming soon." Joseph has a LinkedIn profile; link it if he wants it public. |
-| 12 | **Headshots for Patricia and James** | Drop `patricia.jpg` and `james.jpg` into `public/images/` and they appear automatically on `/team`, in the homepage roster section, and on the About page. Until then `components/Avatar.jsx` renders a monogram, which looks deliberate rather than broken — but two real faces would finish the team page properly. Square crops, head and shoulders, 600px or larger. |
-| 13 | **Email vs. site domain** | Site is `taxstrategiesandaccountingservices.com`; email is `@accounting-tax-solutions.com`. Worth aligning eventually — mismatched domains cost a little trust and a little deliverability. |
-| 14 | **301 redirects from the old site** | Hosting config — map the old `.php` URLs to the new pages so existing rankings and links are not lost. Suggested mapping: `taxservices.php` → `/tax-services`, `taxprep.php` → `/tax-services/tax-compliance-and-preparation`, `bizservices.php` → `/accounting-cfo-services`, `bookkeeping.php` → `/accounting-cfo-services/accounting-services`, `bizplan.php` → `/business-advisory-services`, `Team.php` → `/about`, `contact.php` → `/contact`, `irs-backtaxes.php` / `internalcontrols.php` / `qbtraining.php` / `lawfirms.php` / `links.php` → nearest match above. |
+| 7 | **Logo vector original** | The real lockup is in and used sitewide. It came as a raster JPEG, background-removed and cropped into three PNGs (see README). Ask the designer for the **vector original (SVG/AI/EPS)** — the current files are fine for the website but cannot scale to signage, print, or a large-format banner. |
+| 8 | **Remaining photography** | Three reserved slots, all optional and all degrading gracefully: `hero.jpg` (homepage hero), `patricia.jpg` and `james.jpg` (headshots) — see the Images section below. |
+| 9 | **Blog articles** | `lib/posts.js` — the five starter topics exist as cards. Each links to its most relevant service page until the article is written, so no card dead-ends. Once written, add `/blog/<slug>` pages and point `href` at them. |
+| 10 | **LinkedIn** | `components/Footer.jsx` — currently "Social profiles coming soon." Joseph has a LinkedIn profile; link it if he wants it public. |
+| 11 | **Headshots for Patricia and James** | Drop `patricia.jpg` and `james.jpg` into `public/images/` and they appear automatically on `/team`, in the homepage roster section, and on the About page. Until then `components/Avatar.jsx` renders a monogram, which looks deliberate rather than broken — but two real faces would finish the team page properly. Square crops, head and shoulders, 600px or larger. |
+| 12 | **Email vs. site domain** | Site is `taxstrategiesandaccountingservices.com`; email is `@accounting-tax-solutions.com`. Worth aligning eventually — mismatched domains cost a little trust and a little deliverability. |
+| 13 | **301 redirects from the old site** | Hosting config — map the old `.php` URLs to the new pages so existing rankings and links are not lost. Suggested mapping: `taxservices.php` → `/tax-services`, `taxprep.php` → `/tax-services/tax-compliance-and-preparation`, `bizservices.php` → `/accounting-cfo-services`, `bookkeeping.php` → `/accounting-cfo-services/accounting-services`, `bizplan.php` → `/business-advisory-services`, `Team.php` → `/about`, `contact.php` → `/contact`, `irs-backtaxes.php` / `internalcontrols.php` / `qbtraining.php` / `lawfirms.php` / `links.php` → nearest match above. |
 
 ## Images
 

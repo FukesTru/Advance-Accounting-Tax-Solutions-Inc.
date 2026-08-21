@@ -49,13 +49,13 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/testimonials" prefetch={false} className="hover:text-gold hover:underline">
-                  Client Reviews
+                <Link href="/team" prefetch={false} className="hover:text-gold hover:underline">
+                  Our Team
                 </Link>
               </li>
               <li>
-                <Link href="/team" prefetch={false} className="hover:text-gold hover:underline">
-                  Our Team
+                <Link href="/portal" prefetch={false} className="hover:text-gold hover:underline">
+                  Client Portal
                 </Link>
               </li>
             </ul>

@@ -37,7 +37,7 @@ const faqs = [
   },
   {
     q: 'How do I securely send documents?',
-    a: 'We set that up during onboarding and walk you through it, whether you drop documents off, mail them, or send them electronically. Please do not email tax documents or attach them to a web form — email is the least secure way to move a Social Security number, and we would rather spend two minutes arranging something safer.',
+    a: 'Through our client portal, which is encrypted in transit and at rest and built for exactly this. You send documents from your phone or computer and we send your completed return back the same way. Please do not email tax documents — email is the least secure way to move a Social Security number.',
   },
 ];
 
@@ -51,7 +51,7 @@ export default function TaxCompliancePage() {
       introHeading="The unglamorous part, done properly"
       intro={[
         'Compliance work does not get talked about much, which is exactly why it goes wrong. A return that is filed late, filed twice, or filed with a number that does not reconcile to the books creates months of cleanup — and the cost of that cleanup usually exceeds what careful preparation would have cost in the first place.',
-        'We treat preparation as a controlled process rather than a spring sprint. We give you a checklist up front so nothing gets lost in an email thread. Returns are prepared, then reviewed against your books and your prior year before anything is filed. Deadlines and extensions are tracked on our calendar, not yours. And your records are kept organized in a way that would survive an audit without a scramble.',
+        'We treat preparation as a controlled process rather than a spring sprint. Documents come in through a secure portal so nothing gets lost in an email thread. Returns are prepared, then reviewed against your books and your prior year before anything is filed. Deadlines and extensions are tracked on our calendar, not yours. And your records are kept organized in a way that would survive an audit without a scramble.',
         'Individuals, S-corps, partnerships, LLCs, and C-corps are all handled here, along with the state filings that come with them. If your business return and personal return are connected — and for most owners they are — they are prepared together so the two actually agree.',
       ]}
       image={images.taxForms}
@@ -102,7 +102,7 @@ export default function TaxCompliancePage() {
       process={[
         {
           title: 'Gather Documents',
-          text: 'We send a checklist of exactly what is needed and agree how you will get it to us, so nothing is missed.',
+          text: 'You send documents through the secure client portal; we provide a checklist so nothing is missed.',
         },
         {
           title: 'Prepare & Review',
@@ -126,9 +126,9 @@ export default function TaxCompliancePage() {
           text: 'Trust and estate return support.',
         },
         {
-          href: '/accounting-cfo-services/accounting-services',
-          title: 'Bookkeeping & Accounting',
-          text: 'Clean books make filing season straightforward.',
+          href: '/portal',
+          title: 'Client Portal',
+          text: 'Where you send documents securely.',
         },
         { href: '/contact', title: 'Contact', text: 'Get your return handled this year.' },
       ]}

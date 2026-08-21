@@ -47,8 +47,16 @@ export default function Navbar() {
 
   const isActive = (href) => pathname === href || (href !== '/' && pathname.startsWith(`${href}/`));
 
+  // Menus close on the header's mouseleave rather than on each trigger's. The
+  // mega panel is anchored to the header, so the header's own vertical padding
+  // sits between the trigger's box and the panel's — a band belonging to
+  // neither. Closing on the trigger meant crossing that band dismissed the
+  // panel before the pointer could reach it. Every panel is a DOM descendant of
+  // the header, so leaving the header is the only gap-free "pointer is really
+  // gone" signal.
   return (
     <header
+      onMouseLeave={() => setOpenMenu(null)}
       className={`sticky top-0 z-50 transition-all duration-300 ${
         scrolled || mobileOpen || openMenu
           ? 'border-b border-navy/10 bg-white shadow-[0_6px_24px_-12px_rgba(11,37,69,0.35)]'
@@ -73,11 +81,7 @@ export default function Navbar() {
               // the sticky <header> so it spans the page container instead of
               // overflowing from a trigger-relative origin.
               return (
-                <div
-                  key={item.label}
-                  onMouseEnter={() => setOpenMenu(item.label)}
-                  onMouseLeave={() => setOpenMenu(null)}
-                >
+                <div key={item.label} onMouseEnter={() => setOpenMenu(item.label)}>
                   <button
                     type="button"
                     aria-expanded={openMenu === item.label}
@@ -148,7 +152,6 @@ export default function Navbar() {
                   key={item.label}
                   className="relative"
                   onMouseEnter={() => setOpenMenu(item.label)}
-                  onMouseLeave={() => setOpenMenu(null)}
                 >
                   <button
                     type="button"
@@ -188,6 +191,7 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
+                onMouseEnter={() => setOpenMenu(null)}
                 className={`whitespace-nowrap rounded-md px-2 py-2 font-display text-[0.875rem] font-semibold transition-colors xl:px-3 xl:text-[0.9rem] ${
                   isActive(item.href) ? 'text-gold-700' : 'text-navy hover:text-gold-700'
                 }`}
@@ -296,11 +300,11 @@ export default function Navbar() {
                   {link.label}
                 </Link>
               ))}
-              <Link href="/testimonials" className="block py-2 font-display font-semibold text-navy">
-                Client Reviews
-              </Link>
               <Link href="/blog" className="block py-2 font-display font-semibold text-navy">
                 Blog
+              </Link>
+              <Link href="/portal" className="block py-2 font-display font-semibold text-navy">
+                Client Portal
               </Link>
               <Link href="/contact" className="block py-2 font-display font-semibold text-navy">
                 Contact

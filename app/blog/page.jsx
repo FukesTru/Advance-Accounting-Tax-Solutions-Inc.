@@ -83,10 +83,10 @@ export default function BlogPage() {
                 Schedule a Free Consultation
               </Button>
               <Link
-                href="/testimonials"
+                href="/about"
                 className="inline-flex items-center justify-center rounded-lg border-2 border-navy/20 px-6 py-3.5 font-display text-sm font-bold text-navy transition-colors hover:border-navy hover:bg-navy hover:text-white"
               >
-                Read client reviews
+                About the firm
               </Link>
             </div>
           </FadeIn>
