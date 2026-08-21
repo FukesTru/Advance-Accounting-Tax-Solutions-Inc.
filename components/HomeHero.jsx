@@ -37,10 +37,11 @@ export default function HomeHero() {
               Southwest Florida · CPA-Led · {firmFacts.yearsInPublicAccounting} Years
             </p>
 
-            <h1 className="mt-6 text-[2.6rem] leading-[1.05] tracking-tight sm:text-6xl lg:text-[3.75rem]">
-              Stop overpaying the IRS.
-              <br />
-              Start{' '}
+            {/* No forced break — the measure below lets it wrap naturally, so
+                "Start" stays on the line with "the IRS." instead of being
+                pushed onto one of its own. */}
+            <h1 className="mt-6 max-w-[13ch] text-[2.6rem] leading-[1.05] tracking-tight sm:text-6xl lg:text-[3.75rem]">
+              Stop overpaying the IRS. Start{' '}
               <span className="relative inline-block">
                 <span className="relative z-10 text-gold-700">outplanning it.</span>
                 <span

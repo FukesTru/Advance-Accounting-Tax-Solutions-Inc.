@@ -6,35 +6,34 @@
  * contributions, the timing of income and equipment purchases — has to happen
  * before the year closes, so the room to act shrinks as the year runs out. The
  * two series are complements of one another, which is the whole point, and the
- * footnote says plainly that it is an illustration.
+ * footnote says so plainly.
  *
- * Publishing invented client outcomes ("$164,800 saved") in a hero would be a
- * claim the firm cannot support, so the chart makes an argument instead.
+ * The reference design carried a client tax position and a percentage saved.
+ * Those are figures the firm cannot support, so the chart makes the argument
+ * instead of claiming a result.
  */
 
-const MONTHS = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'];
+// Room left to act, sampled across the year. Complement = already locked in.
+const OPEN = [100, 94, 85, 72, 56, 38, 18];
 
-// Room left to act, month by month. Complement = already locked in.
-const OPEN = [100, 96, 90, 84, 77, 69, 61, 52, 43, 32, 20, 8];
-
-const VIEW_W = 560;
-const VIEW_H = 214;
-const PLOT_LEFT = 16;
-const PLOT_RIGHT = 544;
-const BASELINE = 172;
-const PLOT_TOP = 14;
+const VIEW_W = 640;
+const VIEW_H = 268;
+const PLOT_L = 20;
+const PLOT_R = 620;
+const BASELINE = 226;
+const PLOT_TOP = 26;
 const PLOT_H = BASELINE - PLOT_TOP;
 
-const STEP = (PLOT_RIGHT - PLOT_LEFT) / OPEN.length;
-const BAR_W = Math.min(26, STEP - 12);
+const STEP = (PLOT_R - PLOT_L) / OPEN.length;
+const BAR_W = STEP * 0.58;
 
-const centerX = (index) => PLOT_LEFT + STEP * index + STEP / 2;
-const valueY = (value) => BASELINE - (value / 100) * PLOT_H;
+const cx = (i) => PLOT_L + STEP * i + STEP / 2;
+const cy = (v) => BASELINE - (v / 100) * PLOT_H;
 
-const locked = OPEN.map((value) => 100 - value);
-const linePoints = locked.map((value, index) => [centerX(index), valueY(value)]);
-const linePath = linePoints.map(([x, y], i) => `${i === 0 ? 'M' : 'L'}${x.toFixed(1)},${y.toFixed(1)}`).join(' ');
-const areaPath = `${linePath} L${centerX(locked.length - 1).toFixed(1)},${BASELINE} L${centerX(0).toFixed(1)},${BASELINE} Z`;
+const locked = OPEN.map((v) => 100 - v);
+const pts = locked.map((v, i) => [cx(i), cy(v)]);
+const line = pts.map(([x, y], i) => `${i === 0 ? 'M' : 'L'}${x.toFixed(1)},${y.toFixed(1)}`).join(' ');
+const area = `${line} L${cx(locked.length - 1).toFixed(1)},${BASELINE} L${cx(0).toFixed(1)},${BASELINE} Z`;
 
 export default function PlanningWindowChart() {
   return (
@@ -44,7 +43,7 @@ export default function PlanningWindowChart() {
           The planning window · Any tax year
         </p>
         <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-2">
-          <p className="font-display text-4xl font-extrabold leading-none text-navy sm:text-5xl">
+          <p className="font-display text-4xl font-extrabold leading-none text-navy sm:text-[2.9rem]">
             Dec 31
           </p>
           <p className="rounded-full bg-gold-50 px-3 py-1 font-display text-[0.68rem] font-bold uppercase tracking-wide text-gold-700">
@@ -67,93 +66,93 @@ export default function PlanningWindowChart() {
       >
         <title id="pw-title">How the tax-planning window narrows across the year</title>
         <desc id="pw-desc">
-          An illustration, not client data. Bars show the decisions you can still influence,
-          starting at their highest in January and falling to almost nothing by December. A gold
-          line shows the mirror image: decisions already locked in, rising steadily to nearly all of
-          them by year end.
+          An illustration, not client data. Bars show the moves still available to lower your bill,
+          highest in January and almost gone by December. A gold line shows the mirror image:
+          decisions already locked in, rising steadily across the year.
         </desc>
 
         <defs>
           <linearGradient id="pw-bar" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#17396b" />
-            <stop offset="100%" stopColor="#4a6a94" stopOpacity="0.75" />
+            <stop offset="0%" stopColor="#2d5285" />
+            <stop offset="100%" stopColor="#5c7ba6" />
           </linearGradient>
           <linearGradient id="pw-area" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#c9a44b" stopOpacity="0.22" />
-            <stop offset="100%" stopColor="#c9a44b" stopOpacity="0" />
+            <stop offset="0%" stopColor="#c9a44b" stopOpacity="0.28" />
+            <stop offset="100%" stopColor="#c9a44b" stopOpacity="0.02" />
           </linearGradient>
         </defs>
 
-        {/* Horizontal guides */}
-        {[0, 0.25, 0.5, 0.75, 1].map((fraction) => (
+        {[0.25, 0.5, 0.75, 1].map((f) => (
           <line
-            key={fraction}
-            x1={PLOT_LEFT}
-            x2={PLOT_RIGHT}
-            y1={BASELINE - fraction * PLOT_H}
-            y2={BASELINE - fraction * PLOT_H}
+            key={f}
+            x1={PLOT_L}
+            x2={PLOT_R}
+            y1={BASELINE - f * PLOT_H}
+            y2={BASELINE - f * PLOT_H}
             stroke="#0b2545"
-            strokeOpacity={fraction === 0 ? 0.18 : 0.07}
+            strokeOpacity="0.06"
           />
         ))}
+        <line x1={PLOT_L} x2={PLOT_R} y1={BASELINE} y2={BASELINE} stroke="#0b2545" strokeOpacity="0.14" />
 
-        {/* Bars — room left to act */}
-        {OPEN.map((value, index) => {
-          const height = (value / 100) * PLOT_H;
+        {/* Moves still on the table */}
+        {OPEN.map((v, i) => {
+          const h = (v / 100) * PLOT_H;
           return (
             <rect
-              key={index}
-              x={centerX(index) - BAR_W / 2}
-              y={BASELINE - height}
+              key={i}
+              x={cx(i) - BAR_W / 2}
+              y={BASELINE - h}
               width={BAR_W}
-              height={height}
-              rx="5"
+              height={h}
+              rx="10"
               fill="url(#pw-bar)"
             />
           );
         })}
 
         {/* Already locked in */}
-        <path d={areaPath} fill="url(#pw-area)" />
-        <path d={linePath} fill="none" stroke="#c9a44b" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-        {linePoints.map(([x, y], index) =>
-          index % 3 === 0 || index === linePoints.length - 1 ? (
-            <circle key={index} cx={x} cy={y} r="4" fill="#ffffff" stroke="#c9a44b" strokeWidth="2.5" />
+        <path d={area} fill="url(#pw-area)" />
+        <path
+          d={line}
+          fill="none"
+          stroke="#c9a44b"
+          strokeWidth="3.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        {pts.map(([x, y], i) =>
+          i % 2 === 0 ? (
+            <circle key={i} cx={x} cy={y} r="6.5" fill="#ffffff" stroke="#c9a44b" strokeWidth="3.5" />
           ) : null,
         )}
 
-        {/* Month initials */}
-        {MONTHS.map((month, index) => (
-          <text
-            key={index}
-            x={centerX(index)}
-            y={VIEW_H - 22}
-            textAnchor="middle"
-            fontSize="13"
-            fontWeight="600"
-            fill="#4b5563"
-            fillOpacity="0.75"
-          >
-            {month}
-          </text>
-        ))}
-
-        <text x={PLOT_LEFT} y={VIEW_H - 4} fontSize="11" fill="#4b5563" fillOpacity="0.6">
-          Jan
+        {/* Only the two ends are labelled — twelve month initials across a card
+            this size were unreadable and made the chart look busier than it is. */}
+        <text x={PLOT_L} y={VIEW_H - 8} fontSize="15" fontWeight="600" fill="#4b5563" fillOpacity="0.7">
+          JAN
         </text>
-        <text x={PLOT_RIGHT} y={VIEW_H - 4} textAnchor="end" fontSize="11" fill="#4b5563" fillOpacity="0.6">
-          Dec 31
+        <text
+          x={PLOT_R}
+          y={VIEW_H - 8}
+          textAnchor="end"
+          fontSize="15"
+          fontWeight="600"
+          fill="#4b5563"
+          fillOpacity="0.7"
+        >
+          DEC 31
         </text>
       </svg>
 
       <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-navy/10 pt-4">
         <span className="flex items-center gap-2 text-xs font-semibold text-slate-body">
-          <span aria-hidden="true" className="h-2.5 w-2.5 rounded-sm bg-navy-600" />
-          Decisions you can still influence
+          <span aria-hidden="true" className="h-3 w-3 rounded bg-navy-600" />
+          Moves still on the table
         </span>
         <span className="flex items-center gap-2 text-xs font-semibold text-slate-body">
-          <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-gold" />
-          Decisions already locked in
+          <span aria-hidden="true" className="h-3 w-3 rounded bg-gold" />
+          Already locked in
         </span>
       </div>
 
