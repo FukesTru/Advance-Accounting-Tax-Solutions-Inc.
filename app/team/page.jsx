@@ -53,7 +53,12 @@ export default function TeamPage() {
 
       {/* One profile per member, alternating the photo side. */}
       {team.map((member, index) => (
-        <Section key={member.slug} tone={index % 2 === 1 ? 'shell' : 'white'} id={member.slug}>
+        <Section
+          key={member.slug}
+          tone={index % 2 === 1 ? 'shell' : 'white'}
+          id={member.slug}
+          className="!py-14 sm:!py-16"
+        >
           {/* Alternating rows put the portrait on the right. The track sizes
               have to flip with it — otherwise the portrait lands in the wide
               column and the bio is squeezed into the narrow one. */}
@@ -71,7 +76,7 @@ export default function TeamPage() {
                   initials={member.initials}
                   name={member.name}
                   size="lg"
-                  className="lg:h-44 lg:w-44"
+                  className="lg:h-52 lg:w-52"
                 />
                 <div className="lg:mt-6">
                   <h2 className="text-2xl">{member.name}</h2>

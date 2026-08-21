@@ -79,40 +79,52 @@ export function CategoryPageTemplate({
       />
 
       <Section tone="shell">
-        <SectionHeading
-          eyebrow="Services"
-          title={`Explore our ${category?.title.toLowerCase()}`}
-          intro="Every engagement starts with understanding your situation — then we recommend only what actually moves the needle."
-        />
+        <FadeIn>
+          <SectionHeading
+            eyebrow="Services"
+            title={`Explore our ${category?.title.toLowerCase()}`}
+            intro="Every engagement starts with understanding your situation — then we recommend only what actually moves the needle."
+          />
+        </FadeIn>
         <div className="mt-12">
           <ServiceCardGrid items={cards} columns={cards.length === 2 ? 2 : 3} />
         </div>
       </Section>
 
+      {/* Full-width heading over a two-column list. Previously the heading sat
+          alone in a narrow track beside a long list, leaving most of the left
+          half of the section empty. */}
       <Section>
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] lg:items-start">
-          <FadeIn>
-            <SectionHeading eyebrow="Scope" title={includedHeading} />
-          </FadeIn>
-          <FadeIn delay={120}>
-            <CheckList items={included} />
-          </FadeIn>
-        </div>
+        <FadeIn>
+          <SectionHeading
+            eyebrow="Scope"
+            title={includedHeading}
+            intro="Everything below is in scope from day one — no add-on line items once we are working together."
+          />
+        </FadeIn>
+        <FadeIn delay={120}>
+          <div className="mt-10">
+            <CheckList items={included} columns={2} />
+          </div>
+        </FadeIn>
       </Section>
 
+      {/* Tones alternate strictly from here: shell, white, shell, white, shell.
+          Two same-toned sections in a row merged into one oversized slab. */}
       <ProcessSteps
+        tone="shell"
         steps={process}
         title={processTitle}
         intro="A simple, predictable path from first call to ongoing support."
       />
 
-      <CTABanner title={midCta.title} text={midCta.text} />
+      <CTABanner title={midCta.title} text={midCta.text} tone="white" />
 
-      <FAQSection faqs={faqs} />
+      <FAQSection faqs={faqs} tone="shell" />
 
-      <RelatedLinks links={related} title="Keep exploring" />
+      <RelatedLinks links={related} title="Keep exploring" tone="white" />
 
-      <CTABanner />
+      <CTABanner tone="shell" />
     </>
   );
 }
@@ -175,7 +187,7 @@ export function SubServicePageTemplate({
       </ProseSection>
 
       <Section tone="shell">
-        <div className="grid gap-12 lg:grid-cols-2">
+        <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
           <FadeIn>
             <SectionHeading eyebrow="Fit" title={whoForHeading} />
             <div className="mt-7">
@@ -191,17 +203,20 @@ export function SubServicePageTemplate({
         </div>
       </Section>
 
+      {/* White here, not shell: the section above is shell, and back-to-back
+          shell sections read as one oversized grey band. */}
       <ProcessSteps
+        tone="white"
         steps={process}
         title={processTitle}
         intro="Three steps, clear expectations, no surprises."
       />
 
-      <FAQSection faqs={faqs} />
+      <FAQSection faqs={faqs} tone="shell" />
 
-      <RelatedLinks links={related} title="Related services" />
+      <RelatedLinks links={related} title="Related services" tone="white" />
 
-      <CTABanner />
+      <CTABanner tone="shell" />
     </>
   );
 }
@@ -263,11 +278,13 @@ export function AreaPageTemplate({
       />
 
       <Section>
-        <SectionHeading
-          eyebrow="Services"
-          title={`What we do for ${city} clients`}
-          intro="The full range of tax, accounting, and advisory support — matched to whichever stage you are in."
-        />
+        <FadeIn>
+          <SectionHeading
+            eyebrow="Services"
+            title={`What we do for ${city} clients`}
+            intro="The full range of tax, accounting, and advisory support — matched to whichever stage you are in."
+          />
+        </FadeIn>
         <div className="mt-12">
           <ServiceCardGrid items={cards} />
         </div>

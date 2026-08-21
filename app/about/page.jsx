@@ -5,11 +5,11 @@ import FadeIn from '@/components/FadeIn';
 import JsonLd from '@/components/JsonLd';
 import Media from '@/components/Media';
 import { Button, CheckList, Section, SectionHeading } from '@/components/primitives';
-import { CTABanner, PageHero, RelatedLinks, StatRow } from '@/components/sections';
+import { CTABanner, PageHero, RelatedLinks } from '@/components/sections';
 import { images } from '@/lib/images';
 import { affiliatedFirmSchema, breadcrumbSchema, personSchema } from '@/lib/schema';
 import { buildMetadata } from '@/lib/seo';
-import { aboutStats, affiliatedFirm, firmFacts, scopeExclusions, site, team } from '@/lib/site';
+import { affiliatedFirm, firmFacts, scopeExclusions, site, team } from '@/lib/site';
 
 export const metadata = buildMetadata({
   title: 'Meet Joseph F. Fragnoli, CPA — President & CEO',
@@ -79,13 +79,19 @@ export default function AboutPage() {
 
       <Section>
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:items-start">
-          <FadeIn>
+          {/* Sticky: the copy beside this runs about four times the portrait's
+              height, so pinned at the top it left most of the column empty. */}
+          <FadeIn className="lg:sticky lg:top-28">
             {/* Capped so the 360px source is not upscaled into softness. */}
             <Media
               image={images.joseph}
               className="mx-auto w-full max-w-90 lg:mx-0"
               sizes="(max-width: 1024px) 90vw, 360px"
             />
+            <p className="mx-auto mt-5 max-w-90 text-sm leading-relaxed text-slate-body lg:mx-0">
+              <strong className="block font-display text-navy">{site.owner}, CPA</strong>
+              President &amp; CEO · Florida-licensed · first licensed {firmFacts.firstLicensed}
+            </p>
           </FadeIn>
 
           <FadeIn delay={120}>
@@ -152,21 +158,16 @@ export default function AboutPage() {
       </Section>
 
       <Section tone="shell">
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
-          <FadeIn>
-            <SectionHeading eyebrow="Approach" title="How I work with clients" />
-          </FadeIn>
-          <FadeIn delay={120}>
-            <CheckList items={howIWork} />
-          </FadeIn>
-        </div>
-      </Section>
-
-      <Section>
         <FadeIn>
-          <SectionHeading eyebrow="By the numbers" title="The practice at a glance" />
+          <SectionHeading
+            eyebrow="Approach"
+            title="How I work with clients"
+            intro="Four things clients say make the difference — and the reasons the practice is deliberately small."
+          />
+        </FadeIn>
+        <FadeIn delay={120}>
           <div className="mt-10">
-            <StatRow stats={aboutStats} />
+            <CheckList items={howIWork} columns={2} />
           </div>
         </FadeIn>
       </Section>
@@ -266,12 +267,15 @@ export default function AboutPage() {
         </div>
       </Section>
 
+      {/* Shell here: the section above it is white, and CTABanner defaults to
+          white, which merged the two into one unbroken block. */}
       <CTABanner
+        tone="shell"
         title="Ready to talk?"
         text="A free consultation is exactly that — a conversation about your situation with no obligation attached."
       />
 
-      <RelatedLinks links={related} title="Where to go next" />
+      <RelatedLinks links={related} title="Where to go next" tone="white" />
     </>
   );
 }

@@ -94,10 +94,15 @@ export function ServiceCardGrid({ items, columns = 3 }) {
 /* ------------------------------------------------------------------ */
 
 export function ProcessSteps({ steps, eyebrow = 'How It Works', title, intro, tone = 'shell' }) {
+  // Track count follows the step count. Hard-coding four columns left a dead
+  // quarter-width column on every three-step page, which read as broken.
+  const columns = { 2: 'lg:grid-cols-2', 3: 'lg:grid-cols-3', 4: 'lg:grid-cols-4' };
   return (
     <Section tone={tone}>
-      <SectionHeading eyebrow={eyebrow} title={title} intro={intro} />
-      <ol className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <FadeIn>
+        <SectionHeading eyebrow={eyebrow} title={title} intro={intro} />
+      </FadeIn>
+      <ol className={`mt-12 grid gap-6 sm:grid-cols-2 ${columns[steps.length] ?? 'lg:grid-cols-4'}`}>
         {steps.map((step, index) => (
           <FadeIn key={step.title} as="li" delay={index * 90} className="relative h-full">
             <div className="flex h-full flex-col rounded-xl border border-navy/10 bg-white p-7">
@@ -197,38 +202,6 @@ export function FAQSection({ faqs, title = 'Frequently Asked Questions', eyebrow
 /* ------------------------------------------------------------------ */
 /* Stats                                                               */
 /* ------------------------------------------------------------------ */
-
-/**
- * Wraps rather than using a fixed column count, so an odd number of stats
- * fills the last row instead of leaving a hole.
- */
-export function StatRow({ stats, onDark = false }) {
-  return (
-    <dl className="flex flex-wrap gap-6">
-      {stats.map((stat) => (
-        <div
-          key={stat.label}
-          className={`min-w-56 flex-1 rounded-xl border p-6 ${
-            onDark ? 'border-white/15 bg-white/5' : 'border-navy/10 bg-shell'
-          }`}
-        >
-          <dt className={`text-sm font-semibold ${onDark ? 'text-navy-100' : 'text-slate-body'}`}>
-            {stat.label}
-          </dt>
-          <dd
-            className={`mt-2 font-display text-3xl font-extrabold ${
-              onDark ? 'text-gold' : 'text-navy'
-            }`}
-          >
-            {stat.value}
-          </dd>
-        </div>
-      ))}
-    </dl>
-  );
-}
-
-/* ------------------------------------------------------------------ */
 /* Map + contact details                                               */
 /* ------------------------------------------------------------------ */
 
@@ -308,28 +281,32 @@ export function MapBlock({
 /* Related pages                                                       */
 /* ------------------------------------------------------------------ */
 
-export function RelatedLinks({ title = 'Related services', links }) {
+export function RelatedLinks({ title = 'Related services', links, tone = 'shell' }) {
   return (
-    <Section tone="shell">
+    <Section tone={tone}>
       <FadeIn>
         <h2 className="text-2xl">{title}</h2>
-        <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {links.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className="flex h-full flex-col justify-between gap-3 rounded-xl border border-navy/10 bg-white p-5 transition-all hover:-translate-y-0.5 hover:border-gold/50 hover:shadow-md"
-              >
-                <span className="font-display text-[0.98rem] font-bold text-navy">{link.title}</span>
-                <span className="text-sm text-slate-body">{link.text}</span>
-                <span aria-hidden="true" className="font-display text-sm font-bold text-gold-700">
-                  Learn more &rarr;
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
       </FadeIn>
+      {/* Staggered like every other card grid on the site — this block used to
+          animate as one lump while neighbouring grids came in card by card. */}
+      <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {links.map((link, index) => (
+          <FadeIn key={link.href} as="li" delay={index * 80} className="h-full">
+            <Link
+              href={link.href}
+              className={`flex h-full flex-col justify-between gap-3 rounded-xl border border-navy/10 p-5 transition-all hover:-translate-y-0.5 hover:border-gold/50 hover:shadow-md ${
+                tone === 'shell' ? 'bg-white' : 'bg-shell'
+              }`}
+            >
+              <span className="font-display text-[0.98rem] font-bold text-navy">{link.title}</span>
+              <span className="text-sm text-slate-body">{link.text}</span>
+              <span aria-hidden="true" className="font-display text-sm font-bold text-gold-700">
+                Learn more &rarr;
+              </span>
+            </Link>
+          </FadeIn>
+        ))}
+      </ul>
     </Section>
   );
 }
@@ -341,7 +318,11 @@ export function RelatedLinks({ title = 'Related services', links }) {
 export function ProseSection({ eyebrow, title, paragraphs, tone = 'white', children, aside }) {
   return (
     <Section tone={tone}>
-      <div className={aside ? 'grid gap-10 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]' : ''}>
+      <div
+        className={
+          aside ? 'grid gap-10 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:items-start' : ''
+        }
+      >
         <FadeIn>
           <SectionHeading eyebrow={eyebrow} title={title} />
           <div className="mt-6 space-y-4">
@@ -353,6 +334,9 @@ export function ProseSection({ eyebrow, title, paragraphs, tone = 'white', child
           </div>
           {children}
         </FadeIn>
+        {/* items-start above keeps the image at its natural height instead of
+            stretching it; the columns are close enough in height here that
+            pinning it would only make it drift. */}
         {aside ? <FadeIn delay={120}>{aside}</FadeIn> : null}
       </div>
     </Section>

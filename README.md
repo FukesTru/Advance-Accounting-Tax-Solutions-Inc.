@@ -91,6 +91,18 @@ consistent while each page supplies its own copy:
 - **Template C — service area page.** Hero → local intro → map/address →
   services offered → county-level detail → FAQ → related links → CTA.
 
+Two rules keep the rhythm even across all of them:
+
+- **Section tones alternate strictly** (white → shell → white → …). Two
+  same-toned sections in a row merge into one oversized slab with no visible
+  break, which is why `ProcessSteps`, `FAQSection`, `RelatedLinks` and
+  `CTABanner` all take an explicit `tone` rather than relying on defaults.
+- **`ProcessSteps` sets its column count from `steps.length`.** A fixed
+  four-column track left a dead quarter-width column on every three-step page.
+
+Every section heading is wrapped in `FadeIn`, so a heading and the cards beneath
+it animate together instead of the heading appearing instantly.
+
 ## SEO
 
 Every page has a unique title and a 150–160 character description, a canonical

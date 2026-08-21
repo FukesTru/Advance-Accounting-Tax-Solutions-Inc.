@@ -83,11 +83,13 @@ export default function HomePage() {
       {/* What we do                                                  */}
       {/* ---------------------------------------------------------- */}
       <Section tone="shell">
-        <SectionHeading
-          eyebrow="What We Do"
-          title="Three ways we support individuals and business owners"
-          intro="Most clients start with one service and grow into the others. Whether you need a return filed correctly or a financial strategy for the next five years, it is the same advisor and the same standard of work."
-        />
+        <FadeIn>
+          <SectionHeading
+            eyebrow="What We Do"
+            title="Three ways we support individuals and business owners"
+            intro="Most clients start with one service and grow into the others. Whether you need a return filed correctly or a financial strategy for the next five years, it is the same advisor and the same standard of work."
+          />
+        </FadeIn>
         <div className="mt-12">
           <ServiceCardGrid items={serviceCards} />
         </div>
@@ -159,11 +161,13 @@ export default function HomePage() {
       {/* Meet the team                                               */}
       {/* ---------------------------------------------------------- */}
       <Section tone="shell">
-        <SectionHeading
-          eyebrow="Meet the team"
-          title="A small firm, on purpose"
-          intro="No call queue and no seasonal preparers. Three people, and you will know all of them by name — the person who reviews your work is the person who answers your call."
-        />
+        <FadeIn>
+          <SectionHeading
+            eyebrow="Meet the team"
+            title="A small firm, on purpose"
+            intro="No call queue and no seasonal preparers. Three people, and you will know all of them by name — the person who reviews your work is the person who answers your call."
+          />
+        </FadeIn>
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {team.map((member, index) => (
             <FadeIn key={member.slug} delay={index * 90} className="h-full">
@@ -211,11 +215,13 @@ export default function HomePage() {
       {/* Where we serve                                              */}
       {/* ---------------------------------------------------------- */}
       <Section>
-        <SectionHeading
-          eyebrow="Where We Serve"
-          title="Rooted in Southwest Florida, working with clients nationwide"
-          intro="Our office is in Ave Maria, between Naples and Fort Myers, and we meet local clients in person. Everyone else works with us remotely — same advisor, same responsiveness, wherever you are."
-        />
+        <FadeIn>
+          <SectionHeading
+            eyebrow="Where We Serve"
+            title="Rooted in Southwest Florida, working with clients nationwide"
+            intro="Our office is in Ave Maria, between Naples and Fort Myers, and we meet local clients in person. Everyone else works with us remotely — same advisor, same responsiveness, wherever you are."
+          />
+        </FadeIn>
         {/* Two flagship markets get a card; the rest are linked below so the
             section stays scannable as the area list grows. */}
         <div className="mt-12 grid gap-6 sm:grid-cols-2">

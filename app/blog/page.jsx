@@ -56,11 +56,13 @@ export default function BlogPage() {
       </PageHero>
 
       <Section>
-        <SectionHeading
-          eyebrow="Articles"
-          title="Written for owners, not accountants"
-          intro="These are the five topics we get asked about most. Each article is in progress — in the meantime, every card links to the service page covering that topic in detail."
-        />
+        <FadeIn>
+          <SectionHeading
+            eyebrow="Articles"
+            title="Written for owners, not accountants"
+            intro="These are the five topics we get asked about most. Each article is in progress — in the meantime, every card links to the service page covering that topic in detail."
+          />
+        </FadeIn>
 
         <div className="mt-10">
           <BlogFilter posts={posts} />

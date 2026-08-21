@@ -79,11 +79,13 @@ export default function ServiceAreasPage() {
       </Section>
 
       <Section tone="shell">
-        <SectionHeading
-          eyebrow="Communities"
-          title="Local to Lee and Collier counties"
-          intro="Each community below has its own page covering the local filing requirements and the financial questions that come up most often there — they are genuinely different, and so is the work."
-        />
+        <FadeIn>
+          <SectionHeading
+            eyebrow="Communities"
+            title="Local to Lee and Collier counties"
+            intro="Each community below has its own page covering the local filing requirements and the financial questions that come up most often there — they are genuinely different, and so is the work."
+          />
+        </FadeIn>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {areas.map((area, index) => (
@@ -134,11 +136,13 @@ export default function ServiceAreasPage() {
       </Section>
 
       <Section>
-        <SectionHeading
-          eyebrow="Services"
-          title="The same work, wherever you are"
-          intro="Location changes the local filing details, not the standard of the work or who you deal with."
-        />
+        <FadeIn>
+          <SectionHeading
+            eyebrow="Services"
+            title="The same work, wherever you are"
+            intro="Location changes the local filing details, not the standard of the work or who you deal with."
+          />
+        </FadeIn>
         <div className="mt-12">
           <ServiceCardGrid items={serviceCards} />
         </div>

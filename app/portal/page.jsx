@@ -148,11 +148,13 @@ export default function PortalPage() {
       </Section>
 
       <Section tone="shell">
-        <SectionHeading
-          eyebrow="Getting started"
-          title="New client? Here's how access works"
-          intro="Three steps, and the first one is on us."
-        />
+        <FadeIn>
+          <SectionHeading
+            eyebrow="Getting started"
+            title="New client? Here's how access works"
+            intro="Three steps, and the first one is on us."
+          />
+        </FadeIn>
         <ol className="mt-12 grid gap-6 lg:grid-cols-3">
           {steps.map((step, index) => (
             <FadeIn key={step.title} as="li" delay={index * 90} className="h-full">

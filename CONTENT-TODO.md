@@ -66,25 +66,23 @@ affiliated CPA firm. `lib/site.js` → `scopeExclusions` is the single list, and
 "management reports" and SSARS "prepared financial statements" is his call, not
 mine. If he wants the site silent on reporting altogether, it is a small edit.
 
-## Estimated figures — confirm or replace
+## Estimated figures — removed
 
-Three numbers on the About page stat row were requested as plausible stand-ins
-scaled to a 42-year career. **They are not measured.** They live in
-`lib/site.js` → `aboutStats`, each marked `// ESTIMATE`:
+The About page carried a stat row with three numbers that were never measured:
+**Returns prepared 10,000+**, **Clients served 1,200+**, and **Industries
+supported 30+**. They were originally requested as plausible stand-ins scaled to
+a 42-year career, and they were flagged here as unconfirmed.
 
-| Figure | Shown | Basis |
-|---|---|---|
-| Returns prepared | 10,000+ | ~240 returns/year × 42 years |
-| Clients served | 1,200+ | Cumulative over the career, not active clients |
-| Industries supported | 30+ | Round number, no underlying count |
+They are now gone, along with the section that held them. Two reasons:
 
-They appear on the About page only — the homepage stat row was reduced to the
-two confirmed figures (42 years, 13 years) when the client revenue box was
-removed.
+1. They read to a visitor as factual claims about the practice, and nothing
+   supports them.
+2. The section was redundant anyway — the only honest figures in it (42 years,
+   13 in independent practice) already appear three times on that page: in the
+   hero subtitle, in the Background copy, and in the credentials list.
 
-They read as factual claims to a visitor, so please confirm them or swap in real
-figures. Deleting the last three entries from `aboutStats` leaves a clean
-three-stat row of verified numbers if you would rather not publish estimates.
+If Joseph can substantiate real numbers and wants them shown, say so and the
+section comes back in a few lines with the verified figures.
 
 ## The homepage hero
 
