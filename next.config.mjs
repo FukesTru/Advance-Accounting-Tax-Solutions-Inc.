@@ -1,3 +1,22 @@
+// Blog images are served from the Supabase Storage bucket the RankGPT webhook
+// copies them into. next/image needs that origin allow-listed; derive it from
+// SUPABASE_URL (which must therefore be set at build time too) so a
+// self-hosted or custom-domain project works as well as *.supabase.co.
+const supabaseOrigin = (() => {
+  try {
+    if (!process.env.SUPABASE_URL) return null;
+    const url = new URL(process.env.SUPABASE_URL);
+    return {
+      protocol: url.protocol.replace(':', ''),
+      hostname: url.hostname,
+      ...(url.port ? { port: url.port } : {}),
+      pathname: '/storage/v1/object/public/**',
+    };
+  } catch {
+    return null;
+  }
+})();
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -17,6 +36,8 @@ const nextConfig = {
     remotePatterns: [
       { protocol: 'https', hostname: 'images.unsplash.com' },
       { protocol: 'https', hostname: 'plus.unsplash.com' },
+      { protocol: 'https', hostname: '**.supabase.co', pathname: '/storage/v1/object/public/**' },
+      ...(supabaseOrigin ? [supabaseOrigin] : []),
     ],
   },
 
