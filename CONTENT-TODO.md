@@ -195,7 +195,7 @@ each needs a decision:
 |---|---|---|---|
 | Phone | `(239) 492-6784` | `(615) 513-5522` (cell) | You gave the 239 number as the website number, so that is what ships. The signature is presumably older. |
 | Email | `jfragnoli@accounting-tax-solutions.com` | `jfragnolicpa@gmail.com` | I kept the domain address — a Gmail address on a CPA site costs real trust. Confirm the domain mailbox actually receives mail. |
-| Website | `taxstrategiesandaccountingservices.com` | `accounting-tax-solutions.com` | The new domain is what the site is built for; the old one should 301-redirect to it. |
+| Website | `www.accounting-tax-solutions.com` | `accounting-tax-solutions.com` | **Settled.** The client confirmed `www.accounting-tax-solutions.com` as the main address. If `taxstrategiesandaccountingservices.com` stays registered, it should 301-redirect to it, as should the bare `accounting-tax-solutions.com`. Both are domain settings in Vercel. |
 | Years independent | 13 | Bios.docx says "fourteen" | You said "about 13"; the document says fourteen. One word to change either way. |
 
 ## Blocking — must be resolved before launch
@@ -251,7 +251,7 @@ for work the firm actually sells:
 | 9 | **Blog articles** | Articles are published from RankGPT through `/api/rankgpt-webhook` and stored in Supabase — see the Blog section of the README. Until the first one lands, `/blog` shows an empty state linking to the three service categories. To go live: run `supabase/migrations/20261007000000_blog_articles.sql`, set `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` and `RANKGPT_WEBHOOK_SECRET`, and paste the same secret into RankGPT. |
 | 10 | **LinkedIn** | `components/Footer.jsx` — currently "Social profiles coming soon." Joseph has a LinkedIn profile; link it if he wants it public. |
 | 11 | **Headshots for Patricia and James** | Drop `patricia.jpg` and `james.jpg` into `public/images/` and they appear automatically on `/team`, in the homepage roster section, and on the About page. Until then `components/Avatar.jsx` renders a monogram, which looks deliberate rather than broken — but two real faces would finish the team page properly. Square crops, head and shoulders, 600px or larger. |
-| 12 | **Email vs. site domain** | Site is `taxstrategiesandaccountingservices.com`; email is `@accounting-tax-solutions.com`. Worth aligning eventually — mismatched domains cost a little trust and a little deliverability. |
+| 12 | **Email vs. site domain** | **Resolved.** The site and email now share `accounting-tax-solutions.com`. |
 | 13 | **301 redirects from the old site** | Hosting config — map the old `.php` URLs to the new pages so existing rankings and links are not lost. Suggested mapping: `taxservices.php` → `/tax-services`, `taxprep.php` → `/tax-services/tax-compliance-and-preparation`, `bizservices.php` → `/accounting-cfo-services`, `bookkeeping.php` → `/accounting-cfo-services/accounting-services`, `bizplan.php` → `/business-advisory-services`, `Team.php` → `/about`, `contact.php` → `/contact`, `irs-backtaxes.php` / `internalcontrols.php` / `qbtraining.php` / `lawfirms.php` / `links.php` → nearest match above. |
 
 ## Images
