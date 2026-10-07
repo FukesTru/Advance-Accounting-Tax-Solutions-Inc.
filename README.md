@@ -208,8 +208,12 @@ and the site renders them at `/blog` and `/blog/<slug>`. The footer's
    `X-API-Key: <secret>`.
 
 Without the Supabase variables the site still builds and runs; the blog just
-shows its empty state. With them set but the project unreachable, the build
-fails rather than shipping an empty blog.
+shows its empty state. The same is true if they are set but the database is
+not ready yet, for example before the migration has been run: the build logs a
+`[blog]` warning and carries on with an empty blog, so a half-finished blog
+setup never blocks a deployment of the site. The blog fills in within five
+minutes of the database becoming reachable, or immediately when the next
+article arrives.
 
 ### What the webhook does
 
