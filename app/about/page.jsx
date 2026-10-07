@@ -14,7 +14,7 @@ import { affiliatedFirm, firmFacts, scopeExclusions, site, team } from '@/lib/si
 export const metadata = buildMetadata({
   title: 'Meet Joseph F. Fragnoli, CPA — President & CEO',
   description:
-    'Joseph F. Fragnoli, CPA has spent 42 years in public accounting. Meet the founder of Advance Accounting & Tax Solutions in Ave Maria, Florida.',
+    'Joseph F. Fragnoli, CPA has spent 42 years in public accounting. Meet the founder of Advance Accounting & Tax Solutions in Naples, Florida.',
   path: '/about',
 });
 
@@ -121,8 +121,8 @@ export default function AboutPage() {
               </p>
               <p>
                 The firm works with {firmFacts.clientTypes} — businesses generally running between{' '}
-                {firmFacts.clientRevenueLong} in annual revenue. Based in Ave Maria and serving Fort
-                Myers, Naples, and the surrounding Southwest Florida communities, the practice also
+                {firmFacts.clientRevenueLong} in annual revenue. Based in North Naples and serving
+                Fort Myers, Naples, and the surrounding Southwest Florida communities, the practice also
                 supports clients across the country remotely, including multi-state filers and
                 owners who relocated to Florida but kept operations elsewhere.
               </p>

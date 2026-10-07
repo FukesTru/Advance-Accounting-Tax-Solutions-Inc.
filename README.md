@@ -1,6 +1,6 @@
 # Advance Accounting & Tax Solutions, Inc. — Website
 
-Twenty-six-page marketing site for a CPA/tax advisory firm in Ave Maria,
+Twenty-six-page marketing site for a CPA/tax advisory firm in Naples,
 Florida, serving Lee and Collier counties and clients nationwide.
 
 Built with **Next.js 16 (App Router)**, **React 19**, and **Tailwind CSS v4**.

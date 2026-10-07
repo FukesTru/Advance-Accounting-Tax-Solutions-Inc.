@@ -143,8 +143,8 @@ export default function ContactPage() {
       <MapBlock
         tone="shell"
         eyebrow="Find Us"
-        title="Our office in Ave Maria, Florida"
-        intro="Between Naples and Fort Myers, with parking on site. In-person meetings are by appointment — and most clients handle everything remotely instead."
+        title="Our office in Naples, Florida"
+        intro="In North Naples, an easy drive from across Collier County and southern Lee County. In-person meetings are by appointment — and most clients handle everything remotely instead."
       />
 
       <RelatedLinks links={related} title="Related pages" />

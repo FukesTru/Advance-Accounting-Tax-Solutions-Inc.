@@ -46,7 +46,7 @@ facts** in the build — no longer placeholders:
   (100% Joseph) for engagements that require one. This is now explained on the
   About page, declared in schema, and — importantly — the site's copy was
   corrected to stop advertising work the entity does not do (see below).
-- **Ave Maria photo** — the town-center aerial is now on the `/areas` hub.
+- **Ave Maria photo** — the town-center aerial is no longer placed anywhere now that the office is in North Naples (the `/areas` hub shows the Naples photo). The slot stays in `lib/images.js` for an Ave Maria page, should one be added.
 
 Sources: the old site's Home, Team, Tax Services, Business Services, and
 Contact pages, plus the client's Bios.docx.
@@ -119,11 +119,12 @@ Bios.docx. What remains, and where it came from:
 | First licensed 1984 | Bios.docx |
 | Client revenue $200,000–$20,000,000 | Bios.docx |
 | Hundred-million-dollar manufacturer (James) | Bios.docx |
-| (239) 492-6784, (615) 751-0288, 5284 Juliet Court, 34142 | Client messages / Joe's signature |
+| (239) 492-6784, (615) 751-0288 | Client messages / Joe's signature |
+| 5660 Strand Ct, Unit #A131, Naples, FL 34110-3343 | Client message (the office address; replaced the earlier residence address) |
 
 Removed as invented: business hours, "we respond within 1 business day",
 "same business day" portal turnaround, every drive time and distance between
-Ave Maria and the service-area cities, map coordinates, the `$$` price band,
+the office and the service-area cities, map coordinates, the `$$` price band,
 blog publication dates and read times, the privacy policy's "last updated"
 date, and the About stat row.
 

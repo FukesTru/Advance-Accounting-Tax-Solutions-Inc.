@@ -207,7 +207,7 @@ export function FAQSection({ faqs, title = 'Frequently Asked Questions', eyebrow
 export function MapBlock({
   eyebrow = 'Find Us',
   title = 'Visit the office or meet with us virtually',
-  intro = 'Our office is in Ave Maria, between Naples and Fort Myers. Prefer to keep it remote? Most of our clients work with us entirely by video call and phone.',
+  intro = 'Our office is in North Naples, an easy drive from across Collier County and southern Lee County. Prefer to keep it remote? Most of our clients work with us entirely by video call and phone.',
   tone = 'white',
 }) {
   return (
