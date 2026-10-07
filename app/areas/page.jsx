@@ -39,7 +39,7 @@ export default function ServiceAreasPage() {
       <PageHero
         eyebrow="Where We Work"
         title="Service Areas Across Southwest Florida"
-        subtitle="Our office is in Ave Maria, between Naples and Fort Myers. We meet clients across Lee and Collier counties in person — and work with clients nationwide entirely remotely."
+        subtitle="Our office is in North Naples. We meet clients across Lee and Collier counties in person — and work with clients nationwide entirely remotely."
       >
         <Button href="/contact" variant="gold">
           Schedule a Free Consultation
@@ -54,16 +54,16 @@ export default function ServiceAreasPage() {
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:items-center">
           <FadeIn>
             <SectionHeading
-              eyebrow="Based in Ave Maria"
-              title="A town in the middle of everything"
+              eyebrow="Based in Naples"
+              title="An office in the middle of everything"
             />
             <div className="mt-6 space-y-4 leading-relaxed text-slate-body">
               <p>
-                Ave Maria sits in eastern Collier County, inland of Naples and south-east of Fort
-                Myers, with Immokalee the next community up the road. Being off the coast
-                turns out to be an advantage: we are a straightforward drive from most of Lee and
-                Collier, without the seasonal traffic that makes a Naples or Fort Myers appointment
-                a half-day commitment.
+                Our office is in North Naples, at the top of Collier County where Naples meets
+                Bonita Springs and Estero. From there most of Lee and Collier is a straightforward
+                drive: Naples, Bonita Springs and Estero are close by, Fort Myers and Cape Coral
+                are up I-75, and Marco Island, Immokalee and Ave Maria are a direct run down the
+                coast or inland.
               </p>
               <p>
                 Clients who prefer to keep everything remote never make the drive at all. Video
@@ -73,7 +73,7 @@ export default function ServiceAreasPage() {
             </div>
           </FadeIn>
           <FadeIn delay={120}>
-            <Media image={images.aveMaria} sizes="(max-width: 1024px) 100vw, 45vw" />
+            <Media image={images.naples} sizes="(max-width: 1024px) 100vw, 45vw" />
           </FadeIn>
         </div>
       </Section>

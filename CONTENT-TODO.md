@@ -46,7 +46,7 @@ facts** in the build — no longer placeholders:
   (100% Joseph) for engagements that require one. This is now explained on the
   About page, declared in schema, and — importantly — the site's copy was
   corrected to stop advertising work the entity does not do (see below).
-- **Ave Maria photo** — the town-center aerial is now on the `/areas` hub.
+- **Ave Maria photo** — the town-center aerial is no longer placed anywhere now that the office is in North Naples (the `/areas` hub shows the Naples photo). The slot stays in `lib/images.js` for an Ave Maria page, should one be added.
 
 Sources: the old site's Home, Team, Tax Services, Business Services, and
 Contact pages, plus the client's Bios.docx.
@@ -119,11 +119,12 @@ Bios.docx. What remains, and where it came from:
 | First licensed 1984 | Bios.docx |
 | Client revenue $200,000–$20,000,000 | Bios.docx |
 | Hundred-million-dollar manufacturer (James) | Bios.docx |
-| (239) 492-6784, (615) 751-0288, 5284 Juliet Court, 34142 | Client messages / Joe's signature |
+| (239) 492-6784, (615) 751-0288 | Client messages / Joe's signature |
+| 5660 Strand Ct, Unit #A131, Naples, FL 34110-3343 | Client message (the office address; replaced the earlier residence address) |
 
 Removed as invented: business hours, "we respond within 1 business day",
 "same business day" portal turnaround, every drive time and distance between
-Ave Maria and the service-area cities, map coordinates, the `$$` price band,
+the office and the service-area cities, map coordinates, the `$$` price band,
 blog publication dates and read times, the privacy policy's "last updated"
 date, and the About stat row.
 
@@ -194,7 +195,7 @@ each needs a decision:
 |---|---|---|---|
 | Phone | `(239) 492-6784` | `(615) 513-5522` (cell) | You gave the 239 number as the website number, so that is what ships. The signature is presumably older. |
 | Email | `jfragnoli@accounting-tax-solutions.com` | `jfragnolicpa@gmail.com` | I kept the domain address — a Gmail address on a CPA site costs real trust. Confirm the domain mailbox actually receives mail. |
-| Website | `taxstrategiesandaccountingservices.com` | `accounting-tax-solutions.com` | The new domain is what the site is built for; the old one should 301-redirect to it. |
+| Website | `www.accounting-tax-solutions.com` | `accounting-tax-solutions.com` | **Settled.** The client confirmed `www.accounting-tax-solutions.com` as the main address. If `taxstrategiesandaccountingservices.com` stays registered, it should 301-redirect to it, as should the bare `accounting-tax-solutions.com`. Both are domain settings in Vercel. |
 | Years independent | 13 | Bios.docx says "fourteen" | You said "about 13"; the document says fourteen. One word to change either way. |
 
 ## Blocking — must be resolved before launch
@@ -247,10 +248,10 @@ for work the firm actually sells:
 |---|------|-------|
 | 7 | **Logo vector original** | The real lockup is in and used sitewide. It came as a raster JPEG, background-removed and cropped into three PNGs (see README). Ask the designer for the **vector original (SVG/AI/EPS)** — the current files are fine for the website but cannot scale to signage, print, or a large-format banner. |
 | 8 | **Remaining photography** | Two reserved headshot slots, both optional and both degrading gracefully: `patricia.jpg` and `james.jpg` — see the Images section below. |
-| 9 | **Blog articles** | `lib/posts.js` — the five starter topics exist as cards. Each links to its most relevant service page until the article is written, so no card dead-ends. Once written, add `/blog/<slug>` pages and point `href` at them. |
+| 9 | **Blog articles** | Articles are published from RankGPT through `/api/rankgpt-webhook` and stored in Supabase — see the Blog section of the README. Until the first one lands, `/blog` shows an empty state linking to the three service categories. To go live: run `supabase/migrations/20261007000000_blog_articles.sql`, set `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` and `RANKGPT_WEBHOOK_SECRET`, and paste the same secret into RankGPT. |
 | 10 | **LinkedIn** | `components/Footer.jsx` — currently "Social profiles coming soon." Joseph has a LinkedIn profile; link it if he wants it public. |
 | 11 | **Headshots for Patricia and James** | Drop `patricia.jpg` and `james.jpg` into `public/images/` and they appear automatically on `/team`, in the homepage roster section, and on the About page. Until then `components/Avatar.jsx` renders a monogram, which looks deliberate rather than broken — but two real faces would finish the team page properly. Square crops, head and shoulders, 600px or larger. |
-| 12 | **Email vs. site domain** | Site is `taxstrategiesandaccountingservices.com`; email is `@accounting-tax-solutions.com`. Worth aligning eventually — mismatched domains cost a little trust and a little deliverability. |
+| 12 | **Email vs. site domain** | **Resolved.** The site and email now share `accounting-tax-solutions.com`. |
 | 13 | **301 redirects from the old site** | Hosting config — map the old `.php` URLs to the new pages so existing rankings and links are not lost. Suggested mapping: `taxservices.php` → `/tax-services`, `taxprep.php` → `/tax-services/tax-compliance-and-preparation`, `bizservices.php` → `/accounting-cfo-services`, `bookkeeping.php` → `/accounting-cfo-services/accounting-services`, `bizplan.php` → `/business-advisory-services`, `Team.php` → `/about`, `contact.php` → `/contact`, `irs-backtaxes.php` / `internalcontrols.php` / `qbtraining.php` / `lawfirms.php` / `links.php` → nearest match above. |
 
 ## Images

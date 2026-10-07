@@ -219,7 +219,7 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="Where We Serve"
             title="Rooted in Southwest Florida, working with clients nationwide"
-            intro="Our office is in Ave Maria, between Naples and Fort Myers, and we meet local clients in person. Everyone else works with us remotely — same advisor, same responsiveness, wherever you are."
+            intro="Our office is in North Naples, and we meet local clients in person. Everyone else works with us remotely — same advisor, same responsiveness, wherever you are."
           />
         </FadeIn>
         {/* Two flagship markets get a card; the rest are linked below so the

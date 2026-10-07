@@ -1,15 +1,16 @@
 import Link from 'next/link';
+import ArticleCard from '@/components/ArticleCard';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import FadeIn from '@/components/FadeIn';
 import JsonLd from '@/components/JsonLd';
 import Media from '@/components/Media';
 import { Button, Section, SectionHeading } from '@/components/primitives';
 import { CTABanner, PageHero, RelatedLinks } from '@/components/sections';
-import BlogFilter from '@/components/BlogFilter';
+import { getPublishedArticles } from '@/lib/blog';
 import { images } from '@/lib/images';
-import { posts } from '@/lib/posts';
 import { blogSchema, breadcrumbSchema } from '@/lib/schema';
 import { buildMetadata } from '@/lib/seo';
+import { serviceCategories } from '@/lib/site';
 
 export const metadata = buildMetadata({
   title: 'Tax & Accounting Insights',
@@ -17,6 +18,10 @@ export const metadata = buildMetadata({
     'Practical tax planning, accounting, and business advisory insights from Advance Accounting & Tax Solutions, Inc. for Florida business owners.',
   path: '/blog',
 });
+
+// Articles arrive through the RankGPT webhook, which purges this page the
+// moment one lands. The interval is only a safety net.
+export const revalidate = 300;
 
 const breadcrumb = [{ name: 'Blog', href: '/blog' }];
 
@@ -39,10 +44,12 @@ const related = [
   { href: '/contact', title: 'Contact', text: 'Ask about your specific situation.' },
 ];
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const articles = await getPublishedArticles();
+
   return (
     <>
-      <JsonLd data={[blogSchema(posts), breadcrumbSchema(breadcrumb)]} />
+      <JsonLd data={[blogSchema(articles), breadcrumbSchema(breadcrumb)]} />
       <Breadcrumbs trail={breadcrumb} />
 
       <PageHero
@@ -60,13 +67,38 @@ export default function BlogPage() {
           <SectionHeading
             eyebrow="Articles"
             title="Written for owners, not accountants"
-            intro="The topics clients raise most often. Each article is in progress — in the meantime, every card links to the service page covering that topic in detail."
+            intro={
+              articles.length
+                ? 'The questions Florida business owners and individuals raise most often, answered in plain English. Newest first.'
+                : 'The first articles are on their way. In the meantime, every service page covers its topic in detail — and a free consultation answers the question that matters most: yours.'
+            }
           />
         </FadeIn>
 
-        <div className="mt-10">
-          <BlogFilter posts={posts} />
-        </div>
+        {articles.length ? (
+          <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {articles.map((article, index) => (
+              <FadeIn key={article.id} as="li" delay={(index % 3) * 80} className="h-full">
+                <ArticleCard article={article} />
+              </FadeIn>
+            ))}
+          </ul>
+        ) : (
+          <FadeIn>
+            <ul className="mt-10 grid gap-4 sm:grid-cols-3">
+              {serviceCategories.map((category) => (
+                <li key={category.slug}>
+                  <Link
+                    href={category.slug}
+                    className="block h-full rounded-xl border border-navy/10 bg-shell px-6 py-5 font-display text-[0.98rem] font-bold text-navy transition-colors hover:border-gold/50 hover:text-gold-700"
+                  >
+                    {category.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </FadeIn>
+        )}
       </Section>
 
       <Section tone="shell">

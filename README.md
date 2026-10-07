@@ -1,6 +1,6 @@
 # Advance Accounting & Tax Solutions, Inc. — Website
 
-Twenty-six-page marketing site for a CPA/tax advisory firm in Ave Maria,
+Twenty-six-page marketing site for a CPA/tax advisory firm in Naples,
 Florida, serving Lee and Collier counties and clients nationwide.
 
 Built with **Next.js 16 (App Router)**, **React 19**, and **Tailwind CSS v4**.
@@ -12,6 +12,7 @@ npm install
 npm run dev      # http://localhost:3000
 npm run build    # production build
 npm start        # serve the production build
+npm test         # unit tests (node:test)
 ```
 
 Copy `.env.example` to `.env.local` and fill in what applies.
@@ -62,6 +63,8 @@ app/
   accounting-cfo-services/       Category page + 3 sub-services
   business-advisory-services/    Category page + 2 sub-services
   areas/                         Hub page + [slug] route generating 7 city pages
+  blog/                          Article index + [slug] article pages (see Blog below)
+  api/rankgpt-webhook/route.js   Receives articles from RankGPT
   sitemap.js  robots.js  icon.png  not-found.jsx
 components/
   Navbar  Footer  FloatingCall  Breadcrumbs  Logo  Icons
@@ -69,14 +72,19 @@ components/
   primitives.jsx                 Container, Section, Button, CheckList, …
   sections.jsx                   PageHero, ServiceCardGrid, ProcessSteps, CTABanner, FAQSection, MapBlock, …
   templates.jsx                  Template A (category), B (sub-service), C (service area)
-  FAQ  FadeIn  Media  Avatar  BlogFilter  JsonLd  MapEmbed
+  FAQ  FadeIn  Media  Avatar  ArticleCard  JsonLd  MapEmbed
 lib/
   site.js          Firm details, nav, service tree — single source of truth
   areas.js         Per-city service-area content (intro, local detail, FAQs)
   images.js        Image slots (see CONTENT-TODO.md)
   schema.js        Schema.org JSON-LD builders
   seo.js           Metadata builder (title, description, canonical, OG)
-  posts.js         Blog index entries
+  blog.js          Reads articles from Supabase for the blog pages and sitemap
+  supabase.js      Server-side Supabase client
+  sanitize.js      HTML sanitiser for article bodies
+  rankgpt.js       Webhook auth, validation and URL rewriting (pure, unit-tested)
+supabase/migrations/             SQL for the blog_articles table and image bucket
+tests/                           `npm test` — node:test suites for lib/rankgpt.js and lib/sanitize.js
 ```
 
 ### Page templates
@@ -117,12 +125,15 @@ URL, Open Graph and Twitter tags, exactly one `<h1>`, breadcrumb navigation
 | Service pages (8) | `Service` + `FAQPage` + `BreadcrumbList` |
 | Area hub | `ItemList` + `BreadcrumbList` |
 | Area pages (7) | `AccountingService` (local) + `FAQPage` + `BreadcrumbList` |
-| Blog | `Blog` / `BlogPosting` + `BreadcrumbList` |
+| Blog index | `Blog` (with a `BlogPosting` per article) + `BreadcrumbList` |
+| Blog article | `BlogPosting` + `BreadcrumbList` |
 | Contact | `ContactPage` + `BreadcrumbList` |
 | Portal, Privacy | `BreadcrumbList` |
 
-`robots.txt` and `sitemap.xml` are generated at build time from `lib/site.js`
-and `lib/areas.js`. Every page links to at least three related pages.
+`robots.txt` is generated at build time from `lib/site.js`. `sitemap.xml` is
+built from `lib/site.js`, `lib/areas.js` and the published blog articles, and
+is refreshed whenever an article arrives (hourly otherwise). Every page links
+to at least three related pages.
 
 ## Performance
 
@@ -145,14 +156,16 @@ and `lib/areas.js`. Every page links to at least three related pages.
   instead of one per section.
 - Static assets under `/images` are served `immutable` with a one-year
   max-age; security headers are set in `next.config.mjs`.
-- Every page is prerendered at build time.
+- Every page is prerendered at build time, except the blog: `/blog`,
+  `/blog/<slug>` and `sitemap.xml` are cached and purged by the RankGPT
+  webhook when an article lands, so they are never stale and never rendered
+  per request.
 
 ## Accessibility
 
 Skip-to-content link, keyboard-accessible nav and accordions with correct
 `aria-expanded` / `aria-controls`, visible focus rings, alt text on every image,
-`aria-live` regions for filter status, a text alternative on the hero chart,
-WCAG AA contrast, and
+a text alternative on the hero chart, WCAG AA contrast, and
 `prefers-reduced-motion` support on all scroll animations.
 
 ## Contact form & chat
@@ -172,7 +185,75 @@ Both are owned in the LeadConnector dashboard — form fields, routing, and
 autoresponders are changed there, not in this repo. The only values here are
 the form ID and widget ID.
 
+## Blog
+
+Articles are written in **RankGPT** and delivered to this site by webhook.
+They live in a **Supabase** project (a Postgres table plus a Storage bucket),
+and the site renders them at `/blog` and `/blog/<slug>`. The footer's
+"Insights" link and the mobile menu's "Blog" link both point at `/blog`.
+
+### One-time setup
+
+1. Create a Supabase project and run
+   [`supabase/migrations/20261007000000_blog_articles.sql`](./supabase/migrations/20261007000000_blog_articles.sql)
+   in its SQL editor (or `supabase db push`). It creates the `blog_articles`
+   table and the public `blog-images` bucket.
+2. Set the environment variables in the host — see `.env.example`:
+   `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` and `RANKGPT_WEBHOOK_SECRET`.
+   `SUPABASE_URL` must be present at build time as well as at runtime, because
+   `next.config.mjs` derives the `next/image` allow-list from it.
+3. In RankGPT, point the webhook at
+   `https://<your domain>/api/rankgpt-webhook` and give it the same secret.
+   RankGPT may send it as `Authorization: Bearer <secret>` or
+   `X-API-Key: <secret>`.
+
+Without the Supabase variables the site still builds and runs; the blog just
+shows its empty state. The same is true if they are set but the database is
+not ready yet, for example before the migration has been run: the build logs a
+`[blog]` warning and carries on with an empty blog, so a half-finished blog
+setup never blocks a deployment of the site. The blog fills in within five
+minutes of the database becoming reachable, or immediately when the next
+article arrives.
+
+### What the webhook does
+
+`POST /api/rankgpt-webhook` (`app/api/rankgpt-webhook/route.js`):
+
+- Rejects requests without the secret (401, constant-time comparison) and
+  malformed bodies (400 with a short message).
+- `event: "test"` answers `{"ok": true}` and stores nothing.
+- Otherwise it downloads every image RankGPT lists, uploads it to the bucket
+  under `<article id>/<filename>` (overwriting an earlier copy — RankGPT
+  deletes its own copies soon after publishing), rewrites those URLs inside
+  the HTML, Markdown and hero fields, and **upserts** the row keyed on
+  RankGPT's article id. A retry or a manual resend therefore updates the
+  article rather than duplicating it; if the slug changed, the old URL is
+  purged. A draft is stored but hidden from the public blog.
+- Answers `{"link": "https://…/blog/<slug>"}` on success, 409 if the slug
+  already belongs to a different article, and 500 if an image could not be
+  copied or the row could not be written, so RankGPT retries the delivery.
+
+Article HTML is sanitised in `lib/sanitize.js` before it is rendered: scripts,
+event handlers, inline styles, iframes and non-http(s) URLs are dropped, a body
+`<h1>` becomes an `<h2>`, links that open a new tab get `rel="noopener"`, and
+an inline copy of the hero image is removed because the page renders the hero
+itself. The body is styled by `.prose-article` in `app/globals.css`.
+
+### Trying it locally
+
+```bash
+curl -X POST http://localhost:3000/api/rankgpt-webhook \
+  -H "Authorization: Bearer $RANKGPT_WEBHOOK_SECRET" \
+  -H "Content-Type: application/json" \
+  -d '{"event":"test"}'
+# → {"ok":true}
+```
+
+`npm test` runs the unit tests for the validation, authentication, URL
+rewriting and sanitising logic.
+
 ## Deploying
 
 Any Next.js host works; Vercel needs no configuration. Set the environment
-variables from `.env.example`, then point the domain at the deployment.
+variables from `.env.example` (the blog needs the Supabase ones at build time
+too), then point the domain at the deployment.

@@ -45,8 +45,13 @@ export default function Footer() {
               ))}
               <li>
                 <Link href="/blog" prefetch={false} className="hover:text-gold hover:underline">
-                  Insights &amp; Blog
+                  Insights
                 </Link>
+              </li>
+              <li>
+                <a href="https://blog.accounting-tax-solutions.com/" className="hover:text-gold hover:underline">
+                  Blog
+                </a>
               </li>
               <li>
                 <Link href="/team" prefetch={false} className="hover:text-gold hover:underline">
