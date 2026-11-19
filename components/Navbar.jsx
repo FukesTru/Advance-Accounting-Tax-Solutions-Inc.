@@ -74,7 +74,7 @@ export default function Navbar() {
         <Logo />
 
         {/* Desktop navigation */}
-        <nav aria-label="Main" className="hidden items-center gap-1 lg:flex">
+        <nav aria-label="Main" className="hidden items-center gap-0.5 lg:flex xl:gap-1">
           {mainNav.map((item) => {
             if (item.mega) {
               // Deliberately NOT `relative` — the mega panel below anchors to
@@ -87,7 +87,7 @@ export default function Navbar() {
                     aria-expanded={openMenu === item.label}
                     aria-haspopup="true"
                     onClick={() => setOpenMenu(openMenu === item.label ? null : item.label)}
-                    className={`flex items-center gap-1.5 whitespace-nowrap rounded-md px-2 py-2 font-display text-[0.875rem] font-semibold transition-colors xl:px-3 xl:text-[0.9rem] ${
+                    className={`flex items-center gap-1.5 whitespace-nowrap rounded-md px-2 py-2 font-display text-[0.875rem] font-semibold transition-colors xl:px-2.5 xl:text-[0.9rem] ${
                       isActive('/tax-services') ||
                       isActive('/accounting-cfo-services') ||
                       isActive('/business-advisory-services')
@@ -158,7 +158,7 @@ export default function Navbar() {
                     aria-expanded={openMenu === item.label}
                     aria-haspopup="true"
                     onClick={() => setOpenMenu(openMenu === item.label ? null : item.label)}
-                    className={`flex items-center gap-1.5 whitespace-nowrap rounded-md px-2 py-2 font-display text-[0.875rem] font-semibold transition-colors xl:px-3 xl:text-[0.9rem] ${
+                    className={`flex items-center gap-1.5 whitespace-nowrap rounded-md px-2 py-2 font-display text-[0.875rem] font-semibold transition-colors xl:px-2.5 xl:text-[0.9rem] ${
                       item.dropdown.some((link) => isActive(link.href))
                         ? 'text-gold-700'
                         : 'text-navy hover:text-gold-700'
@@ -192,7 +192,7 @@ export default function Navbar() {
                 key={item.href}
                 href={item.href}
                 onMouseEnter={() => setOpenMenu(null)}
-                className={`whitespace-nowrap rounded-md px-2 py-2 font-display text-[0.875rem] font-semibold transition-colors xl:px-3 xl:text-[0.9rem] ${
+                className={`whitespace-nowrap rounded-md px-2 py-2 font-display text-[0.875rem] font-semibold transition-colors xl:px-2.5 xl:text-[0.9rem] ${
                   isActive(item.href) ? 'text-gold-700' : 'text-navy hover:text-gold-700'
                 }`}
               >
@@ -300,12 +300,12 @@ export default function Navbar() {
                   {link.label}
                 </Link>
               ))}
-              <Link href="/blog" className="block py-2 font-display font-semibold text-navy">
-                Blog
-              </Link>
               <Link href="/portal" className="block py-2 font-display font-semibold text-navy">
                 Client Portal
               </Link>
+              <a href={site.blogUrl} className="block py-2 font-display font-semibold text-navy">
+                Blog
+              </a>
               <Link href="/contact" className="block py-2 font-display font-semibold text-navy">
                 Contact
               </Link>
