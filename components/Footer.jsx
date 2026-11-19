@@ -45,7 +45,7 @@ export default function Footer() {
               ))}
               <li>
                 <Link href="/blog" prefetch={false} className="hover:text-gold hover:underline">
-                  Insights &amp; Blog
+                  Insights
                 </Link>
               </li>
               <li>
@@ -57,6 +57,11 @@ export default function Footer() {
                 <Link href="/portal" prefetch={false} className="hover:text-gold hover:underline">
                   Client Portal
                 </Link>
+              </li>
+              <li>
+                <a href={site.blogUrl} className="hover:text-gold hover:underline">
+                  Blog
+                </a>
               </li>
             </ul>
           </div>
