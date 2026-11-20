@@ -246,10 +246,10 @@ for work the firm actually sells:
 | # | Item | Where |
 |---|------|-------|
 | 7 | **Logo vector original** | The real lockup is in and used sitewide. It came as a raster JPEG, background-removed and cropped into three PNGs (see README). Ask the designer for the **vector original (SVG/AI/EPS)** — the current files are fine for the website but cannot scale to signage, print, or a large-format banner. |
-| 8 | **Remaining photography** | Two reserved headshot slots, both optional and both degrading gracefully: `patricia.jpg` and `james.jpg` — see the Images section below. |
+| 8 | **Remaining photography** | Three reserved headshot slots, all optional and all degrading gracefully: `patricia.jpg`, `james.jpg`, and `steven.jpg` — see the Images section below. |
 | 9 | **Blog articles** | `lib/posts.js` — the five starter topics exist as cards. Each links to its most relevant service page until the article is written, so no card dead-ends. Once written, add `/blog/<slug>` pages and point `href` at them. |
 | 10 | **LinkedIn** | `components/Footer.jsx` — currently "Social profiles coming soon." Joseph has a LinkedIn profile; link it if he wants it public. |
-| 11 | **Headshots for Patricia and James** | Drop `patricia.jpg` and `james.jpg` into `public/images/` and they appear automatically on `/team`, in the homepage roster section, and on the About page. Until then `components/Avatar.jsx` renders a monogram, which looks deliberate rather than broken — but two real faces would finish the team page properly. Square crops, head and shoulders, 600px or larger. |
+| 11 | **Headshots for Patricia, James, and Steven** | Drop `patricia.jpg`, `james.jpg`, and `steven.jpg` into `public/images/` and they appear automatically on `/team`, in the homepage roster section, and on the About page. Until then `components/Avatar.jsx` renders a monogram, which looks deliberate rather than broken — but real faces would finish the team page properly. Square crops, head and shoulders, 600px or larger. |
 | 12 | **Email vs. site domain** | Site is `taxstrategiesandaccountingservices.com`; email is `@accounting-tax-solutions.com`. Worth aligning eventually — mismatched domains cost a little trust and a little deliverability. |
 | 13 | **301 redirects from the old site** | Hosting config — map the old `.php` URLs to the new pages so existing rankings and links are not lost. Suggested mapping: `taxservices.php` → `/tax-services`, `taxprep.php` → `/tax-services/tax-compliance-and-preparation`, `bizservices.php` → `/accounting-cfo-services`, `bookkeeping.php` → `/accounting-cfo-services/accounting-services`, `bizplan.php` → `/business-advisory-services`, `Team.php` → `/about`, `contact.php` → `/contact`, `irs-backtaxes.php` / `internalcontrols.php` / `qbtraining.php` / `lawfirms.php` / `links.php` → nearest match above. |
 
@@ -280,6 +280,7 @@ one page or in one role.
 |---|---|---|---|
 | `patricia` | `patricia.jpg` | `/team`, homepage roster, About | Square headshot, head and shoulders, 600px or larger. Reserved; a monogram holds the space. |
 | `james` | `james.jpg` | `/team`, homepage roster, About | Square headshot, head and shoulders, 600px or larger. Reserved; a monogram holds the space. |
+| `steven` | `steven.jpg` | `/team`, homepage roster, About | Square headshot, head and shoulders, 600px or larger. Reserved; a monogram holds the space. |
 
 One earlier submission for the Naples slot showed the Fontana del Nettuno in
 **Naples, Italy**. It was not used — the card exists to establish local

@@ -165,10 +165,10 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="Meet the team"
             title="A small firm, on purpose"
-            intro="No call queue and no seasonal preparers. Three people, and you will know all of them by name — the person who reviews your work is the person who answers your call."
+            intro="No call queue and no seasonal preparers. Four people, and you will know all of them by name — the person who reviews your work is the person who answers your call."
           />
         </FadeIn>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
           {team.map((member, index) => (
             <FadeIn key={member.slug} delay={index * 90} className="h-full">
               <Link

@@ -55,7 +55,7 @@ const related = [
     title: 'Business Advisory',
     text: 'Entity structure and long-term financial planning.',
   },
-  { href: '/team', title: 'Our Team', text: 'The three people behind the firm.' },
+  { href: '/team', title: 'Our Team', text: 'The four people behind the firm.' },
 ];
 
 export default function AboutPage() {
@@ -178,7 +178,7 @@ export default function AboutPage() {
             <SectionHeading
               eyebrow="The team"
               title="Joseph is not the whole firm"
-              intro="Patricia Alcantara co-owns the practice and runs its operations. James Fragnoli, a retired CFO of a hundred-million-dollar manufacturer, provides the senior input on fractional CFO and accounting engagements. Between them, you get a small firm rather than a sole practitioner."
+              intro="Patricia Alcantara co-owns the practice and runs its operations. James Fragnoli, a retired CFO of a hundred-million-dollar manufacturer, provides the senior input on fractional CFO and accounting engagements. Steven Katawicz joins them as a staff accountant. Between them, you get a small firm rather than a sole practitioner."
             />
             <div className="mt-8">
               <Button href="/team" variant="navy">

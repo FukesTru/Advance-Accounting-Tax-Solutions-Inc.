@@ -14,7 +14,7 @@ import { affiliatedFirm, scopeExclusions, site, team } from '@/lib/site';
 export const metadata = buildMetadata({
   title: 'Our Team',
   description:
-    'Meet the people behind Advance Accounting & Tax Solutions — Joseph F. Fragnoli CPA, Patricia Alcantara, and James Fragnoli, serving Southwest Florida.',
+    'Meet the people behind Advance Accounting & Tax Solutions — Joseph F. Fragnoli CPA, Patricia Alcantara, James Fragnoli, and Steven Katawicz, serving Southwest Florida.',
   path: '/team',
 });
 
@@ -40,7 +40,7 @@ export default function TeamPage() {
       <PageHero
         eyebrow="Our Team"
         title="The people you will actually be working with"
-        subtitle="Three people, no call queue, no seasonal preparers. The person who reviews your work is the person who answers your call — and you will know all of them by name."
+        subtitle="Four people, no call queue, no seasonal preparers. The person who reviews your work is the person who answers your call — and you will know all of them by name."
       >
         <Button href="/contact" variant="gold">
           Schedule a Free Consultation

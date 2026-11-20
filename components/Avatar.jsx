@@ -3,7 +3,7 @@ import Image from 'next/image';
 /**
  * Person avatar: the photo when one exists, otherwise a styled monogram.
  *
- * Two of the three team members have no headshot yet. A monogram reads as a
+ * Three of the four team members have no headshot yet. A monogram reads as a
  * deliberate design choice; the generic gradient placeholder used for scenery
  * would read as a missing image where a face is expected.
  */
